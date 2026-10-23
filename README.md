@@ -26,7 +26,7 @@ Le site de GM.PB : un site statique (Eleventy) hébergé gratuitement sur Cloudf
 
 ### 3. Te connecter au back office
 
-1. Dans `src/admin/config.yml`, la ligne `repo:` doit contenir `ton-compte/gmpb-site` (Claude s'en charge).
+1. Dans `src/admin/config.yml`, la ligne `repo:` contient déjà `oliviayohou/gmpb-site`.
 2. Va sur `ton-adresse.pages.dev/admin/`.
 3. Clique sur **Sign In Using Access Token**. Le lien proposé ouvre GitHub avec les bonnes autorisations : choisis le dépôt `gmpb-site`, avec l'accès **Contents : Read and write**, puis génère le jeton et colle-le.
 4. C'est tout : tu vois tes articles, catégories et réglages. L'interface du logiciel est en anglais, mais tous tes champs sont en français.

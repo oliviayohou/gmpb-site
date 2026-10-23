@@ -6,7 +6,7 @@
 
 backend:
   name: github
-  repo: TON-COMPTE-GITHUB/gmpb-site   # ← à remplacer par ton compte GitHub
+  repo: oliviayohou/gmpb-site
   branch: main
 
 site_url: https://gmpb.pages.dev
