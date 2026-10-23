@@ -21,13 +21,13 @@ Le site de GM.PB : un site statique (Eleventy) hébergé gratuitement sur Cloudf
    - **Framework preset** : *None*
    - **Build command** : `npm run build`
    - **Build output directory** : `_site`
-4. Clique sur **Save and Deploy**. Après 1 à 2 minutes, ton site est en ligne à une adresse du type `gmpb-site.pages.dev`.
+4. Clique sur **Save and Deploy**. Après 1 à 2 minutes, ton site est en ligne (adresse actuelle : https://gmpb-site.oliviayohou7.workers.dev).
 5. Note cette adresse : elle remplace `https://gmpb.pages.dev` dans `src/_data/site.json` (champ `url`) et dans `src/admin/config.yml` (`site_url`, `display_url`). Claude peut s'en charger.
 
 ### 3. Te connecter au back office
 
 1. Dans `src/admin/config.yml`, la ligne `repo:` contient déjà `oliviayohou/gmpb-site`.
-2. Va sur `ton-adresse.pages.dev/admin/`.
+2. Va sur https://gmpb-site.oliviayohou7.workers.dev/admin/.
 3. Clique sur **Sign In Using Access Token**. Le lien proposé ouvre GitHub avec les bonnes autorisations : choisis le dépôt `gmpb-site`, avec l'accès **Contents : Read and write**, puis génère le jeton et colle-le.
 4. C'est tout : tu vois tes articles, catégories et réglages. L'interface du logiciel est en anglais, mais tous tes champs sont en français.
 

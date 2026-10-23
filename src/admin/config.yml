@@ -9,8 +9,8 @@ backend:
   repo: oliviayohou/gmpb-site
   branch: main
 
-site_url: https://gmpb.pages.dev
-display_url: https://gmpb.pages.dev
+site_url: https://gmpb-site.oliviayohou7.workers.dev
+display_url: https://gmpb-site.oliviayohou7.workers.dev
 
 media_folder: src/images/uploads
 public_folder: /images/uploads
