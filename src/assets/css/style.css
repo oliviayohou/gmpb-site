@@ -405,7 +405,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .pb-meta-grid div { border: 2px dashed #fff; border-radius: var(--radius); padding: 16px 20px; }
 .pb-meta-grid strong { display: block; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; }
 .pb-meta-grid span { font-family: var(--font-display); font-size: 28px; line-height: 1.2; }
-.takeaway { background: var(--teal); border: var(--border); border-radius: 22px; padding: 28px 30px; margin: 48px 0 0; }
+.takeaway { background: var(--teal); border: var(--border); border-radius: 22px; padding: 28px 30px; margin: 0 0 32px; }
 .takeaway h2 { font-family: var(--font-display); font-weight: 400; text-transform: uppercase; font-size: 30px; margin: 0 0 12px; }
 .takeaway ul { margin: 0; padding-left: 22px; font-size: 17px; line-height: 1.65; }
 .takeaway li { margin-bottom: 6px; }

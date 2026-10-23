@@ -70,17 +70,14 @@ layout: layouts/base.njk
   </section>
   {%- endif %}
 
-  {%- if takeaways and takeaways.length %}
-  <div class="article-layout">
-    {%- if tocItems.length > 1 %}<div class="toc-side" aria-hidden="true"></div>{% endif %}
-    <aside class="prose takeaway" aria-labelledby="a-retenir">
+  <div class="after">
+    {%- if takeaways and takeaways.length %}
+    <aside class="takeaway" aria-labelledby="a-retenir">
       <h2 id="a-retenir">À retenir</h2>
       <ul>{% for t in takeaways %}<li>{{ t }}</li>{% endfor %}</ul>
     </aside>
-  </div>
-  {%- endif %}
-
-  <div class="after" data-pagefind-ignore>
+    {%- endif %}
+    <div data-pagefind-ignore>
     {%- if twinArticle %}
     <a class="twin" href="{{ twinArticle.url }}">
       <div>{{ m.badge(twinArticle.data.track) }}<strong>{{ "Pour aller plus loin" if track == "gm" else "Le décryptage Grand Marketing" }} : {{ twinArticle.data.title }}</strong></div>
@@ -100,6 +97,7 @@ layout: layouts/base.njk
         <a href="/a-propos/">En savoir plus sur moi →</a>
       </div>
     </section>
+    </div>
   </div>
 </article>
 
