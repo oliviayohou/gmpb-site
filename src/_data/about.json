@@ -12,18 +12,18 @@
   "pillars": [
     {
       "number": "01",
-      "title": "On décrypte",
+      "title": "Je décrypte",
       "text": "Une campagne de grande marque, démontée pièce par pièce : la cible, le timing, la mécanique."
     },
     {
       "number": "02",
-      "title": "On adapte",
-      "text": "La même idée, version Petit Budget : des étapes concrètes, des outils gratuits, un temps estimé."
+      "title": "J'adapte",
+      "text": "La même idée, version Petit Budget : des étapes concrètes, des outils gratuits ou à prix mini."
     },
     {
       "number": "03",
-      "title": "On automatise",
-      "text": "L'IA et les outils no-code pour gagner du temps, sans agence et sans savoir coder."
+      "title": "J'automatise",
+      "text": "Je parle d'IA et je te présente des outils et workflow pour automatiser, sans code."
     }
   ],
   "timeline_title": "Mon parcours",
