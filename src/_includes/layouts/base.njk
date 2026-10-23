@@ -1,4 +1,4 @@
-{%- set pageTitle = (seo_title or title) ~ (" — " ~ site.shortTitle if title else "") if not isHome else site.title ~ " — le marketing des grandes marques, sans budget" -%}
+{%- set pageTitle = (seo_title or title) ~ (" — " ~ site.shortTitle if title else "") if not isHome else site.title ~ " — " ~ home.seo_title_suffix -%}
 {%- set pageDesc = seo_description or description or chapo or site.description -%}
 {%- set canonical = page.url | absoluteUrl(site.url) -%}
 {%- set ogImage = (cover if cover else "/assets/og-default.png") | absoluteUrl(site.url) -%}
@@ -30,6 +30,7 @@
 {{ content | safe }}
 </main>
 {% include "partials/footer.njk" %}
+<script>window.GMPB_TEXTS = {{ { common: common, contact: contact, article: article, blog: blog } | jsonScript | safe }};</script>
 <script src="/assets/js/main.js" defer></script>
 </body>
 </html>

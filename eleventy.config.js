@@ -93,6 +93,15 @@ export default function (eleventyConfig) {
   });
   eleventyConfig.addFilter("json", (v) => JSON.stringify(v));
   eleventyConfig.addFilter("head", (arr, n) => (arr || []).slice(0, n));
+  eleventyConfig.addFilter("jsonScript", (v) => JSON.stringify(v).replace(/</g, "\\u003c"));
+  // Garde les deux derniers mots ensemble (évite une coupure disgracieuse dans un grand titre)
+  eleventyConfig.addFilter("nowrapLast", (str) => {
+    const esc = String(str || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    const words = esc.trim().split(/\s+/);
+    if (words.length < 3) return esc;
+    const tail = words.splice(-2).join(" ");
+    return words.join(" ") + ' <span class="nowrap">' + tail + "</span>";
+  });
 
   return {
     dir: { input: "src", includes: "_includes", data: "_data", output: "_site" },

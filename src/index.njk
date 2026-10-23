@@ -7,29 +7,29 @@ permalink: /
 {%- set f = collections.articles | featuredFirst -%}
 <section class="wrap hero">
   <div class="hero-title">
-    <div class="hero-badges">{{ m.badge("gm") }}{{ m.badge("pb") }}</div>
-    <h1 class="display h-hero">Grand <span class="nowrap">marketing &amp;</span><br><span class="highlight">petit budget.</span></h1>
+    <div class="hero-badges">{{ m.badge("gm", blog) }}{{ m.badge("pb", blog) }}</div>
+    <h1 class="display h-hero">{{ home.hero_title | nowrapLast | safe }}<br><span class="highlight">{{ home.hero_title_highlight }}</span></h1>
   </div>
   <div class="hero-side">
     <p class="lead">{{ home.hero_text }}</p>
     <div class="btn-row">
-      {%- if f %}<a class="btn btn-violet" href="{{ f.url }}">Lire le dernier décryptage</a>{% endif %}
-      <a class="btn" href="/blog/">Explorer le blog</a>
+      {%- if f %}<a class="btn btn-violet" href="{{ f.url }}">{{ home.hero_button_featured }}</a>{% endif %}
+      <a class="btn" href="/blog/">{{ home.hero_button_blog }}</a>
     </div>
   </div>
 </section>
 
 {%- if f %}
 {%- set fcat = f.data.category | category(categories.categories) %}
-<section class="wrap" style="padding-bottom:72px" aria-label="Article à la une">
+<section class="wrap" style="padding-bottom:72px" aria-label="{{ home.featured_label }}">
   <a class="featured" href="{{ f.url }}">
     {{ m.coverBox(f, fcat) }}
     <div class="featured-body">
-      <div class="card-meta">{{ m.badge(f.data.track) }}<span>{{ fcat.name }} · {{ f | readingTime }} min</span></div>
-      <p class="eyebrow" style="margin:0">À la une</p>
+      <div class="card-meta">{{ m.badge(f.data.track, blog) }}<span>{{ fcat.name }} · {{ f | readingTime }} {{ blog.reading_time }}</span></div>
+      <p class="eyebrow" style="margin:0">{{ home.featured_label }}</p>
       <h2 class="display h-3" style="line-height:1.05">{{ f.data.title }}</h2>
       {%- if f.data.chapo %}<p class="muted">{{ f.data.chapo | truncate(170) }}</p>{% endif %}
-      <span class="link-arrow">Lire l'article →</span>
+      <span class="link-arrow">{{ home.featured_link }}</span>
     </div>
   </a>
 </section>
@@ -39,41 +39,41 @@ permalink: /
 {%- if latest.length %}
 <section class="wrap" style="padding-bottom:80px" aria-labelledby="latest-title">
   <div class="section-head">
-    <h2 class="display h-2" id="latest-title">Derniers articles</h2>
-    {{ m.trackFilters("home-grid", "home-count", "home-empty") }}
+    <h2 class="display h-2" id="latest-title">{{ home.latest_title }}</h2>
+    {{ m.trackFilters("home-grid", "home-count", "home-empty", blog) }}
   </div>
   <div class="grid" id="home-grid">
     {%- for a in latest %}
-    {{ m.card(a, categories.categories) }}
+    {{ m.card(a, categories.categories, blog) }}
     {%- endfor %}
   </div>
-  <p class="empty" id="home-empty" hidden>Aucun article pour ce filtre pour l'instant.</p>
+  <p class="empty" id="home-empty" hidden>{{ home.latest_empty }}</p>
   <p class="sr-only" id="home-count" aria-live="polite"></p>
-  <div style="margin-top:40px;text-align:center"><a class="btn" href="/blog/">Voir tous les articles</a></div>
+  <div style="margin-top:40px;text-align:center"><a class="btn" href="/blog/">{{ home.latest_button }}</a></div>
 </section>
 {%- endif %}
 
 <section class="intro-band" aria-labelledby="intro-title">
   <div class="wrap intro">
     <div class="intro-photo">
-      {%- if about.photo %}<img class="ph" src="{{ about.photo }}" alt="{{ site.author }}" style="padding:0;object-fit:cover;width:100%">{% else %}<div class="ph">[Ta photo]</div>{% endif %}
+      {%- if about.photo %}<img class="ph" src="{{ about.photo }}" alt="{{ site.author }}" style="padding:0;object-fit:cover;width:100%">{% else %}<div class="ph">{{ home.photo_placeholder }}</div>{% endif %}
     </div>
     <div class="intro-text">
-      <p class="eyebrow">Derrière GM.PB</p>
-      <h2 class="display h-2" id="intro-title" style="line-height:1.18">Le marketing des grandes marques, <span class="highlight nowrap">traduit pour toi.</span></h2>
+      <p class="eyebrow">{{ home.intro_eyebrow }}</p>
+      <h2 class="display h-2" id="intro-title" style="line-height:1.18">{{ home.intro_title }} <span class="highlight nowrap">{{ home.intro_title_highlight }}</span></h2>
       <p class="lead">{{ home.intro_text }}</p>
       <div class="intro-tracks">
-        <div>{{ m.badge("gm") }}<p>Le décryptage : la cible, le timing, la mécanique.</p></div>
-        <div>{{ m.badge("pb") }}<p>La version à appliquer chez toi, étape par étape.</p></div>
+        <div>{{ m.badge("gm", blog) }}<p>{{ home.intro_gm_text }}</p></div>
+        <div>{{ m.badge("pb", blog) }}<p>{{ home.intro_pb_text }}</p></div>
       </div>
-      <div class="btn-row"><a class="btn btn-dark" href="/a-propos/">En savoir plus</a><a class="btn" href="/contact/{{ '?type=devis' if site.devis }}">{{ "Demander un devis" if site.devis else "Me contacter" }}</a></div>
+      <div class="btn-row"><a class="btn btn-dark" href="/a-propos/">{{ home.intro_button_about }}</a><a class="btn" href="/contact/{{ '?type=devis' if site.devis }}">{{ common.menu_devis_button if site.devis else common.menu_contact_button }}</a></div>
     </div>
   </div>
 </section>
 
 <section class="section section-dark" aria-labelledby="themes-title">
   <div class="wrap">
-    <h2 class="display h-2" id="themes-title" style="margin-bottom:32px">Explorer par thème</h2>
+    <h2 class="display h-2" id="themes-title" style="margin-bottom:32px">{{ home.themes_title }}</h2>
     <div class="cat-tiles">
       {%- for c in categories.categories %}
       <a class="cat-tile" href="/categorie/{{ c.slug }}/"><span>{{ c.name }}</span><span class="arrow" style="background:{{ c.color }}" aria-hidden="true">→</span></a>
@@ -82,4 +82,4 @@ permalink: /
   </div>
 </section>
 
-{{ m.contactBand(site) }}
+{{ m.contactBand(site, common) }}

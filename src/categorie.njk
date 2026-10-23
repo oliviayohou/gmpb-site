@@ -15,27 +15,27 @@ eleventyComputed:
 {%- set arts = collections.articles | byCategory(cat.slug) -%}
 <section class="page-hero" style="background:{{ cat.color }}">
   <div class="wrap">
-    <div class="breadcrumb"><a href="/">Accueil</a> / <a href="/blog/">Blog</a> / {{ cat.name }}</div>
+    <div class="breadcrumb"><a href="/">{{ common.breadcrumb_home }}</a> / <a href="/blog/">{{ blog.breadcrumb_blog }}</a> / {{ cat.name }}</div>
     <h1 class="display h-1">{{ cat.name }}</h1>
     <p class="lead" style="margin-top:20px">{{ cat.description }}</p>
   </div>
 </section>
-<section class="wrap" style="padding-top:40px;padding-bottom:88px" aria-label="Articles">
+<section class="wrap" style="padding-top:40px;padding-bottom:88px" aria-label="{{ cat.name }}">
   <div class="section-head" style="align-items:center">
-    {{ m.trackFilters("cat-grid", "cat-count", "cat-empty") }}
+    {{ m.trackFilters("cat-grid", "cat-count", "cat-empty", blog) }}
     <span class="result-count" id="cat-count" aria-live="polite"></span>
   </div>
   <div class="grid" id="cat-grid">
     {%- for a in arts %}
-    {{ m.card(a, categories.categories, true) }}
+    {{ m.card(a, categories.categories, blog, true) }}
     {%- endfor %}
   </div>
-  <p class="empty" id="cat-empty" {% if arts.length %}hidden{% endif %}>Les premiers articles de ce thème arrivent bientôt.</p>
+  <p class="empty" id="cat-empty" {% if arts.length %}hidden{% endif %}>{{ blog.empty_category }}</p>
 </section>
 <section class="section-dark">
   <div class="wrap section-tight">
     <div class="chips-row">
-      <strong style="margin-right:8px">Autres thèmes :</strong>
+      <strong style="margin-right:8px">{{ blog.other_themes }}</strong>
       {%- for o in categories.categories %}{% if o.slug != cat.slug %}
       <a href="/categorie/{{ o.slug }}/">{{ o.name }}</a>
       {%- endif %}{% endfor %}

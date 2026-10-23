@@ -1,35 +1,36 @@
 ---
 layout: layouts/base.njk
-title: Tous les articles
-description: Tous les décryptages Grand Marketing et toutes les adaptations Petit Budget, par thème.
 activeNav: categories
 permalink: /blog/
+eleventyComputed:
+  title: "{{ blog.page_title }}"
+  description: "{{ blog.page_description }}"
 ---
 {%- import "partials/macros.njk" as m -%}
 <section class="page-hero" style="background:var(--yellow)">
   <div class="wrap">
-    <div class="breadcrumb"><a href="/">Accueil</a> / Blog</div>
-    <h1 class="display h-1">Tous les articles</h1>
-    <p class="lead" style="margin-top:20px">Six thèmes, chacun décliné en deux versions : le décryptage Grand Marketing et l'adaptation Petit Budget.</p>
+    <div class="breadcrumb"><a href="/">{{ common.breadcrumb_home }}</a> / {{ blog.breadcrumb_blog }}</div>
+    <h1 class="display h-1">{{ blog.title }}</h1>
+    <p class="lead" style="margin-top:20px">{{ blog.intro }}</p>
   </div>
 </section>
-<section class="wrap" style="padding-top:40px;padding-bottom:88px" aria-label="Articles">
+<section class="wrap" style="padding-top:40px;padding-bottom:88px" aria-label="{{ blog.title }}">
   <div class="section-head" style="flex-direction:column;align-items:flex-start">
-    {{ m.catFilters("all-grid", "all-count", "all-empty", categories.categories) }}
-    {{ m.trackFilters("all-grid", "all-count2", "all-empty") }}
+    {{ m.catFilters("all-grid", "all-count", "all-empty", categories.categories, blog) }}
+    {{ m.trackFilters("all-grid", "all-count2", "all-empty", blog) }}
     <span class="result-count" id="all-count" aria-live="polite"></span>
     <span class="sr-only" id="all-count2" aria-live="polite"></span>
   </div>
   <div class="grid" id="all-grid">
     {%- for a in collections.articles %}
-    {{ m.card(a, categories.categories, true) }}
+    {{ m.card(a, categories.categories, blog, true) }}
     {%- endfor %}
   </div>
-  <p class="empty" id="all-empty" {% if collections.articles.length %}hidden{% endif %}>Aucun article pour ce filtre pour l'instant.</p>
+  <p class="empty" id="all-empty" {% if collections.articles.length %}hidden{% endif %}>{{ blog.empty }}</p>
 </section>
 <section class="section section-dark" aria-labelledby="themes-title">
   <div class="wrap">
-    <h2 class="display h-2" id="themes-title" style="margin-bottom:32px">Les thèmes</h2>
+    <h2 class="display h-2" id="themes-title" style="margin-bottom:32px">{{ blog.themes_title }}</h2>
     <div class="cat-tiles">
       {%- for c in categories.categories %}
       <a class="cat-tile" href="/categorie/{{ c.slug }}/"><span>{{ c.name }}</span><span class="arrow" style="background:{{ c.color }}" aria-hidden="true">→</span></a>

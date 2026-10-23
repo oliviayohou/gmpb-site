@@ -1,8 +1,32 @@
 {
+  "page_title": "À propos",
+  "page_description": "Qui se cache derrière Grand Marketing & Petit Budget, et comment travailler ensemble.",
+  "eyebrow": "À propos",
+  "title": "Moi c'est",
+  "title_highlight": "Olivia.",
   "photo": "",
   "sticker": "Consultante Marketing",
   "intro": "Je travaille dans le marketing des grandes marques. Mon quotidien : des dizaines de campagnes par cycle, pour des marques que tu as dans ton placard.",
   "text": "Et à chaque campagne, je me pose la même question : comment un commerçant, une créatrice e-commerce ou un artisan pourrait faire pareil, avec zéro budget ? GM.PB, c'est la réponse, article après article.",
+  "pillars_title": "Ici, on fait 3 choses",
+  "pillars": [
+    {
+      "number": "01",
+      "title": "On décrypte",
+      "text": "Une campagne de grande marque, démontée pièce par pièce : la cible, le timing, la mécanique."
+    },
+    {
+      "number": "02",
+      "title": "On adapte",
+      "text": "La même idée, version Petit Budget : des étapes concrètes, des outils gratuits, un temps estimé."
+    },
+    {
+      "number": "03",
+      "title": "On automatise",
+      "text": "L'IA et les outils no-code pour gagner du temps, sans agence et sans savoir coder."
+    }
+  ],
+  "timeline_title": "Mon parcours",
   "timeline": [
     {
       "when": "Aujourd'hui",
@@ -26,6 +50,8 @@
     }
   ],
   "show_offers": true,
+  "offers_title": "Travailler ensemble",
+  "offers_intro": "Tu veux aller plus loin que les articles ? Deux façons de bosser avec moi.",
   "offers": [
     {
       "tag": "TU APPRENDS",

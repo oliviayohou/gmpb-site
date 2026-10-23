@@ -6,6 +6,9 @@
 (function () {
   'use strict';
 
+  var T = window.GMPB_TEXTS || { common: {}, contact: {}, article: {}, blog: {} };
+  function plural(n, one, many) { return n + ' ' + (n > 1 ? many : one); }
+
   function $(sel, root) { return (root || document).querySelector(sel); }
   function $all(sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }
 
@@ -35,7 +38,7 @@
     burger.addEventListener('click', function () {
       var open = burger.getAttribute('aria-expanded') === 'true';
       burger.setAttribute('aria-expanded', open ? 'false' : 'true');
-      burger.setAttribute('aria-label', open ? 'Ouvrir le menu' : 'Fermer le menu');
+      burger.setAttribute('aria-label', 'Menu');
       burger.innerHTML = open ? openIcon : closeIcon;
       mobileMenu.hidden = open;
     });
@@ -77,7 +80,7 @@
   function render(list) {
     results.innerHTML = list.map(function (r) {
       var track = (r.meta && r.meta.track) || '';
-      var badge = track ? '<span class="badge badge-' + track + '">' + (track === 'gm' ? 'GRAND MARKETING' : 'PETIT BUDGET') + '</span>' : '';
+      var badge = track ? '<span class="badge badge-' + track + '">' + escapeHtml(track === 'gm' ? T.blog.gm_badge : T.blog.pb_badge) + '</span>' : '';
       return '<li><a href="' + escapeHtml(r.url) + '"><span class="r-meta">' + badge + escapeHtml(r.meta && r.meta.category) + '</span>' +
         '<span class="r-title">' + escapeHtml(r.meta && r.meta.title) + '</span><span class="r-ex">' + (r.excerpt || '') + '</span></a></li>';
     }).join('');
@@ -85,7 +88,7 @@
   function runSearch() {
     var q = input.value.trim();
     var token = ++searchToken;
-    if (!q) { countEl.textContent = 'Tape un mot : fidélité, promo, Instagram…'; results.innerHTML = ''; return; }
+    if (!q) { countEl.textContent = T.common.search_hint || ''; results.innerHTML = ''; return; }
     loadPagefind().then(function (pf) {
       return pf.debouncedSearch ? pf.debouncedSearch(q, {}, 150) : pf.search(q);
     }).then(function (search) {
@@ -93,11 +96,11 @@
       return Promise.all(search.results.slice(0, 10).map(function (r) { return r.data(); })).then(function (data) {
         if (token !== searchToken) return;
         var n = search.results.length;
-        countEl.textContent = n ? n + ' article' + (n > 1 ? 's' : '') + ' trouvé' + (n > 1 ? 's' : '') : 'Aucun article ne correspond. Essaie un autre mot.';
+        countEl.textContent = n ? plural(n, T.common.search_found_one, T.common.search_found_many) : T.common.search_none;
         render(data);
       });
     }).catch(function () {
-      countEl.textContent = 'La recherche sera disponible une fois le site publié.';
+      countEl.textContent = T.common.search_unavailable;
     });
   }
   function openSearch() {
@@ -141,7 +144,7 @@
     });
     state.groups.forEach(function (g) {
       var count = document.getElementById(g.getAttribute('data-filter-count'));
-      if (count) count.textContent = shown + ' article' + (shown > 1 ? 's' : '');
+      if (count) count.textContent = plural(shown, T.blog.count_one, T.blog.count_many);
       var empty = document.getElementById(g.getAttribute('data-filter-empty'));
       if (empty) empty.hidden = shown > 0;
     });
@@ -179,9 +182,9 @@
       mode = m;
       modeBtns.forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-mode') === m ? 'true' : 'false'); });
       if (devis) devis.hidden = m !== 'devis';
-      if (typeField) typeField.value = m === 'devis' ? 'Demande de devis' : 'Question';
-      msgLabel.textContent = (m === 'devis' ? 'Décris ton projet en quelques lignes' : 'Ton message') + ' *';
-      submit.textContent = m === 'devis' ? 'Envoyer ma demande de devis' : 'Envoyer mon message';
+      if (typeField) typeField.value = m === 'devis' ? T.contact.mode_devis : T.contact.mode_question;
+      msgLabel.textContent = (m === 'devis' ? T.contact.label_message_devis : T.contact.label_message) + ' *';
+      submit.textContent = m === 'devis' ? T.contact.button_send_devis : T.contact.button_send;
     }
     modeBtns.forEach(function (b) { b.addEventListener('click', function () { setMode(b.getAttribute('data-mode')); }); });
     if (modeBtns.length && new URLSearchParams(location.search).get('type') === 'devis') setMode('devis');
@@ -192,33 +195,33 @@
       var bad = required.filter(function (f) { return f.type === 'checkbox' ? !f.checked : !f.value.trim() || !f.checkValidity(); });
       if (bad.length) {
         err.hidden = false;
-        err.textContent = 'Il manque quelque chose : vérifie les champs obligatoires (*).';
+        err.textContent = T.contact.error_required;
         bad[0].focus();
         return;
       }
       if (!contact.getAttribute('data-key')) {
         err.hidden = false;
-        err.textContent = 'Le formulaire n’est pas encore branché. Ajoute ta clé Web3Forms dans les réglages du site.';
+        err.textContent = T.contact.error_not_connected;
         return;
       }
       err.hidden = true;
       submit.disabled = true;
       var label = submit.textContent;
-      submit.textContent = 'Envoi en cours…';
+      submit.textContent = T.contact.sending;
       var data = new FormData(contact);
       $all('input, select, textarea', devis || document.createElement('div')).forEach(function (f) { if (devis && devis.hidden) data.delete(f.name); });
       fetch(contact.action, { method: 'POST', headers: { Accept: 'application/json' }, body: data })
         .then(function (r) { return r.json(); })
         .then(function (res) {
           if (!res.success) throw new Error(res.message || 'Erreur');
-          sentText.textContent = mode === 'devis' ? 'Je regarde ton projet et je reviens vers toi avec une proposition.' : 'Je te réponds au plus vite.';
+          sentText.textContent = mode === 'devis' ? T.contact.sent_text_devis : T.contact.sent_text;
           contact.hidden = true;
           sent.hidden = false;
           sent.querySelector('h2').focus();
         })
         .catch(function () {
           err.hidden = false;
-          err.textContent = 'Le message n’a pas pu partir. Réessaie dans un instant.';
+          err.textContent = T.contact.error_send;
         })
         .then(function () { submit.disabled = false; submit.textContent = label; });
     });
@@ -239,14 +242,14 @@
       if (!email.value || !email.checkValidity()) {
         e.preventDefault();
         msg.hidden = false;
-        msg.textContent = 'Vérifie ton adresse e-mail.';
+        msg.textContent = T.common.newsletter_error;
         email.focus();
         return;
       }
       if (!form.getAttribute('action')) {
         e.preventDefault();
         msg.hidden = false;
-        msg.textContent = 'La newsletter arrive bientôt !';
+        msg.textContent = T.common.newsletter_soon;
       }
     });
   });
@@ -275,7 +278,7 @@
   }
   $all('.js-copy').forEach(function (btn) {
     btn.addEventListener('click', function () {
-      var done = function () { var t = btn.textContent; btn.textContent = 'Lien copié !'; setTimeout(function () { btn.textContent = t; }, 1800); };
+      var done = function () { var t = btn.textContent; btn.textContent = T.article.share_copied; setTimeout(function () { btn.textContent = t; }, 1800); };
       if (navigator.clipboard) { navigator.clipboard.writeText(location.href).then(done, done); } else { done(); }
     });
   });

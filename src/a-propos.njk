@@ -1,37 +1,41 @@
 ---
 layout: layouts/base.njk
-title: À propos
-description: Qui se cache derrière Grand Marketing & Petit Budget, et comment travailler ensemble.
 activeNav: about
 permalink: /a-propos/
+eleventyComputed:
+  title: "{{ about.page_title }}"
+  description: "{{ about.page_description }}"
 ---
 <section class="wrap about-hero">
   <div class="about-photo">
-    {%- if about.photo %}<img class="ph" src="{{ about.photo }}" alt="{{ site.author }}" style="padding:0;object-fit:cover;width:100%">{% else %}<div class="ph">[Ta photo]</div>{% endif %}
+    {%- if about.photo %}<img class="ph" src="{{ about.photo }}" alt="{{ site.author }}" style="padding:0;object-fit:cover;width:100%">{% else %}<div class="ph">{{ home.photo_placeholder }}</div>{% endif %}
     {%- if about.sticker %}<span class="sticker">{{ about.sticker }}</span>{% endif %}
   </div>
   <div class="about-text">
-    <p class="eyebrow">À propos</p>
-    <h1 class="display h-hero" style="font-size:clamp(56px,8vw,112px);margin-bottom:28px">Moi c'est<br><span class="highlight">Olivia.</span></h1>
+    <p class="eyebrow">{{ about.eyebrow }}</p>
+    <h1 class="display h-hero" style="font-size:clamp(56px,8vw,112px);margin-bottom:28px">{{ about.title }}<br><span class="highlight">{{ about.title_highlight }}</span></h1>
     <p style="font-size:21px">{{ about.intro }}</p>
     <p style="color:#333">{{ about.text }}</p>
   </div>
 </section>
 
+{%- if about.pillars and about.pillars.length %}
 <section class="section section-dark" aria-labelledby="pillars-title">
   <div class="wrap">
-    <h2 class="display h-2" id="pillars-title" style="margin-bottom:40px">Ici, on fait 3 choses</h2>
+    <h2 class="display h-2" id="pillars-title" style="margin-bottom:40px">{{ about.pillars_title }}</h2>
     <div class="pillars">
-      <div class="pillar"><div class="n" style="color:#50C878">01</div><h3>On décrypte</h3><p>Une campagne de grande marque, démontée pièce par pièce : la cible, le timing, la mécanique.</p></div>
-      <div class="pillar"><div class="n" style="color:#7D9CF2">02</div><h3>On adapte</h3><p>La même idée, version Petit Budget : des étapes concrètes, des outils gratuits, un temps estimé.</p></div>
-      <div class="pillar"><div class="n" style="color:#FFD93D">03</div><h3>On automatise</h3><p>L'IA et les outils no-code pour gagner du temps, sans agence et sans savoir coder.</p></div>
+      {%- set pillarColors = ["#50C878", "#7D9CF2", "#FFD93D"] %}
+      {%- for p in about.pillars %}
+      <div class="pillar"><div class="n" style="color:{{ pillarColors[loop.index0 % 3] }}">{{ p.number }}</div><h3>{{ p.title }}</h3><p>{{ p.text }}</p></div>
+      {%- endfor %}
     </div>
   </div>
 </section>
+{%- endif %}
 
 {%- if about.timeline and about.timeline.length %}
 <section class="wrap-narrow section" style="max-width:1008px" aria-labelledby="career-title">
-  <h2 class="display h-2" id="career-title" style="margin-bottom:40px">Mon parcours</h2>
+  <h2 class="display h-2" id="career-title" style="margin-bottom:40px">{{ about.timeline_title }}</h2>
   <div class="timeline">
     {%- for t in about.timeline %}
     <div class="timeline-row"><span class="when">{{ t.when }}</span><div class="what"><strong>{{ t.title }}</strong>{% if t.text %}<br><span class="muted">{{ t.text }}</span>{% endif %}</div></div>
@@ -43,14 +47,14 @@ permalink: /a-propos/
 {%- if about.show_offers %}
 <section style="background:var(--teal);border-top:var(--border);border-bottom:var(--border)" aria-labelledby="work-title">
   <div class="wrap section">
-    <h2 class="display h-2" id="work-title" style="margin-bottom:12px">Travailler ensemble</h2>
-    <p class="lead" style="margin-bottom:36px;max-width:640px">Tu veux aller plus loin que les articles ? Deux façons de bosser avec moi.</p>
+    <h2 class="display h-2" id="work-title" style="margin-bottom:12px">{{ about.offers_title }}</h2>
+    <p class="lead" style="margin-bottom:36px;max-width:640px">{{ about.offers_intro }}</p>
     <div class="offers">
       {%- for o in about.offers %}
       <div class="offer"><span class="tag" style="background:{{ 'var(--yellow)' if loop.index0 % 2 == 0 else 'var(--lavender)' }}">{{ o.tag }}</span><h3>{{ o.title }}</h3><p>{{ o.text }}</p>{% if o.price %}<strong>{{ o.price }}</strong>{% endif %}</div>
       {%- endfor %}
     </div>
-    <div class="btn-row" style="margin-top:32px"><a class="btn btn-dark" href="/contact/{{ '?type=devis' if site.devis }}">{{ "Demander un devis" if site.devis else "Me contacter" }} →</a></div>
+    <div class="btn-row" style="margin-top:32px"><a class="btn btn-dark" href="/contact/{{ '?type=devis' if site.devis }}">{{ common.menu_devis_button if site.devis else common.menu_contact_button }} →</a></div>
   </div>
 </section>
 {%- endif %}

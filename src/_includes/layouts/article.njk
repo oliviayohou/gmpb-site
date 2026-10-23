@@ -10,11 +10,11 @@ layout: layouts/base.njk
 <div class="progress" aria-hidden="true"></div>
 <article data-pagefind-body data-pagefind-meta="track:{{ track }}">
   <header class="wrap-narrow article-head" style="max-width:860px" data-pagefind-meta="category:{{ cat.name }}">
-    <div class="breadcrumb" data-pagefind-ignore><a href="/">Accueil</a> / <a href="/{{ 'grand-marketing' if track == 'gm' else 'petit-budget' }}/">{{ "Grand Marketing" if track == "gm" else "Petit Budget" }}</a> / {{ cat.name }}</div>
-    <div class="card-meta" style="margin-bottom:22px" data-pagefind-ignore>{{ m.badge(track) }}<a href="/categorie/{{ cat.slug }}/" style="text-decoration:underline;text-underline-offset:3px">{{ cat.name }}</a></div>
+    <div class="breadcrumb" data-pagefind-ignore><a href="/">{{ common.breadcrumb_home }}</a> / <a href="/{{ 'grand-marketing' if track == 'gm' else 'petit-budget' }}/">{{ blog.gm_name if track == "gm" else blog.pb_name }}</a> / {{ cat.name }}</div>
+    <div class="card-meta" style="margin-bottom:22px" data-pagefind-ignore>{{ m.badge(track, blog) }}<a href="/categorie/{{ cat.slug }}/" style="text-decoration:underline;text-underline-offset:3px">{{ cat.name }}</a></div>
     <h1 class="display" style="font-size:clamp(40px,6vw,80px);line-height:1.02">{{ title }}</h1>
     {%- if chapo %}<p class="lead">{{ chapo }}</p>{% endif %}
-    <div class="author" data-pagefind-ignore><div class="avatar" aria-hidden="true">OY</div><div><strong>{{ site.author }}</strong><br><span class="muted"><time datetime="{{ page.date | isoDate }}">{{ page.date | dateFr }}</time> · {{ minutes }} min de lecture</span></div></div>
+    <div class="author" data-pagefind-ignore><div class="avatar" aria-hidden="true">OY</div><div><strong>{{ site.author }}</strong><br><span class="muted"><time datetime="{{ page.date | isoDate }}">{{ page.date | dateFr }}</time> · {{ minutes }} {{ blog.reading_time_long }}</span></div></div>
   </header>
 
   <figure class="article-cover" data-pagefind-ignore>
@@ -26,11 +26,11 @@ layout: layouts/base.njk
   <div class="article-layout">
     {%- if tocItems.length > 1 %}
     <aside class="toc-side" data-pagefind-ignore>
-      <nav aria-label="Sommaire">
-        <p class="label">SOMMAIRE</p>
+      <nav aria-label="{{ article.toc_title }}">
+        <p class="label">{{ article.toc_title | upper }}</p>
         <ol class="toc-list js-toc">
           {%- for t in tocItems %}<li><a href="#{{ t.id }}">{{ t.text }}</a></li>{% endfor %}
-          {%- if steps and steps.length %}<li><a href="#petit-budget">{{ pb_title or "La version Petit Budget" }}</a></li>{% endif %}
+          {%- if steps and steps.length %}<li><a href="#petit-budget">{{ pb_title or article.pb_default_title }}</a></li>{% endif %}
         </ol>
       </nav>
     </aside>
@@ -38,10 +38,10 @@ layout: layouts/base.njk
     <div class="prose">
       {%- if tocItems.length > 1 %}
       <details class="toc toc-mobile" data-pagefind-ignore>
-        <summary>SOMMAIRE</summary>
+        <summary>{{ article.toc_title | upper }}</summary>
         <ol class="toc-list">
           {%- for t in tocItems %}<li><a href="#{{ t.id }}">{{ t.text }}</a></li>{% endfor %}
-          {%- if steps and steps.length %}<li><a href="#petit-budget">{{ pb_title or "La version Petit Budget" }}</a></li>{% endif %}
+          {%- if steps and steps.length %}<li><a href="#petit-budget">{{ pb_title or article.pb_default_title }}</a></li>{% endif %}
         </ol>
       </details>
       {%- endif %}
@@ -52,8 +52,8 @@ layout: layouts/base.njk
   {%- if steps and steps.length %}
   <section class="pb-block" aria-labelledby="petit-budget">
     <div class="wrap-narrow">
-      <span class="badge">PETIT BUDGET</span>
-      <h2 class="display h-2" id="petit-budget" style="margin-top:20px;scroll-margin-top:100px">{{ pb_title or "La version Petit Budget" }}</h2>
+      <span class="badge">{{ blog.pb_badge }}</span>
+      <h2 class="display h-2" id="petit-budget" style="margin-top:20px;scroll-margin-top:100px">{{ pb_title or article.pb_default_title }}</h2>
       {%- if pb_intro %}<p class="pb-intro">{{ pb_intro }}</p>{% endif %}
       <ol class="steps">
         {%- for s in steps %}
@@ -62,8 +62,8 @@ layout: layouts/base.njk
       </ol>
       {%- if budget or time %}
       <div class="pb-meta-grid">
-        {%- if budget %}<div><strong>Budget</strong><span>{{ budget }}</span></div>{% endif %}
-        {%- if time %}<div><strong>Temps</strong><span>{{ time }}</span></div>{% endif %}
+        {%- if budget %}<div><strong>{{ article.budget_label }}</strong><span>{{ budget }}</span></div>{% endif %}
+        {%- if time %}<div><strong>{{ article.time_label }}</strong><span>{{ time }}</span></div>{% endif %}
       </div>
       {%- endif %}
     </div>
@@ -73,28 +73,28 @@ layout: layouts/base.njk
   <div class="after">
     {%- if takeaways and takeaways.length %}
     <aside class="takeaway" aria-labelledby="a-retenir">
-      <h2 id="a-retenir">À retenir</h2>
+      <h2 id="a-retenir">{{ article.takeaways_title }}</h2>
       <ul>{% for t in takeaways %}<li>{{ t }}</li>{% endfor %}</ul>
     </aside>
     {%- endif %}
     <div data-pagefind-ignore>
     {%- if twinArticle %}
     <a class="twin" href="{{ twinArticle.url }}">
-      <div>{{ m.badge(twinArticle.data.track) }}<strong>{{ "Pour aller plus loin" if track == "gm" else "Le décryptage Grand Marketing" }} : {{ twinArticle.data.title }}</strong></div>
-      <span class="link-arrow">Lire →</span>
+      <div>{{ m.badge(twinArticle.data.track, blog) }}<strong>{{ article.twin_from_gm if track == "gm" else article.twin_from_pb }} : {{ twinArticle.data.title }}</strong></div>
+      <span class="link-arrow">{{ article.twin_link }}</span>
     </a>
     {%- endif %}
     <div class="share">
-      <strong>Partager :</strong>
-      <a class="btn" href="https://www.linkedin.com/sharing/share-offsite/?url={{ page.url | absoluteUrl(site.url) | urlencode }}" target="_blank" rel="noopener">LinkedIn</a>
-      <button type="button" class="btn js-copy">Copier le lien</button>
+      <strong>{{ article.share_label }}</strong>
+      <a class="btn" href="https://www.linkedin.com/sharing/share-offsite/?url={{ page.url | absoluteUrl(site.url) | urlencode }}" target="_blank" rel="noopener">{{ article.share_linkedin }}</a>
+      <button type="button" class="btn js-copy">{{ article.share_copy }}</button>
     </div>
     <section class="author-box" aria-labelledby="about-author">
       <div class="avatar" aria-hidden="true">OY</div>
       <div>
         <h2 id="about-author">{{ site.author }}</h2>
-        <p>Marketeuse retail, je travaille au quotidien sur les campagnes de grandes marques. Sur GM.PB, je les décrypte et je les adapte aux commerces qui n'ont pas leur budget.</p>
-        <a href="/a-propos/">En savoir plus sur moi →</a>
+        <p>{{ article.author_bio }}</p>
+        <a href="/a-propos/">{{ article.author_link }}</a>
       </div>
     </section>
     </div>
@@ -104,16 +104,16 @@ layout: layouts/base.njk
 {%- set related = collections.articles | exceptUrl(page.url) | exceptUrl(twinArticle.url if twinArticle else "") %}
 {%- if related.length %}
 <section class="wrap" style="padding-top:72px;padding-bottom:88px" aria-labelledby="more-title">
-  <h2 class="display h-2" id="more-title" style="margin-bottom:28px">À lire aussi</h2>
+  <h2 class="display h-2" id="more-title" style="margin-bottom:28px">{{ article.related_title }}</h2>
   <div class="grid">
     {%- for a in related | head(3) %}
-    {{ m.card(a, categories.categories) }}
+    {{ m.card(a, categories.categories, blog) }}
     {%- endfor %}
   </div>
 </section>
 {%- endif %}
 
-{{ m.contactBand(site) }}
+{{ m.contactBand(site, common) }}
 
 <script type="application/ld+json">
 {

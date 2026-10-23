@@ -1,4 +1,22 @@
 {
+  "seo_title_suffix": "le marketing des grandes marques, sans budget",
+  "hero_title": "Grand marketing &",
+  "hero_title_highlight": "petit budget.",
   "hero_text": "On décrypte les campagnes des grandes marques. Puis on te montre comment les adapter à ton commerce, sans agence et sans budget.",
-  "intro_text": "Moi c'est Olivia. Je travaille chaque jour sur les campagnes de grandes marques. Ici, je les décrypte, puis je te montre comment en reprendre l'idée dans ton commerce, avec trois fois rien."
+  "hero_button_featured": "Lire le dernier décryptage",
+  "hero_button_blog": "Explorer le blog",
+  "featured_label": "À la une",
+  "featured_link": "Lire l'article →",
+  "latest_title": "Derniers articles",
+  "latest_empty": "Aucun article pour ce filtre pour l'instant.",
+  "latest_button": "Voir tous les articles",
+  "intro_eyebrow": "Derrière GM.PB",
+  "intro_title": "Le marketing des grandes marques,",
+  "intro_title_highlight": "traduit pour toi.",
+  "intro_text": "Moi c'est Olivia. Je travaille chaque jour sur les campagnes de grandes marques. Ici, je les décrypte, puis je te montre comment en reprendre l'idée dans ton commerce, avec trois fois rien.",
+  "intro_gm_text": "Le décryptage : la cible, le timing, la mécanique.",
+  "intro_pb_text": "La version à appliquer chez toi, étape par étape.",
+  "intro_button_about": "En savoir plus",
+  "photo_placeholder": "[Ta photo]",
+  "themes_title": "Explorer par thème"
 }

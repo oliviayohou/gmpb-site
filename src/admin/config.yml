@@ -8,258 +8,977 @@ backend:
   name: github
   repo: oliviayohou/gmpb-site
   branch: main
-
 site_url: https://gmpb-site.oliviayohou7.workers.dev
 display_url: https://gmpb-site.oliviayohou7.workers.dev
-
 media_folder: src/images/uploads
 public_folder: /images/uploads
-
 slug:
   encoding: ascii
   clean_accents: true
-  sanitize_replacement: "-"
-
+  sanitize_replacement: '-'
 collections:
-  # -------------------------------------------------------
-  # ARTICLES GRAND MARKETING
-  # -------------------------------------------------------
-  - name: articles_gm
-    label: Articles Grand Marketing
-    label_singular: Article Grand Marketing
-    description: Les décryptages des campagnes de grandes marques.
-    folder: src/articles/gm
-    extension: md
-    format: frontmatter
-    create: true
-    slug: "{{title}}"
-    preview_path: "blog/{{slug}}/"
-    summary: "{{title}}"
-    sortable_fields: [date, title, category]
-    view_filters:
-      - label: Brouillons
-        field: draft
-        pattern: true
-      - label: Publiés
-        field: draft
-        pattern: false
+- name: articles_gm
+  label: Articles Grand Marketing
+  label_singular: Article Grand Marketing
+  description: Les décryptages des campagnes de grandes marques.
+  folder: src/articles/gm
+  extension: md
+  format: frontmatter
+  create: true
+  slug: '{{title}}'
+  preview_path: blog/{{slug}}/
+  summary: '{{title}}'
+  sortable_fields:
+  - date
+  - title
+  - category
+  view_filters:
+  - label: Brouillons
+    field: draft
+    pattern: true
+  - label: Publiés
+    field: draft
+    pattern: false
+  fields:
+  - name: title
+    label: Titre
+    widget: string
+  - name: chapo
+    label: Chapô
+    widget: text
+    hint: Les 2 ou 3 phrases d'introduction, en gros sous le titre.
+  - name: date
+    label: Date de publication
+    widget: datetime
+    time_format: false
+    date_format: DD/MM/YYYY
+    format: YYYY-MM-DD
+  - name: category
+    label: Catégorie
+    widget: relation
+    collection: settings
+    file: categories
+    value_field: '{{categories.*.slug}}'
+    display_fields:
+    - '{{categories.*.name}}'
+    search_fields:
+    - '{{categories.*.name}}'
+  - name: cover
+    label: Image de couverture
+    widget: image
+    required: false
+    hint: Format paysage conseillé (1600 × 900 px). Sans image, un visuel coloré est affiché.
+  - name: cover_alt
+    label: Description de l'image
+    widget: string
+    required: false
+    hint: Ce qu'on voit sur l'image, en une phrase. Lu par Google et les lecteurs d'écran.
+  - name: body
+    label: Texte de l'article
+    widget: markdown
+    hint: 'Utilise « Titre 2 » pour les intertitres : ils forment le sommaire.'
+  - name: pb_title
+    label: 'Bloc Petit Budget : titre'
+    widget: string
+    required: false
+    default: La version Petit Budget
+    hint: Facultatif pour un article Grand Marketing.
+  - name: pb_intro
+    label: 'Bloc Petit Budget : introduction'
+    widget: text
+    required: false
+  - name: steps
+    label: 'Bloc Petit Budget : étapes'
+    label_singular: étape
+    widget: list
+    required: false
+    hint: Laisse vide si tu ne veux pas de bloc Petit Budget dans cet article.
     fields:
-      - { name: title, label: Titre, widget: string }
-      - { name: chapo, label: Chapô, widget: text, hint: "Les 2 ou 3 phrases d'introduction, en gros sous le titre." }
-      - { name: date, label: Date de publication, widget: datetime, time_format: false, date_format: "DD/MM/YYYY", format: "YYYY-MM-DD" }
-      - name: category
-        label: Catégorie
-        widget: relation
-        collection: settings
-        file: categories
-        value_field: "{{categories.*.slug}}"
-        display_fields: ["{{categories.*.name}}"]
-        search_fields: ["{{categories.*.name}}"]
-      - { name: cover, label: Image de couverture, widget: image, required: false, hint: "Format paysage conseillé (1600 × 900 px). Sans image, un visuel coloré est affiché." }
-      - { name: cover_alt, label: Description de l'image, widget: string, required: false, hint: "Ce qu'on voit sur l'image, en une phrase. Lu par Google et les lecteurs d'écran." }
-      - { name: body, label: Texte de l'article, widget: markdown, hint: "Utilise « Titre 2 » pour les intertitres : ils forment le sommaire." }
-      - { name: pb_title, label: "Bloc Petit Budget : titre", widget: string, required: false, default: "La version Petit Budget", hint: "Facultatif pour un article Grand Marketing." }
-      - { name: pb_intro, label: "Bloc Petit Budget : introduction", widget: text, required: false }
-      - name: steps
-        label: "Bloc Petit Budget : étapes"
-        label_singular: étape
-        widget: list
-        required: false
-        hint: "Laisse vide si tu ne veux pas de bloc Petit Budget dans cet article."
-        fields:
-          - { name: title, label: Titre de l'étape, widget: string }
-          - { name: text, label: Explication, widget: text, required: false }
-      - { name: budget, label: "Bloc Petit Budget : budget", widget: string, required: false, hint: "Ex. 0 à 20 €" }
-      - { name: time, label: "Bloc Petit Budget : temps", widget: string, required: false, hint: "Ex. 1 heure" }
-      - name: takeaways
-        label: À retenir
-        label_singular: point
-        widget: list
-        required: false
-        field: { name: point, label: Point à retenir, widget: string }
-      - name: twin
-        label: Article jumeau (Petit Budget)
-        widget: relation
-        collection: articles_pb
-        value_field: "{{slug}}"
-        display_fields: ["{{title}}"]
-        search_fields: ["{{title}}"]
-        required: false
-        hint: "L'article Petit Budget qui répond à ce décryptage. Le lien s'affiche en fin d'article."
-      - { name: seo_title, label: Titre pour Google, widget: string, required: false, maxlength: 60, hint: "60 caractères maximum. Sinon, le titre de l'article est utilisé." }
-      - { name: seo_description, label: Description pour Google, widget: text, required: false, maxlength: 155, hint: "155 caractères maximum. Sinon, le chapô est utilisé." }
-      - { name: linkedin_post, label: Post LinkedIn associé, widget: text, required: false, hint: "Ton brouillon de post, pour le copier sur LinkedIn." }
-      - { name: featured, label: Mettre à la une sur l'accueil, widget: boolean, default: false, required: false }
-      - { name: draft, label: "Brouillon (pas visible sur le site)", widget: boolean, default: true, required: false }
-
-  # -------------------------------------------------------
-  # ARTICLES PETIT BUDGET
-  # -------------------------------------------------------
-  - name: articles_pb
-    label: Articles Petit Budget
-    label_singular: Article Petit Budget
-    description: Les adaptations à appliquer dans ton commerce.
-    folder: src/articles/pb
-    extension: md
-    format: frontmatter
-    create: true
-    slug: "{{title}}"
-    preview_path: "blog/{{slug}}/"
-    summary: "{{title}}"
-    sortable_fields: [date, title, category]
-    view_filters:
-      - label: Brouillons
-        field: draft
-        pattern: true
-      - label: Publiés
-        field: draft
-        pattern: false
+    - name: title
+      label: Titre de l'étape
+      widget: string
+    - name: text
+      label: Explication
+      widget: text
+      required: false
+  - name: budget
+    label: 'Bloc Petit Budget : budget'
+    widget: string
+    required: false
+    hint: Ex. 0 à 20 €
+  - name: time
+    label: 'Bloc Petit Budget : temps'
+    widget: string
+    required: false
+    hint: Ex. 1 heure
+  - name: takeaways
+    label: À retenir
+    label_singular: point
+    widget: list
+    required: false
+    field:
+      name: point
+      label: Point à retenir
+      widget: string
+  - name: twin
+    label: Article jumeau (Petit Budget)
+    widget: relation
+    collection: articles_pb
+    value_field: '{{slug}}'
+    display_fields:
+    - '{{title}}'
+    search_fields:
+    - '{{title}}'
+    required: false
+    hint: L'article Petit Budget qui répond à ce décryptage. Le lien s'affiche en fin d'article.
+  - name: seo_title
+    label: Titre pour Google
+    widget: string
+    required: false
+    maxlength: 60
+    hint: 60 caractères maximum. Sinon, le titre de l'article est utilisé.
+  - name: seo_description
+    label: Description pour Google
+    widget: text
+    required: false
+    maxlength: 155
+    hint: 155 caractères maximum. Sinon, le chapô est utilisé.
+  - name: linkedin_post
+    label: Post LinkedIn associé
+    widget: text
+    required: false
+    hint: Ton brouillon de post, pour le copier sur LinkedIn.
+  - name: featured
+    label: Mettre à la une sur l'accueil
+    widget: boolean
+    default: false
+    required: false
+  - name: draft
+    label: Brouillon (pas visible sur le site)
+    widget: boolean
+    default: true
+    required: false
+- name: articles_pb
+  label: Articles Petit Budget
+  label_singular: Article Petit Budget
+  description: Les adaptations à appliquer dans ton commerce.
+  folder: src/articles/pb
+  extension: md
+  format: frontmatter
+  create: true
+  slug: '{{title}}'
+  preview_path: blog/{{slug}}/
+  summary: '{{title}}'
+  sortable_fields:
+  - date
+  - title
+  - category
+  view_filters:
+  - label: Brouillons
+    field: draft
+    pattern: true
+  - label: Publiés
+    field: draft
+    pattern: false
+  fields:
+  - name: title
+    label: Titre
+    widget: string
+  - name: chapo
+    label: Chapô
+    widget: text
+    hint: Les 2 ou 3 phrases d'introduction, en gros sous le titre.
+  - name: date
+    label: Date de publication
+    widget: datetime
+    time_format: false
+    date_format: DD/MM/YYYY
+    format: YYYY-MM-DD
+  - name: category
+    label: Catégorie
+    widget: relation
+    collection: settings
+    file: categories
+    value_field: '{{categories.*.slug}}'
+    display_fields:
+    - '{{categories.*.name}}'
+    search_fields:
+    - '{{categories.*.name}}'
+  - name: cover
+    label: Image de couverture
+    widget: image
+    required: false
+    hint: Format paysage conseillé (1600 × 900 px). Sans image, un visuel coloré est affiché.
+  - name: cover_alt
+    label: Description de l'image
+    widget: string
+    required: false
+    hint: Ce qu'on voit sur l'image, en une phrase. Lu par Google et les lecteurs d'écran.
+  - name: body
+    label: Texte de l'article
+    widget: markdown
+    hint: Le principe et le contexte. Les étapes vont dans le bloc Petit Budget ci-dessous.
+  - name: pb_title
+    label: 'Bloc Petit Budget : titre'
+    widget: string
+    default: Chez toi, en 3 étapes
+  - name: pb_intro
+    label: 'Bloc Petit Budget : introduction'
+    widget: text
+    required: false
+  - name: steps
+    label: 'Bloc Petit Budget : étapes'
+    label_singular: étape
+    widget: list
+    min: 2
+    hint: Au moins 2 étapes.
     fields:
-      - { name: title, label: Titre, widget: string }
-      - { name: chapo, label: Chapô, widget: text, hint: "Les 2 ou 3 phrases d'introduction, en gros sous le titre." }
-      - { name: date, label: Date de publication, widget: datetime, time_format: false, date_format: "DD/MM/YYYY", format: "YYYY-MM-DD" }
-      - name: category
-        label: Catégorie
-        widget: relation
-        collection: settings
-        file: categories
-        value_field: "{{categories.*.slug}}"
-        display_fields: ["{{categories.*.name}}"]
-        search_fields: ["{{categories.*.name}}"]
-      - { name: cover, label: Image de couverture, widget: image, required: false, hint: "Format paysage conseillé (1600 × 900 px). Sans image, un visuel coloré est affiché." }
-      - { name: cover_alt, label: Description de l'image, widget: string, required: false, hint: "Ce qu'on voit sur l'image, en une phrase. Lu par Google et les lecteurs d'écran." }
-      - { name: body, label: Texte de l'article, widget: markdown, hint: "Le principe et le contexte. Les étapes vont dans le bloc Petit Budget ci-dessous." }
-      - { name: pb_title, label: "Bloc Petit Budget : titre", widget: string, default: "Chez toi, en 3 étapes" }
-      - { name: pb_intro, label: "Bloc Petit Budget : introduction", widget: text, required: false }
-      - name: steps
-        label: "Bloc Petit Budget : étapes"
-        label_singular: étape
-        widget: list
-        min: 2
-        hint: "Au moins 2 étapes."
-        fields:
-          - { name: title, label: Titre de l'étape, widget: string }
-          - { name: text, label: Explication, widget: text, required: false }
-      - { name: budget, label: "Bloc Petit Budget : budget", widget: string, hint: "Ex. 0 à 20 €" }
-      - { name: time, label: "Bloc Petit Budget : temps", widget: string, hint: "Ex. 1 heure" }
-      - name: takeaways
-        label: À retenir
-        label_singular: point
-        widget: list
+    - name: title
+      label: Titre de l'étape
+      widget: string
+    - name: text
+      label: Explication
+      widget: text
+      required: false
+  - name: budget
+    label: 'Bloc Petit Budget : budget'
+    widget: string
+    hint: Ex. 0 à 20 €
+  - name: time
+    label: 'Bloc Petit Budget : temps'
+    widget: string
+    hint: Ex. 1 heure
+  - name: takeaways
+    label: À retenir
+    label_singular: point
+    widget: list
+    required: false
+    field:
+      name: point
+      label: Point à retenir
+      widget: string
+  - name: twin
+    label: Article jumeau (Grand Marketing)
+    widget: relation
+    collection: articles_gm
+    value_field: '{{slug}}'
+    display_fields:
+    - '{{title}}'
+    search_fields:
+    - '{{title}}'
+    required: false
+    hint: Le décryptage Grand Marketing dont cet article est l'adaptation.
+  - name: seo_title
+    label: Titre pour Google
+    widget: string
+    required: false
+    maxlength: 60
+    hint: 60 caractères maximum. Sinon, le titre de l'article est utilisé.
+  - name: seo_description
+    label: Description pour Google
+    widget: text
+    required: false
+    maxlength: 155
+    hint: 155 caractères maximum. Sinon, le chapô est utilisé.
+  - name: linkedin_post
+    label: Post LinkedIn associé
+    widget: text
+    required: false
+    hint: Ton brouillon de post, pour le copier sur LinkedIn.
+  - name: featured
+    label: Mettre à la une sur l'accueil
+    widget: boolean
+    default: false
+    required: false
+  - name: draft
+    label: Brouillon (pas visible sur le site)
+    widget: boolean
+    default: true
+    required: false
+- name: textes
+  label: Textes du site
+  description: 'Tous les textes des pages : titres, phrases, boutons, messages.'
+  editor:
+    preview: false
+  files:
+  - name: home
+    label: Page d'accueil
+    file: src/_data/home.json
+    fields:
+    - name: seo_title_suffix
+      label: Onglet & Google — Phrase après le nom du site dans l'onglet et sur Google
+      widget: string
+    - name: hero_title
+      label: Haut de page — Grand titre (1re ligne)
+      widget: string
+    - name: hero_title_highlight
+      label: Haut de page — Grand titre (partie surlignée en jaune)
+      widget: string
+    - name: hero_text
+      label: Haut de page — Texte d'accroche
+      widget: text
+    - name: hero_button_featured
+      label: Haut de page — Bouton vers l'article à la une
+      widget: string
+    - name: hero_button_blog
+      label: Haut de page — Bouton vers le blog
+      widget: string
+    - name: featured_label
+      label: Article à la une — Étiquette « À la une »
+      widget: string
+    - name: featured_link
+      label: Article à la une — Lien « Lire l'article »
+      widget: string
+    - name: latest_title
+      label: Derniers articles — Titre
+      widget: string
+    - name: latest_empty
+      label: Derniers articles — Message si aucun article
+      widget: string
+    - name: latest_button
+      label: Derniers articles — Bouton « Voir tous les articles »
+      widget: string
+    - name: intro_eyebrow
+      label: Présentation — Petit titre violet
+      widget: string
+    - name: intro_title
+      label: Présentation — Titre
+      widget: string
+    - name: intro_title_highlight
+      label: Présentation — Titre (partie surlignée)
+      widget: string
+    - name: intro_text
+      label: Présentation — Texte
+      widget: text
+    - name: intro_gm_text
+      label: Présentation — Encadré Grand Marketing
+      widget: text
+    - name: intro_pb_text
+      label: Présentation — Encadré Petit Budget
+      widget: text
+    - name: intro_button_about
+      label: Présentation — Bouton vers À propos
+      widget: string
+    - name: photo_placeholder
+      label: Présentation — Texte affiché tant qu'il n'y a pas de photo
+      widget: string
+    - name: themes_title
+      label: Thèmes — Titre « Explorer par thème »
+      widget: string
+  - name: about
+    label: Page À propos
+    file: src/_data/about.json
+    fields:
+    - name: page_title
+      label: Page — Titre de l'onglet
+      widget: string
+    - name: page_description
+      label: Page — Description pour Google
+      widget: text
+    - name: eyebrow
+      label: Haut de page — Petit titre violet
+      widget: string
+    - name: title
+      label: Haut de page — Grand titre (1re ligne)
+      widget: string
+    - name: title_highlight
+      label: Haut de page — Grand titre (partie surlignée)
+      widget: string
+    - name: photo
+      label: Haut de page — Ta photo
+      widget: image
+      required: false
+      hint: Portrait, 1200 × 1500 px conseillé, visage centré.
+    - name: sticker
+      label: Haut de page — Étiquette sur la photo
+      widget: string
+      required: false
+    - name: intro
+      label: Haut de page — Premier paragraphe
+      widget: text
+    - name: text
+      label: Haut de page — Deuxième paragraphe
+      widget: text
+    - name: pillars_title
+      label: Bloc noir — Titre
+      widget: string
+    - name: pillars
+      label: Bloc noir — Les blocs
+      label_singular: bloc
+      widget: list
+      fields:
+      - name: number
+        label: Numéro
+        widget: string
+      - name: title
+        label: Titre
+        widget: string
+      - name: text
+        label: Texte
+        widget: text
+    - name: timeline_title
+      label: Parcours — Titre
+      widget: string
+    - name: timeline
+      label: Parcours — Étapes
+      label_singular: étape
+      widget: list
+      fields:
+      - name: when
+        label: Quand
+        widget: string
+      - name: title
+        label: Titre
+        widget: string
+      - name: text
+        label: Détail
+        widget: string
         required: false
-        field: { name: point, label: Point à retenir, widget: string }
-      - name: twin
-        label: Article jumeau (Grand Marketing)
-        widget: relation
-        collection: articles_gm
-        value_field: "{{slug}}"
-        display_fields: ["{{title}}"]
-        search_fields: ["{{title}}"]
+    - name: show_offers
+      label: Travailler ensemble — Afficher ce bloc
+      widget: boolean
+      default: true
+    - name: offers_title
+      label: Travailler ensemble — Titre
+      widget: string
+    - name: offers_intro
+      label: Travailler ensemble — Phrase d'introduction
+      widget: text
+    - name: offers
+      label: Travailler ensemble — Offres
+      label_singular: offre
+      widget: list
+      fields:
+      - name: tag
+        label: Étiquette
+        widget: string
+      - name: title
+        label: Titre
+        widget: string
+      - name: text
+        label: Description
+        widget: text
+      - name: price
+        label: Prix
+        widget: string
         required: false
-        hint: "Le décryptage Grand Marketing dont cet article est l'adaptation."
-      - { name: seo_title, label: Titre pour Google, widget: string, required: false, maxlength: 60, hint: "60 caractères maximum. Sinon, le titre de l'article est utilisé." }
-      - { name: seo_description, label: Description pour Google, widget: text, required: false, maxlength: 155, hint: "155 caractères maximum. Sinon, le chapô est utilisé." }
-      - { name: linkedin_post, label: Post LinkedIn associé, widget: text, required: false, hint: "Ton brouillon de post, pour le copier sur LinkedIn." }
-      - { name: featured, label: Mettre à la une sur l'accueil, widget: boolean, default: false, required: false }
-      - { name: draft, label: "Brouillon (pas visible sur le site)", widget: boolean, default: true, required: false }
-
-  # -------------------------------------------------------
-  # RÉGLAGES ET CONTENUS DU SITE
-  # -------------------------------------------------------
-  - name: settings
-    label: Réglages du site
-    description: Fonctionnalités, catégories et textes des pages.
-    editor: { preview: false }
-    files:
-      - name: site
-        label: Réglages généraux
-        file: src/_data/site.json
-        fields:
-          - { name: newsletter, label: "Newsletter (encarts et bouton du menu)", widget: boolean, default: false }
-          - { name: newsletterFormUrl, label: Adresse du formulaire newsletter (Brevo ou MailerLite), widget: string, required: false, hint: "À remplir le jour où tu actives la newsletter." }
-          - { name: devis, label: "Demandes de devis (formulaire et boutons)", widget: boolean, default: false }
-          - { name: web3formsKey, label: Clé Web3Forms du formulaire de contact, widget: string, required: false, hint: "Clé gratuite sur web3forms.com : les messages arrivent sur l'e-mail associé." }
-          - { name: contactDelay, label: Délai de réponse affiché, widget: string, required: false }
-          - { name: description, label: Description du site (Google), widget: text }
-          - { name: linkedin, label: Lien LinkedIn, widget: string, required: false }
-          - { name: instagram, label: Lien Instagram, widget: string, required: false }
-          - { name: url, label: Adresse du site, widget: string, hint: "À changer quand tu brancheras ton nom de domaine (ex. https://monsite.fr)." }
-          - { name: title, label: Nom du site, widget: string }
-          - { name: shortTitle, label: Nom court, widget: string }
-          - { name: author, label: Autrice, widget: string }
-
-      - name: categories
-        label: Catégories
-        file: src/_data/categories.json
-        fields:
-          - name: categories
-            label: Catégories
-            label_singular: catégorie
-            widget: list
-            summary: "{{fields.name}}"
-            fields:
-              - { name: name, label: Nom, widget: string }
-              - { name: slug, label: Adresse (sans accents ni espaces), widget: string, pattern: ['^[a-z0-9-]+$', "Seulement des minuscules, des chiffres et des tirets."], hint: "Ex. promotions-offres. Évite de la changer une fois des articles publiés." }
-              - name: color
-                label: Couleur
-                widget: select
-                options:
-                  - { label: Jaune, value: "#FFD93D" }
-                  - { label: Turquoise, value: "#3ED6C4" }
-                  - { label: Lavande, value: "#AE8AEA" }
-              - { name: description, label: Description, widget: text }
-
-      - name: home
-        label: Page d'accueil
-        file: src/_data/home.json
-        fields:
-          - { name: hero_text, label: Texte d'accroche, widget: text }
-          - { name: intro_text, label: Texte de présentation, widget: text }
-
-      - name: about
-        label: Page À propos
-        file: src/_data/about.json
-        fields:
-          - { name: photo, label: Ta photo, widget: image, required: false }
-          - { name: sticker, label: Étiquette sur la photo, widget: string, required: false }
-          - { name: intro, label: Premier paragraphe, widget: text }
-          - { name: text, label: Deuxième paragraphe, widget: text }
-          - name: timeline
-            label: Parcours
-            label_singular: étape
-            widget: list
-            fields:
-              - { name: when, label: Quand, widget: string }
-              - { name: title, label: Titre, widget: string }
-              - { name: text, label: Détail, widget: string, required: false }
-          - { name: show_offers, label: Afficher le bloc « Travailler ensemble », widget: boolean, default: true }
-          - name: offers
-            label: Offres
-            label_singular: offre
-            widget: list
-            fields:
-              - { name: tag, label: Étiquette, widget: string }
-              - { name: title, label: Titre, widget: string }
-              - { name: text, label: Description, widget: text }
-              - { name: price, label: Prix, widget: string, required: false }
-
-  - name: legal
-    label: Pages légales
-    editor: { preview: false }
-    files:
-      - name: mentions
-        label: Mentions légales
-        file: src/pages/mentions-legales.md
-        fields:
-          - { name: title, label: Titre, widget: string }
-          - { name: permalink, label: Adresse, widget: hidden }
-          - { name: updated, label: Dernière mise à jour, widget: datetime, time_format: false, date_format: "DD/MM/YYYY", format: "YYYY-MM-DD" }
-          - { name: body, label: Texte, widget: markdown }
-      - name: confidentialite
-        label: Politique de confidentialité
-        file: src/pages/confidentialite.md
-        fields:
-          - { name: title, label: Titre, widget: string }
-          - { name: permalink, label: Adresse, widget: hidden }
-          - { name: updated, label: Dernière mise à jour, widget: datetime, time_format: false, date_format: "DD/MM/YYYY", format: "YYYY-MM-DD" }
-          - { name: body, label: Texte, widget: markdown }
+  - name: contact
+    label: Page Contact
+    file: src/_data/contact.json
+    fields:
+    - name: page_title
+      label: Page — Titre de l'onglet
+      widget: string
+    - name: page_description
+      label: Page — Description pour Google
+      widget: text
+    - name: eyebrow
+      label: Page — Petit titre violet
+      widget: string
+    - name: eyebrow_devis
+      label: Page — Petit titre violet (quand le devis est activé)
+      widget: string
+    - name: title
+      label: Page — Grand titre (1re ligne)
+      widget: string
+    - name: title_highlight
+      label: Page — Grand titre (partie surlignée)
+      widget: string
+    - name: intro
+      label: Page — Texte d'introduction
+      widget: text
+    - name: delay_label
+      label: Page — Libellé « Délai de réponse »
+      widget: string
+    - name: linkedin_link
+      label: Page — Lien LinkedIn
+      widget: string
+    - name: about_link
+      label: Page — Lien vers À propos
+      widget: string
+    - name: label_name
+      label: Formulaire — Champ prénom
+      widget: string
+    - name: label_email
+      label: Formulaire — Champ e-mail
+      widget: string
+    - name: label_message
+      label: Formulaire — Champ message
+      widget: string
+    - name: consent_text
+      label: 'Formulaire — Case à cocher : texte avant le lien'
+      widget: text
+    - name: consent_link
+      label: 'Formulaire — Case à cocher : texte du lien'
+      widget: string
+    - name: button_send
+      label: Formulaire — Bouton d'envoi
+      widget: string
+    - name: sending
+      label: Formulaire — Pendant l'envoi
+      widget: string
+    - name: email_subject
+      label: Formulaire — Objet de l'e-mail que tu reçois
+      widget: string
+    - name: mode_legend
+      label: Demande de devis (quand elle est activée) — Question « Tu m'écris pour… »
+      widget: string
+    - name: mode_question
+      label: Demande de devis (quand elle est activée) — Choix « Une question »
+      widget: string
+    - name: mode_devis
+      label: Demande de devis (quand elle est activée) — Choix « Un devis »
+      widget: string
+    - name: devis_need_legend
+      label: Demande de devis (quand elle est activée) — Titre « Ce dont tu as besoin »
+      widget: string
+    - name: devis_needs
+      label: Demande de devis (quand elle est activée) — Besoins proposés
+      widget: list
+      field:
+        name: item
+        label: Choix
+        widget: string
+    - name: label_activity
+      label: Demande de devis (quand elle est activée) — Champ activité
+      widget: string
+    - name: placeholder_activity
+      label: Demande de devis (quand elle est activée) — Exemple dans le champ activité
+      widget: string
+    - name: label_when
+      label: Demande de devis (quand elle est activée) — Champ « Pour quand ? »
+      widget: string
+    - name: when_options
+      label: Demande de devis (quand elle est activée) — Délais proposés
+      widget: list
+      field:
+        name: item
+        label: Choix
+        widget: string
+    - name: label_budget
+      label: Demande de devis (quand elle est activée) — Champ budget
+      widget: string
+    - name: budget_options
+      label: Demande de devis (quand elle est activée) — Budgets proposés
+      widget: list
+      field:
+        name: item
+        label: Choix
+        widget: string
+    - name: label_message_devis
+      label: Demande de devis (quand elle est activée) — Champ message (devis)
+      widget: string
+    - name: button_send_devis
+      label: Demande de devis (quand elle est activée) — Bouton d'envoi (devis)
+      widget: string
+    - name: sent_text_devis
+      label: Demande de devis (quand elle est activée) — Confirmation (devis)
+      widget: text
+    - name: error_required
+      label: Messages — Champ obligatoire manquant
+      widget: string
+    - name: error_not_connected
+      label: Messages — Formulaire pas encore branché
+      widget: string
+    - name: error_send
+      label: Messages — Échec de l'envoi
+      widget: string
+    - name: sent_badge
+      label: Messages — Étiquette « Envoyé »
+      widget: string
+    - name: sent_title
+      label: Messages — Titre de confirmation
+      widget: string
+    - name: sent_text
+      label: Messages — Texte de confirmation
+      widget: text
+    - name: sent_again
+      label: Messages — Bouton « Envoyer un autre message »
+      widget: string
+  - name: blog
+    label: Blog, catégories, Grand Marketing et Petit Budget
+    file: src/_data/blog.json
+    fields:
+    - name: page_title
+      label: Page « Tous les articles » — Titre de l'onglet
+      widget: string
+    - name: page_description
+      label: Page « Tous les articles » — Description pour Google
+      widget: text
+    - name: title
+      label: Page « Tous les articles » — Titre
+      widget: string
+    - name: intro
+      label: Page « Tous les articles » — Texte d'introduction
+      widget: text
+    - name: themes_title
+      label: Page « Tous les articles » — Titre « Les thèmes »
+      widget: string
+    - name: gm_name
+      label: Grand Marketing — Nom
+      widget: string
+    - name: gm_badge
+      label: Grand Marketing — Étiquette (badge vert)
+      widget: string
+    - name: gm_description
+      label: Grand Marketing — Description (page Grand Marketing)
+      widget: text
+    - name: pb_name
+      label: Petit Budget — Nom
+      widget: string
+    - name: pb_badge
+      label: Petit Budget — Étiquette (badge bleu)
+      widget: string
+    - name: pb_description
+      label: Petit Budget — Description (page Petit Budget)
+      widget: text
+    - name: filter_all
+      label: Filtres et listes — Filtre « Tout »
+      widget: string
+    - name: filter_all_themes
+      label: Filtres et listes — Filtre « Tous les thèmes »
+      widget: string
+    - name: count_one
+      label: Filtres et listes — Compteur au singulier (article)
+      widget: string
+    - name: count_many
+      label: Filtres et listes — Compteur au pluriel (articles)
+      widget: string
+    - name: empty
+      label: Filtres et listes — Aucun article (blog)
+      widget: string
+    - name: empty_category
+      label: Filtres et listes — Aucun article (page catégorie)
+      widget: string
+    - name: empty_track
+      label: Filtres et listes — Aucun article (page GM ou PB)
+      widget: string
+    - name: other_themes
+      label: 'Filtres et listes — « Autres thèmes : »'
+      widget: string
+    - name: see_also
+      label: 'Filtres et listes — « Voir aussi : »'
+      widget: string
+    - name: breadcrumb_blog
+      label: Filtres et listes — Fil d'Ariane « Blog »
+      widget: string
+    - name: reading_time
+      label: Filtres et listes — Temps de lecture court (min)
+      widget: string
+    - name: reading_time_long
+      label: Filtres et listes — Temps de lecture long (min de lecture)
+      widget: string
+  - name: article
+    label: Pages article
+    file: src/_data/article.json
+    fields:
+    - name: toc_title
+      label: Libellés des pages article — Sommaire
+      widget: string
+    - name: pb_default_title
+      label: Libellés des pages article — Titre par défaut du bloc Petit Budget
+      widget: string
+    - name: budget_label
+      label: Libellés des pages article — Libellé « Budget »
+      widget: string
+    - name: time_label
+      label: Libellés des pages article — Libellé « Temps »
+      widget: string
+    - name: takeaways_title
+      label: Libellés des pages article — Titre « À retenir »
+      widget: string
+    - name: twin_from_gm
+      label: Libellés des pages article — Lien vers le jumeau PB (« Pour aller plus loin »)
+      widget: string
+    - name: twin_from_pb
+      label: Libellés des pages article — Lien vers le jumeau GM (« Le décryptage Grand Marketing »)
+      widget: string
+    - name: twin_link
+      label: Libellés des pages article — « Lire → »
+      widget: string
+    - name: share_label
+      label: 'Libellés des pages article — « Partager : »'
+      widget: string
+    - name: share_linkedin
+      label: Libellés des pages article — Bouton LinkedIn
+      widget: string
+    - name: share_copy
+      label: Libellés des pages article — Bouton « Copier le lien »
+      widget: string
+    - name: share_copied
+      label: Libellés des pages article — Message « Lien copié ! »
+      widget: string
+    - name: author_bio
+      label: Libellés des pages article — Ta présentation en fin d'article
+      widget: text
+    - name: author_link
+      label: Libellés des pages article — Lien vers À propos
+      widget: string
+    - name: related_title
+      label: Libellés des pages article — Titre « À lire aussi »
+      widget: string
+  - name: common
+    label: Menu, recherche, footer et page 404
+    file: src/_data/common.json
+    fields:
+    - name: skip_link
+      label: Menu — Lien d'accessibilité « Aller au contenu »
+      widget: string
+    - name: menu_categories
+      label: Menu — Catégories
+      widget: string
+    - name: menu_all_articles
+      label: Menu — Lien « Tous les articles »
+      widget: string
+    - name: menu_about
+      label: Menu — À propos
+      widget: string
+    - name: menu_contact
+      label: Menu — Contact
+      widget: string
+    - name: menu_newsletter
+      label: Menu — Bouton Newsletter
+      widget: string
+    - name: menu_newsletter_mobile
+      label: Menu — Bouton newsletter (mobile)
+      widget: string
+    - name: menu_contact_button
+      label: Menu — Bouton « Me contacter »
+      widget: string
+    - name: menu_devis_button
+      label: Menu — Bouton « Demander un devis »
+      widget: string
+    - name: breadcrumb_home
+      label: Menu — Fil d'Ariane « Accueil »
+      widget: string
+    - name: search_button
+      label: Recherche — Barre de recherche
+      widget: string
+    - name: search_placeholder
+      label: Recherche — Texte dans le champ
+      widget: string
+    - name: search_hint
+      label: Recherche — Aide avant de taper
+      widget: string
+    - name: search_found_one
+      label: Recherche — « article trouvé »
+      widget: string
+    - name: search_found_many
+      label: Recherche — « articles trouvés »
+      widget: string
+    - name: search_none
+      label: Recherche — Aucun résultat
+      widget: string
+    - name: search_unavailable
+      label: Recherche — Recherche indisponible
+      widget: string
+    - name: contact_band_title
+      label: Bandeau violet de contact — Titre
+      widget: string
+    - name: contact_band_highlight
+      label: Bandeau violet de contact — Titre (partie jaune)
+      widget: string
+    - name: contact_band_text
+      label: Bandeau violet de contact — Texte
+      widget: text
+    - name: newsletter_title
+      label: Newsletter (quand elle est activée) — Titre
+      widget: string
+    - name: newsletter_highlight
+      label: Newsletter (quand elle est activée) — Titre (partie jaune)
+      widget: string
+    - name: newsletter_text
+      label: Newsletter (quand elle est activée) — Texte
+      widget: text
+    - name: newsletter_label
+      label: Newsletter (quand elle est activée) — Libellé du champ
+      widget: string
+    - name: newsletter_placeholder
+      label: Newsletter (quand elle est activée) — Exemple dans le champ
+      widget: string
+    - name: newsletter_button
+      label: Newsletter (quand elle est activée) — Bouton
+      widget: string
+    - name: newsletter_error
+      label: Newsletter (quand elle est activée) — Erreur d'e-mail
+      widget: string
+    - name: newsletter_soon
+      label: Newsletter (quand elle est activée) — Message si pas encore branchée
+      widget: string
+    - name: footer_tagline
+      label: Footer — Phrase sous le logo
+      widget: text
+    - name: footer_themes
+      label: Footer — Titre « Thèmes »
+      widget: string
+    - name: footer_blog
+      label: Footer — Titre « Le blog »
+      widget: string
+    - name: footer_info
+      label: Footer — Titre « Infos »
+      widget: string
+    - name: footer_legal
+      label: Footer — Lien mentions légales
+      widget: string
+    - name: footer_privacy
+      label: Footer — Lien confidentialité
+      widget: string
+    - name: footer_signature
+      label: Footer — Signature en bas à droite
+      widget: string
+    - name: updated_label
+      label: 'Footer — « Dernière mise à jour : » (pages légales)'
+      widget: string
+    - name: page_404_title
+      label: Page 404 — Titre de l'onglet
+      widget: string
+    - name: page_404_eyebrow
+      label: Page 404 — Petit titre
+      widget: string
+    - name: page_404_heading
+      label: Page 404 — Titre (1re ligne)
+      widget: string
+    - name: page_404_highlight
+      label: Page 404 — Titre (partie surlignée)
+      widget: string
+    - name: page_404_text
+      label: Page 404 — Texte
+      widget: text
+    - name: page_404_home
+      label: Page 404 — Bouton accueil
+      widget: string
+    - name: page_404_search
+      label: Page 404 — Bouton recherche
+      widget: string
+- name: settings
+  label: Réglages du site
+  description: Fonctionnalités, liens et catégories.
+  editor:
+    preview: false
+  files:
+  - name: site
+    label: Réglages généraux
+    file: src/_data/site.json
+    fields:
+    - name: newsletter
+      label: Newsletter (encarts et bouton du menu)
+      widget: boolean
+      default: false
+    - name: newsletterFormUrl
+      label: Adresse du formulaire newsletter (Brevo ou MailerLite)
+      widget: string
+      required: false
+      hint: À remplir le jour où tu actives la newsletter.
+    - name: devis
+      label: Demandes de devis (formulaire et boutons)
+      widget: boolean
+      default: false
+    - name: web3formsKey
+      label: Clé Web3Forms du formulaire de contact
+      widget: string
+      required: false
+      hint: 'Clé gratuite sur web3forms.com : les messages arrivent sur l''e-mail associé.'
+    - name: contactDelay
+      label: Délai de réponse affiché
+      widget: string
+      required: false
+    - name: description
+      label: Description du site (Google)
+      widget: text
+    - name: linkedin
+      label: Lien LinkedIn
+      widget: string
+      required: false
+    - name: instagram
+      label: Lien Instagram
+      widget: string
+      required: false
+    - name: url
+      label: Adresse du site
+      widget: string
+      hint: À changer quand tu brancheras ton nom de domaine (ex. https://monsite.fr).
+    - name: title
+      label: Nom du site
+      widget: string
+    - name: shortTitle
+      label: Nom court
+      widget: string
+    - name: author
+      label: Autrice
+      widget: string
+  - name: categories
+    label: Catégories
+    file: src/_data/categories.json
+    fields:
+    - name: categories
+      label: Catégories
+      label_singular: catégorie
+      widget: list
+      summary: '{{fields.name}}'
+      fields:
+      - name: name
+        label: Nom
+        widget: string
+      - name: slug
+        label: Adresse (sans accents ni espaces)
+        widget: string
+        pattern:
+        - ^[a-z0-9-]+$
+        - Seulement des minuscules, des chiffres et des tirets.
+        hint: Ex. promotions-offres. Évite de la changer une fois des articles publiés.
+      - name: color
+        label: Couleur
+        widget: select
+        options:
+        - label: Jaune
+          value: '#FFD93D'
+        - label: Turquoise
+          value: '#3ED6C4'
+        - label: Lavande
+          value: '#AE8AEA'
+      - name: description
+        label: Description
+        widget: text
+- name: legal
+  label: Pages légales
+  editor:
+    preview: false
+  files:
+  - name: mentions
+    label: Mentions légales
+    file: src/pages/mentions-legales.md
+    fields:
+    - name: title
+      label: Titre
+      widget: string
+    - name: permalink
+      label: Adresse
+      widget: hidden
+    - name: updated
+      label: Dernière mise à jour
+      widget: datetime
+      time_format: false
+      date_format: DD/MM/YYYY
+      format: YYYY-MM-DD
+    - name: body
+      label: Texte
+      widget: markdown
+  - name: confidentialite
+    label: Politique de confidentialité
+    file: src/pages/confidentialite.md
+    fields:
+    - name: title
+      label: Titre
+      widget: string
+    - name: permalink
+      label: Adresse
+      widget: hidden
+    - name: updated
+      label: Dernière mise à jour
+      widget: datetime
+      time_format: false
+      date_format: DD/MM/YYYY
+      format: YYYY-MM-DD
+    - name: body
+      label: Texte
+      widget: markdown

@@ -1,6 +1,6 @@
 {# Badge Grand Marketing / Petit Budget #}
-{% macro badge(track) -%}
-<span class="badge badge-{{ track }}">{{ "GRAND MARKETING" if track == "gm" else "PETIT BUDGET" }}</span>
+{% macro badge(track, blog) -%}
+<span class="badge badge-{{ track }}">{{ blog.gm_badge if track == "gm" else blog.pb_badge }}</span>
 {%- endmacro %}
 
 {# Visuel d'une carte : l'image de couverture, ou un visuel coloré par défaut #}
@@ -15,11 +15,11 @@
 {%- endmacro %}
 
 {# Carte d'article #}
-{% macro card(a, categories, showExcerpt=false) -%}
+{% macro card(a, categories, blog, showExcerpt=false) -%}
 {%- set cat = a.data.category | category(categories) -%}
 <a class="card" href="{{ a.url }}" data-track="{{ a.data.track }}" data-cat="{{ a.data.category }}">
   {{ coverBox(a, cat) }}
-  <div class="card-meta">{{ badge(a.data.track) }}<span>{{ cat.name }}</span><span>· {{ a | readingTime }} min</span></div>
+  <div class="card-meta">{{ badge(a.data.track, blog) }}<span>{{ cat.name }}</span><span>· {{ a | readingTime }} {{ blog.reading_time }}</span></div>
   <h3>{{ a.data.title }}</h3>
   {%- if showExcerpt and a.data.chapo %}
   <p>{{ a.data.chapo | truncate(140) }}</p>
@@ -28,18 +28,18 @@
 {%- endmacro %}
 
 {# Filtres Tout / GM / PB #}
-{% macro trackFilters(target, countId, emptyId) -%}
-<div class="filters" role="group" aria-label="Filtrer par track" data-filter-group data-filter-key="track" data-filter-target="{{ target }}" data-filter-count="{{ countId }}" data-filter-empty="{{ emptyId }}">
-  <button type="button" class="chip" data-value="all" aria-pressed="true">Tout</button>
-  <button type="button" class="chip" data-value="gm" aria-pressed="false">Grand Marketing</button>
-  <button type="button" class="chip" data-value="pb" aria-pressed="false">Petit Budget</button>
+{% macro trackFilters(target, countId, emptyId, blog) -%}
+<div class="filters" role="group" aria-label="Filtrer" data-filter-group data-filter-key="track" data-filter-target="{{ target }}" data-filter-count="{{ countId }}" data-filter-empty="{{ emptyId }}">
+  <button type="button" class="chip" data-value="all" aria-pressed="true">{{ blog.filter_all }}</button>
+  <button type="button" class="chip" data-value="gm" aria-pressed="false">{{ blog.gm_name }}</button>
+  <button type="button" class="chip" data-value="pb" aria-pressed="false">{{ blog.pb_name }}</button>
 </div>
 {%- endmacro %}
 
 {# Filtres par catégorie #}
-{% macro catFilters(target, countId, emptyId, categories) -%}
-<div class="filters" role="group" aria-label="Filtrer par thème" data-filter-group data-filter-key="cat" data-filter-target="{{ target }}" data-filter-count="{{ countId }}" data-filter-empty="{{ emptyId }}">
-  <button type="button" class="chip" data-value="all" aria-pressed="true">Tous les thèmes</button>
+{% macro catFilters(target, countId, emptyId, categories, blog) -%}
+<div class="filters" role="group" aria-label="Filtrer" data-filter-group data-filter-key="cat" data-filter-target="{{ target }}" data-filter-count="{{ countId }}" data-filter-empty="{{ emptyId }}">
+  <button type="button" class="chip" data-value="all" aria-pressed="true">{{ blog.filter_all_themes }}</button>
   {%- for c in categories %}
   <button type="button" class="chip" data-value="{{ c.slug }}" aria-pressed="false">{{ c.name }}</button>
   {%- endfor %}
@@ -47,14 +47,14 @@
 {%- endmacro %}
 
 {# Bandeau contact / devis #}
-{% macro contactBand(site) -%}
+{% macro contactBand(site, common) -%}
 <section class="contact-band" aria-labelledby="cb-title">
   <div class="wrap">
     <div>
-      <h2 class="display h-2" id="cb-title">Une idée à appliquer chez toi ?<br><span>Parlons-en.</span></h2>
-      <p class="lead" style="margin-top:14px">Une question sur un article, un projet à monter : écris-moi, je te réponds.</p>
+      <h2 class="display h-2" id="cb-title">{{ common.contact_band_title }}<br><span>{{ common.contact_band_highlight }}</span></h2>
+      <p class="lead" style="margin-top:14px">{{ common.contact_band_text }}</p>
     </div>
-    <a class="btn btn-yellow" href="/contact/{{ '?type=devis' if site.devis }}">{{ "Demander un devis" if site.devis else "Me contacter" }} →</a>
+    <a class="btn btn-yellow" href="/contact/{{ '?type=devis' if site.devis }}">{{ common.menu_devis_button if site.devis else common.menu_contact_button }} →</a>
   </div>
 </section>
 {%- endmacro %}

@@ -2,13 +2,13 @@
 <section class="newsletter" id="newsletter" aria-labelledby="nl-title">
   <div class="wrap">
     <div class="newsletter-text">
-      <h2 class="display h-2" id="nl-title" style="line-height:1.05">Un décryptage par semaine.<br><span>Zéro budget requis.</span></h2>
-      <p class="lead" style="margin-top:16px">Chaque semaine : une campagne de grande marque, et la version à appliquer chez toi dès lundi.</p>
+      <h2 class="display h-2" id="nl-title" style="line-height:1.05">{{ common.newsletter_title }}<br><span>{{ common.newsletter_highlight }}</span></h2>
+      <p class="lead" style="margin-top:16px">{{ common.newsletter_text }}</p>
     </div>
     <form class="newsletter-form js-newsletter" action="{{ site.newsletterFormUrl }}" method="post" novalidate>
-      <label for="nl-email">Ton adresse e-mail</label>
-      <input id="nl-email" type="email" name="email" placeholder="prenom@moncommerce.fr" autocomplete="email" required>
-      <button type="submit" class="btn btn-yellow">Je m'abonne</button>
+      <label for="nl-email">{{ common.newsletter_label }}</label>
+      <input id="nl-email" type="email" name="email" placeholder="{{ common.newsletter_placeholder }}" autocomplete="email" required>
+      <button type="submit" class="btn btn-yellow">{{ common.newsletter_button }}</button>
       <p class="form-msg" role="status" hidden></p>
     </form>
   </div>
@@ -19,7 +19,7 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <a class="logo" href="/">GM<span>.</span>PB</a>
-        <p>On décrypte le marketing des grandes marques, et on l'adapte à ton commerce, sans budget.</p>
+        <p>{{ common.footer_tagline }}</p>
         {%- if site.linkedin or site.instagram %}
         <div class="socials">
           {%- if site.linkedin %}<a href="{{ site.linkedin }}" aria-label="LinkedIn" rel="me noopener" target="_blank"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4v11H3v-11zm6.5 0h3.8v1.5h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1v5.45h-4v-4.83c0-1.15-.02-2.63-1.6-2.63-1.6 0-1.85 1.25-1.85 2.55v4.91h-4v-11z"/></svg></a>{% endif %}
@@ -28,7 +28,7 @@
         {%- endif %}
       </div>
       <div class="footer-col">
-        <h3>Thèmes</h3>
+        <h3>{{ common.footer_themes }}</h3>
         <ul>
           {%- for c in categories.categories %}
           <li><a href="/categorie/{{ c.slug }}/">{{ c.name }}</a></li>
@@ -36,28 +36,28 @@
         </ul>
       </div>
       <div class="footer-col">
-        <h3>Le blog</h3>
+        <h3>{{ common.footer_blog }}</h3>
         <ul>
-          <li><a href="/grand-marketing/">Grand Marketing</a></li>
-          <li><a href="/petit-budget/">Petit Budget</a></li>
-          <li><a href="/blog/">Tous les articles</a></li>
-          {%- if site.newsletter %}<li><a href="#newsletter">Newsletter</a></li>{% endif %}
+          <li><a href="/grand-marketing/">{{ blog.gm_name }}</a></li>
+          <li><a href="/petit-budget/">{{ blog.pb_name }}</a></li>
+          <li><a href="/blog/">{{ blog.title }}</a></li>
+          {%- if site.newsletter %}<li><a href="#newsletter">{{ common.menu_newsletter }}</a></li>{% endif %}
         </ul>
       </div>
       <div class="footer-col">
-        <h3>Infos</h3>
+        <h3>{{ common.footer_info }}</h3>
         <ul>
-          <li><a href="/a-propos/">À propos</a></li>
-          <li><a href="/contact/">Contact</a></li>
-          {%- if site.devis %}<li><a href="/contact/?type=devis">Demander un devis</a></li>{% endif %}
-          <li><a href="/mentions-legales/">Mentions légales</a></li>
-          <li><a href="/confidentialite/">Politique de confidentialité</a></li>
+          <li><a href="/a-propos/">{{ common.menu_about }}</a></li>
+          <li><a href="/contact/">{{ common.menu_contact }}</a></li>
+          {%- if site.devis %}<li><a href="/contact/?type=devis">{{ common.menu_devis_button }}</a></li>{% endif %}
+          <li><a href="/mentions-legales/">{{ common.footer_legal }}</a></li>
+          <li><a href="/confidentialite/">{{ common.footer_privacy }}</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
       <span>© {{ build.year }} {{ site.title }}</span>
-      <span>Fait avec soin, et sans budget.</span>
+      <span>{{ common.footer_signature }}</span>
     </div>
   </div>
 </footer>
