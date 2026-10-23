@@ -1,4 +1,4 @@
-# Grand Marketing, Petit Budget (GM.PB)
+# Grand Marketing & Petit Budget (GM.PB)
 
 Le site de GM.PB : un site statique (Eleventy) hébergé gratuitement sur Cloudflare Pages, avec un back office (Sveltia CMS) pour écrire les articles.
 

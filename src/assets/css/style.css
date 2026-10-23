@@ -1,5 +1,5 @@
 /* =========================================================
-   GM.PB — Grand Marketing, Petit Budget
+   GM.PB — Grand Marketing & Petit Budget
    Feuille de style commune à toutes les pages
    ========================================================= */
 
@@ -152,8 +152,9 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .search-suggest a { border: var(--border); border-radius: 999px; padding: 7px 14px; font-weight: 600; font-size: 14px; }
 
 /* ---------- Sections communes ---------- */
-.section { padding: 80px 0; }
-.section-tight { padding: 56px 0; }
+.section { padding-top: 80px; padding-bottom: 80px; }
+.section-tight { padding-top: 56px; padding-bottom: 56px; }
+.nowrap { white-space: nowrap; }
 .section-dark { background: var(--ink); color: #fff; }
 .section-dark a:hover { color: var(--yellow); }
 .section-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px; margin-bottom: 32px; }
@@ -337,13 +338,16 @@ button { font: inherit; color: inherit; cursor: pointer; }
 }
 @media (max-width: 640px) {
   body { font-size: 16px; }
-  .wrap, .wrap-narrow { padding: 0 16px; }
+  .wrap, .wrap-narrow { padding-left: 16px; padding-right: 16px; }
   .nav { padding-top: 10px; padding-bottom: 10px; }
   .logo { font-size: 28px; }
   .h-1 { font-size: 38px; }
-  .display { overflow-wrap: break-word; hyphens: auto; }
+  .display { overflow-wrap: break-word; hyphens: manual; }
+  .h-hero { font-size: clamp(44px, 13.4vw, 64px); }
+  .intro-text .h-2 { font-size: clamp(28px, 9vw, 40px); }
+  .article-head { padding-bottom: 36px; }
   .icon-btn { width: 44px; height: 44px; }
-  .section { padding: 56px 0; }
+  .section { padding-top: 56px; padding-bottom: 56px; }
   .hero { padding-top: 36px; gap: 28px; }
   .featured .ph { min-height: 220px; }
   .featured-body { padding: 24px; }
