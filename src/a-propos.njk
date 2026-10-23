@@ -38,7 +38,11 @@ eleventyComputed:
   <h2 class="display h-2" id="career-title" style="margin-bottom:40px">{{ about.timeline_title }}</h2>
   <div class="timeline">
     {%- for t in about.timeline %}
-    <div class="timeline-row"><span class="when">{{ t.when }}</span><div class="what"><strong>{{ t.title }}</strong>{% if t.text %}<br><span class="muted">{{ t.text }}</span>{% endif %}</div></div>
+    <div class="timeline-row"><span class="when">{{ t.when }}</span><div class="what">
+      {%- for i in (t.items if t.items else [t]) %}
+      <div class="what-item"><strong>{{ i.title }}</strong>{% if i.text %}<br><span class="muted">{{ i.text }}</span>{% endif %}</div>
+      {%- endfor %}
+    </div></div>
     {%- endfor %}
   </div>
 </section>

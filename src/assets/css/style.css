@@ -437,3 +437,5 @@ button { font: inherit; color: inherit; cursor: pointer; }
 }
 
 .search-head input::-webkit-search-cancel-button { display: none; }
+
+.what-item + .what-item { margin-top: 14px; }

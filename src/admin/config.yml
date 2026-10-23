@@ -425,15 +425,21 @@ collections:
       widget: list
       fields:
       - name: when
-        label: Quand
+        label: Étape (ex. Aujourd'hui, Avant, Formation)
         widget: string
-      - name: title
-        label: Titre
-        widget: string
-      - name: text
-        label: Détail
-        widget: string
-        required: false
+      - name: items
+        label: Éléments de cette étape
+        label_singular: élément
+        widget: list
+        hint: 'Ajoute autant d''éléments que tu veux : ils s''affichent à la suite sous le nom de l''étape.'
+        fields:
+        - name: title
+          label: Titre
+          widget: string
+        - name: text
+          label: Détail
+          widget: string
+          required: false
     - name: show_offers
       label: Travailler ensemble — Afficher ce bloc
       widget: boolean

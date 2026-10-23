@@ -30,23 +30,39 @@
   "timeline": [
     {
       "when": "Aujourd'hui",
-      "title": "Activations promotionnelles pour de grandes marques de la grande conso",
-      "text": "Couponing, bannières web et mobile, affichage digital, planning média."
+      "items": [
+        {
+          "title": "Activations promotionnelles pour de grandes marques de la grande conso",
+          "text": "Couponing, bannières web et mobile, affichage digital, planning média."
+        }
+      ]
     },
     {
       "when": "Avant",
-      "title": "Marketing local pour une enseigne de sport",
-      "text": "Animation de magasins sur toute une région, gamification, événements."
+      "items": [
+        {
+          "title": "Marketing local pour une enseigne de sport",
+          "text": "Animation de magasins sur toute une région, gamification, événements."
+        }
+      ]
     },
     {
       "when": "Encore avant",
-      "title": "Contenu global pour une marque de cosmétiques",
-      "text": "Et du marketing digital et e-commerce."
+      "items": [
+        {
+          "title": "Contenu global pour une marque de cosmétiques",
+          "text": "Et du marketing digital et e-commerce."
+        }
+      ]
     },
     {
       "when": "Formation",
-      "title": "Master Marketing & Communication, certification IA",
-      "text": "Toulouse School of Management."
+      "items": [
+        {
+          "title": "Master Marketing & Communication, certification IA",
+          "text": "Toulouse School of Management."
+        }
+      ]
     }
   ],
   "show_offers": true,
