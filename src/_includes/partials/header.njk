@@ -1,0 +1,59 @@
+<a class="skip" href="#contenu">Aller au contenu</a>
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/" aria-label="GM.PB, retour à l'accueil">GM<span>.</span>PB</a>
+    <nav class="nav-links" aria-label="Menu principal">
+      <div class="dropdown">
+        <button type="button" class="nav-link dropdown-toggle" aria-expanded="false" aria-controls="menu-categories"{% if activeNav == "categories" %} aria-current="page"{% endif %}>Catégories <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="dropdown-panel" id="menu-categories" hidden>
+          {%- for c in categories.categories %}
+          <a href="/categorie/{{ c.slug }}/"{% if activeCat == c.slug %} aria-current="page"{% endif %}><span class="dot" style="background:{{ c.color }}"></span>{{ c.name }}</a>
+          {%- endfor %}
+          <a class="all" href="/blog/">Tous les articles →</a>
+        </div>
+      </div>
+      <a class="nav-link" href="/grand-marketing/"{% if activeNav == "gm" %} aria-current="page"{% endif %}>Grand Marketing</a>
+      <a class="nav-link" href="/petit-budget/"{% if activeNav == "pb" %} aria-current="page"{% endif %}>Petit Budget</a>
+      <a class="nav-link" href="/a-propos/"{% if activeNav == "about" %} aria-current="page"{% endif %}>À propos</a>
+      <a class="nav-link" href="/contact/"{% if activeNav == "contact" %} aria-current="page"{% endif %}>Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <button type="button" class="search-pill js-search-open" aria-label="Rechercher un article"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M13 13l4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="sp-text">Rechercher un article…</span></button>
+      {%- if site.newsletter %}
+      <a class="btn btn-dark nav-cta" href="#newsletter">Newsletter</a>
+      {%- endif %}
+      <button type="button" class="icon-btn burger js-burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 6h14M3 10h14M3 14h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobile-menu" hidden>
+    <nav aria-label="Menu mobile">
+      <button type="button" class="m-toggle" aria-expanded="false" aria-controls="m-cats">Catégories <span class="sign" aria-hidden="true">+</span></button>
+      <div class="m-sub" id="m-cats" hidden>
+        {%- for c in categories.categories %}
+        <a href="/categorie/{{ c.slug }}/"><span class="dot" style="background:{{ c.color }}"></span>{{ c.name }}</a>
+        {%- endfor %}
+        <a href="/blog/"><strong>Tous les articles →</strong></a>
+      </div>
+      <a class="m-link" href="/grand-marketing/">Grand Marketing</a>
+      <a class="m-link" href="/petit-budget/">Petit Budget</a>
+      <a class="m-link" href="/a-propos/">À propos</a>
+      <a class="m-link" href="/contact/">Contact</a>
+      {%- if site.newsletter %}
+      <a class="btn btn-violet m-cta" href="#newsletter">S'abonner à la newsletter</a>
+      {%- else %}
+      <a class="btn btn-violet m-cta" href="/contact/">{{ "Demander un devis" if site.devis else "Me contacter" }}</a>
+      {%- endif %}
+    </nav>
+  </div>
+</header>
+<div class="search-overlay" id="search" hidden role="dialog" aria-modal="true" aria-label="Rechercher un article">
+  <div class="search-box">
+    <div class="search-head">
+      <label for="search-input" class="sr-only">Rechercher un article</label>
+      <input id="search-input" type="search" placeholder="Rechercher un article, un thème…" autocomplete="off">
+      <button type="button" class="icon-btn js-search-close" aria-label="Fermer la recherche"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M4 4l10 10M14 4L4 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    </div>
+    <p class="search-count" aria-live="polite"></p>
+    <ul class="search-results"></ul>
+  </div>
+</div>

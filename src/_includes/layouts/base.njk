@@ -1,0 +1,35 @@
+{%- set pageTitle = (seo_title or title) ~ (" — " ~ site.shortTitle if title else "") if not isHome else site.title ~ " — le marketing des grandes marques, sans budget" -%}
+{%- set pageDesc = seo_description or description or chapo or site.description -%}
+{%- set canonical = page.url | absoluteUrl(site.url) -%}
+{%- set ogImage = (cover if cover else "/assets/og-default.png") | absoluteUrl(site.url) -%}
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ pageTitle }}</title>
+<meta name="description" content="{{ pageDesc | truncate(160) }}">
+<link rel="canonical" href="{{ canonical }}">
+{% if noindex %}<meta name="robots" content="noindex">{% endif %}
+<meta property="og:site_name" content="{{ site.title }}">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:type" content="{{ 'article' if layout == 'layouts/article.njk' else 'website' }}">
+<meta property="og:title" content="{{ seo_title or title or site.title }}">
+<meta property="og:description" content="{{ pageDesc | truncate(200) }}">
+<meta property="og:url" content="{{ canonical }}">
+<meta property="og:image" content="{{ ogImage }}">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/assets/fonts/anton-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/style.css">
+{% block head %}{% endblock %}
+</head>
+<body>
+{% include "partials/header.njk" %}
+<main id="contenu">
+{{ content | safe }}
+</main>
+{% include "partials/footer.njk" %}
+<script src="/assets/js/main.js" defer></script>
+</body>
+</html>

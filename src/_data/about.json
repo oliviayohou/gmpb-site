@@ -1,0 +1,17 @@
+{
+  "photo": "",
+  "sticker": "Marketeuse retail",
+  "intro": "Je travaille dans le marketing des grandes marques. Mon quotidien : des dizaines de campagnes par cycle, pour des marques que tu as dans ton placard.",
+  "text": "Et à chaque campagne, je me pose la même question : comment un commerçant, une créatrice e-commerce ou un artisan pourrait faire pareil, avec zéro budget ? GM.PB, c'est la réponse, article après article.",
+  "timeline": [
+    { "when": "Aujourd'hui", "title": "Activations promotionnelles pour de grandes marques de la grande conso", "text": "Couponing, bannières web et mobile, affichage digital, planning média." },
+    { "when": "Avant", "title": "Marketing local pour une enseigne de sport", "text": "Animation de magasins sur toute une région, gamification, événements." },
+    { "when": "Encore avant", "title": "Contenu global pour une marque de cosmétiques", "text": "Et du marketing digital et e-commerce." },
+    { "when": "Formation", "title": "Master Marketing & Communication, certification IA", "text": "Toulouse School of Management." }
+  ],
+  "show_offers": true,
+  "offers": [
+    { "tag": "TU APPRENDS", "title": "Formation & accompagnement", "text": "Je te montre comment construire ta stratégie et tes outils, pour que tu le fasses toi-même ensuite.", "price": "Sur demande" },
+    { "tag": "JE M'EN OCCUPE", "title": "Je le fais pour toi", "text": "Je mets en place ton action marketing ou ton automatisation, prête à l'emploi.", "price": "Sur demande" }
+  ]
+}

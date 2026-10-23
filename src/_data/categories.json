@@ -1,0 +1,16 @@
+{
+  "categories": [
+    { "slug": "promotions-offres", "name": "Promotions & offres", "color": "#FFD93D",
+      "description": "Promos, bons de réduction, prix, soldes et temps forts : comment les grandes marques donnent envie d'acheter maintenant, et comment le faire sans brader." },
+    { "slug": "fidelisation-crm", "name": "Fidélisation & CRM", "color": "#3ED6C4",
+      "description": "Cartes de fidélité, emailing, programmes VIP, personnalisation : comment les grandes marques font revenir leurs clients, et comment tu peux faire pareil." },
+    { "slug": "reseaux-sociaux", "name": "Réseaux sociaux", "color": "#AE8AEA",
+      "description": "Instagram, TikTok, LinkedIn, contenus créés par les clients : ce qui marche vraiment sur les réseaux, version grande marque et version commerce." },
+    { "slug": "branding", "name": "Branding", "color": "#FFD93D",
+      "description": "Identité, affichage, vitrine, packaging : ce qui rend une marque mémorable, et comment y arriver avec les moyens du bord." },
+    { "slug": "partenariats-collabs", "name": "Partenariats & collabs", "color": "#3ED6C4",
+      "description": "Collabs entre marques, co-branding, créateurs, partenaires locaux : s'allier pour aller plus loin, à toutes les échelles." },
+    { "slug": "intelligence-artificielle", "name": "Intelligence artificielle", "color": "#AE8AEA",
+      "description": "Outils IA et automatisations : comment les grandes marques s'en servent, et comment gagner du temps dans ton commerce, sans savoir coder." }
+  ]
+}

@@ -1,0 +1,134 @@
+---
+layout: layouts/base.njk
+---
+{%- import "partials/macros.njk" as m -%}
+{%- set cat = category | category(categories.categories) -%}
+{%- set self = collections.articles | findBySlug(page.fileSlug) -%}
+{%- set minutes = (self | readingTime) if self else 1 -%}
+{%- set tocItems = content | toc -%}
+{%- set twinArticle = collections.articles | findBySlug(twin) if twin else null -%}
+<div class="progress" aria-hidden="true"></div>
+<article data-pagefind-body data-pagefind-meta="track:{{ track }}">
+  <header class="wrap-narrow article-head" style="max-width:860px" data-pagefind-meta="category:{{ cat.name }}">
+    <div class="breadcrumb" data-pagefind-ignore><a href="/">Accueil</a> / <a href="/{{ 'grand-marketing' if track == 'gm' else 'petit-budget' }}/">{{ "Grand Marketing" if track == "gm" else "Petit Budget" }}</a> / {{ cat.name }}</div>
+    <div class="card-meta" style="margin-bottom:22px" data-pagefind-ignore>{{ m.badge(track) }}<a href="/categorie/{{ cat.slug }}/" style="text-decoration:underline;text-underline-offset:3px">{{ cat.name }}</a></div>
+    <h1 class="display" style="font-size:clamp(40px,6vw,80px);line-height:1.02">{{ title }}</h1>
+    {%- if chapo %}<p class="lead">{{ chapo }}</p>{% endif %}
+    <div class="author" data-pagefind-ignore><div class="avatar" aria-hidden="true">OY</div><div><strong>{{ site.author }}</strong><br><span class="muted"><time datetime="{{ page.date | isoDate }}">{{ page.date | dateFr }}</time> · {{ minutes }} min de lecture</span></div></div>
+  </header>
+
+  <figure class="article-cover" data-pagefind-ignore>
+    <div class="frame{% if not cover %} pattern{% endif %}" style="background-color:{{ cat.color }}">
+      {%- if cover %}<img src="{{ cover }}" alt="{{ cover_alt }}">{% else %}<span class="cover-label" aria-hidden="true">{{ cat.name }}</span>{% endif %}
+    </div>
+  </figure>
+
+  <div class="article-layout">
+    {%- if tocItems.length > 1 %}
+    <aside class="toc-side" data-pagefind-ignore>
+      <nav aria-label="Sommaire">
+        <p class="label">SOMMAIRE</p>
+        <ol class="toc-list js-toc">
+          {%- for t in tocItems %}<li><a href="#{{ t.id }}">{{ t.text }}</a></li>{% endfor %}
+          {%- if steps and steps.length %}<li><a href="#petit-budget">{{ pb_title or "La version Petit Budget" }}</a></li>{% endif %}
+        </ol>
+      </nav>
+    </aside>
+    {%- endif %}
+    <div class="prose">
+      {%- if tocItems.length > 1 %}
+      <details class="toc toc-mobile" data-pagefind-ignore>
+        <summary>SOMMAIRE</summary>
+        <ol class="toc-list">
+          {%- for t in tocItems %}<li><a href="#{{ t.id }}">{{ t.text }}</a></li>{% endfor %}
+          {%- if steps and steps.length %}<li><a href="#petit-budget">{{ pb_title or "La version Petit Budget" }}</a></li>{% endif %}
+        </ol>
+      </details>
+      {%- endif %}
+      {{ content | safe }}
+    </div>
+  </div>
+
+  {%- if steps and steps.length %}
+  <section class="pb-block" aria-labelledby="petit-budget">
+    <div class="wrap-narrow">
+      <span class="badge">PETIT BUDGET</span>
+      <h2 class="display h-2" id="petit-budget" style="margin-top:20px;scroll-margin-top:100px">{{ pb_title or "La version Petit Budget" }}</h2>
+      {%- if pb_intro %}<p class="pb-intro">{{ pb_intro }}</p>{% endif %}
+      <ol class="steps">
+        {%- for s in steps %}
+        <li><span class="num">{{ loop.index }}</span><div><h3>{{ s.title }}</h3>{% if s.text %}<p>{{ s.text }}</p>{% endif %}</div></li>
+        {%- endfor %}
+      </ol>
+      {%- if budget or time %}
+      <div class="pb-meta-grid">
+        {%- if budget %}<div><strong>Budget</strong><span>{{ budget }}</span></div>{% endif %}
+        {%- if time %}<div><strong>Temps</strong><span>{{ time }}</span></div>{% endif %}
+      </div>
+      {%- endif %}
+    </div>
+  </section>
+  {%- endif %}
+
+  {%- if takeaways and takeaways.length %}
+  <div class="article-layout">
+    {%- if tocItems.length > 1 %}<div class="toc-side" aria-hidden="true"></div>{% endif %}
+    <aside class="prose takeaway" aria-labelledby="a-retenir">
+      <h2 id="a-retenir">À retenir</h2>
+      <ul>{% for t in takeaways %}<li>{{ t }}</li>{% endfor %}</ul>
+    </aside>
+  </div>
+  {%- endif %}
+
+  <div class="after" data-pagefind-ignore>
+    {%- if twinArticle %}
+    <a class="twin" href="{{ twinArticle.url }}">
+      <div>{{ m.badge(twinArticle.data.track) }}<strong>{{ "Pour aller plus loin" if track == "gm" else "Le décryptage Grand Marketing" }} : {{ twinArticle.data.title }}</strong></div>
+      <span class="link-arrow">Lire →</span>
+    </a>
+    {%- endif %}
+    <div class="share">
+      <strong>Partager :</strong>
+      <a class="btn" href="https://www.linkedin.com/sharing/share-offsite/?url={{ page.url | absoluteUrl(site.url) | urlencode }}" target="_blank" rel="noopener">LinkedIn</a>
+      <button type="button" class="btn js-copy">Copier le lien</button>
+    </div>
+    <section class="author-box" aria-labelledby="about-author">
+      <div class="avatar" aria-hidden="true">OY</div>
+      <div>
+        <h2 id="about-author">{{ site.author }}</h2>
+        <p>Marketeuse retail, je travaille au quotidien sur les campagnes de grandes marques. Sur GM.PB, je les décrypte et je les adapte aux commerces qui n'ont pas leur budget.</p>
+        <a href="/a-propos/">En savoir plus sur moi →</a>
+      </div>
+    </section>
+  </div>
+</article>
+
+{%- set related = collections.articles | exceptUrl(page.url) | exceptUrl(twinArticle.url if twinArticle else "") %}
+{%- if related.length %}
+<section class="wrap" style="padding-top:72px;padding-bottom:88px" aria-labelledby="more-title">
+  <h2 class="display h-2" id="more-title" style="margin-bottom:28px">À lire aussi</h2>
+  <div class="grid">
+    {%- for a in related | head(3) %}
+    {{ m.card(a, categories.categories) }}
+    {%- endfor %}
+  </div>
+</section>
+{%- endif %}
+
+{{ m.contactBand(site) }}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": {{ title | json | safe }},
+  "description": {{ (seo_description or chapo or "") | json | safe }},
+  "datePublished": "{{ page.date | isoDate }}",
+  "author": { "@type": "Person", "name": {{ site.author | json | safe }}, "url": "{{ '/a-propos/' | absoluteUrl(site.url) }}" },
+  "publisher": { "@type": "Organization", "name": {{ site.title | json | safe }} },
+  "mainEntityOfPage": "{{ page.url | absoluteUrl(site.url) }}",
+  "articleSection": {{ cat.name | json | safe }},
+  "inLanguage": "fr-FR"{% if cover %},
+  "image": "{{ cover | absoluteUrl(site.url) }}"{% endif %}
+}
+</script>

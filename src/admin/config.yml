@@ -1,0 +1,265 @@
+# yaml-language-server: $schema=https://unpkg.com/@sveltia/cms/schema/sveltia-cms.json
+# =========================================================
+# Back office GM.PB (Sveltia CMS)
+# Chaque « collection » est une rubrique du back office.
+# =========================================================
+
+backend:
+  name: github
+  repo: TON-COMPTE-GITHUB/gmpb-site   # ← à remplacer par ton compte GitHub
+  branch: main
+
+site_url: https://gmpb.pages.dev
+display_url: https://gmpb.pages.dev
+
+media_folder: src/images/uploads
+public_folder: /images/uploads
+
+slug:
+  encoding: ascii
+  clean_accents: true
+  sanitize_replacement: "-"
+
+collections:
+  # -------------------------------------------------------
+  # ARTICLES GRAND MARKETING
+  # -------------------------------------------------------
+  - name: articles_gm
+    label: Articles Grand Marketing
+    label_singular: Article Grand Marketing
+    description: Les décryptages des campagnes de grandes marques.
+    folder: src/articles/gm
+    extension: md
+    format: frontmatter
+    create: true
+    slug: "{{title}}"
+    preview_path: "blog/{{slug}}/"
+    summary: "{{title}}"
+    sortable_fields: [date, title, category]
+    view_filters:
+      - label: Brouillons
+        field: draft
+        pattern: true
+      - label: Publiés
+        field: draft
+        pattern: false
+    fields:
+      - { name: title, label: Titre, widget: string }
+      - { name: chapo, label: Chapô, widget: text, hint: "Les 2 ou 3 phrases d'introduction, en gros sous le titre." }
+      - { name: date, label: Date de publication, widget: datetime, time_format: false, date_format: "DD/MM/YYYY", format: "YYYY-MM-DD" }
+      - name: category
+        label: Catégorie
+        widget: relation
+        collection: settings
+        file: categories
+        value_field: "{{categories.*.slug}}"
+        display_fields: ["{{categories.*.name}}"]
+        search_fields: ["{{categories.*.name}}"]
+      - { name: cover, label: Image de couverture, widget: image, required: false, hint: "Format paysage conseillé (1600 × 900 px). Sans image, un visuel coloré est affiché." }
+      - { name: cover_alt, label: Description de l'image, widget: string, required: false, hint: "Ce qu'on voit sur l'image, en une phrase. Lu par Google et les lecteurs d'écran." }
+      - { name: body, label: Texte de l'article, widget: markdown, hint: "Utilise « Titre 2 » pour les intertitres : ils forment le sommaire." }
+      - { name: pb_title, label: "Bloc Petit Budget : titre", widget: string, required: false, default: "La version Petit Budget", hint: "Facultatif pour un article Grand Marketing." }
+      - { name: pb_intro, label: "Bloc Petit Budget : introduction", widget: text, required: false }
+      - name: steps
+        label: "Bloc Petit Budget : étapes"
+        label_singular: étape
+        widget: list
+        required: false
+        hint: "Laisse vide si tu ne veux pas de bloc Petit Budget dans cet article."
+        fields:
+          - { name: title, label: Titre de l'étape, widget: string }
+          - { name: text, label: Explication, widget: text, required: false }
+      - { name: budget, label: "Bloc Petit Budget : budget", widget: string, required: false, hint: "Ex. 0 à 20 €" }
+      - { name: time, label: "Bloc Petit Budget : temps", widget: string, required: false, hint: "Ex. 1 heure" }
+      - name: takeaways
+        label: À retenir
+        label_singular: point
+        widget: list
+        required: false
+        field: { name: point, label: Point à retenir, widget: string }
+      - name: twin
+        label: Article jumeau (Petit Budget)
+        widget: relation
+        collection: articles_pb
+        value_field: "{{slug}}"
+        display_fields: ["{{title}}"]
+        search_fields: ["{{title}}"]
+        required: false
+        hint: "L'article Petit Budget qui répond à ce décryptage. Le lien s'affiche en fin d'article."
+      - { name: seo_title, label: Titre pour Google, widget: string, required: false, maxlength: 60, hint: "60 caractères maximum. Sinon, le titre de l'article est utilisé." }
+      - { name: seo_description, label: Description pour Google, widget: text, required: false, maxlength: 155, hint: "155 caractères maximum. Sinon, le chapô est utilisé." }
+      - { name: linkedin_post, label: Post LinkedIn associé, widget: text, required: false, hint: "Ton brouillon de post, pour le copier sur LinkedIn." }
+      - { name: featured, label: Mettre à la une sur l'accueil, widget: boolean, default: false, required: false }
+      - { name: draft, label: "Brouillon (pas visible sur le site)", widget: boolean, default: true, required: false }
+
+  # -------------------------------------------------------
+  # ARTICLES PETIT BUDGET
+  # -------------------------------------------------------
+  - name: articles_pb
+    label: Articles Petit Budget
+    label_singular: Article Petit Budget
+    description: Les adaptations à appliquer dans ton commerce.
+    folder: src/articles/pb
+    extension: md
+    format: frontmatter
+    create: true
+    slug: "{{title}}"
+    preview_path: "blog/{{slug}}/"
+    summary: "{{title}}"
+    sortable_fields: [date, title, category]
+    view_filters:
+      - label: Brouillons
+        field: draft
+        pattern: true
+      - label: Publiés
+        field: draft
+        pattern: false
+    fields:
+      - { name: title, label: Titre, widget: string }
+      - { name: chapo, label: Chapô, widget: text, hint: "Les 2 ou 3 phrases d'introduction, en gros sous le titre." }
+      - { name: date, label: Date de publication, widget: datetime, time_format: false, date_format: "DD/MM/YYYY", format: "YYYY-MM-DD" }
+      - name: category
+        label: Catégorie
+        widget: relation
+        collection: settings
+        file: categories
+        value_field: "{{categories.*.slug}}"
+        display_fields: ["{{categories.*.name}}"]
+        search_fields: ["{{categories.*.name}}"]
+      - { name: cover, label: Image de couverture, widget: image, required: false, hint: "Format paysage conseillé (1600 × 900 px). Sans image, un visuel coloré est affiché." }
+      - { name: cover_alt, label: Description de l'image, widget: string, required: false, hint: "Ce qu'on voit sur l'image, en une phrase. Lu par Google et les lecteurs d'écran." }
+      - { name: body, label: Texte de l'article, widget: markdown, hint: "Le principe et le contexte. Les étapes vont dans le bloc Petit Budget ci-dessous." }
+      - { name: pb_title, label: "Bloc Petit Budget : titre", widget: string, default: "Chez toi, en 3 étapes" }
+      - { name: pb_intro, label: "Bloc Petit Budget : introduction", widget: text, required: false }
+      - name: steps
+        label: "Bloc Petit Budget : étapes"
+        label_singular: étape
+        widget: list
+        min: 2
+        hint: "Au moins 2 étapes."
+        fields:
+          - { name: title, label: Titre de l'étape, widget: string }
+          - { name: text, label: Explication, widget: text, required: false }
+      - { name: budget, label: "Bloc Petit Budget : budget", widget: string, hint: "Ex. 0 à 20 €" }
+      - { name: time, label: "Bloc Petit Budget : temps", widget: string, hint: "Ex. 1 heure" }
+      - name: takeaways
+        label: À retenir
+        label_singular: point
+        widget: list
+        required: false
+        field: { name: point, label: Point à retenir, widget: string }
+      - name: twin
+        label: Article jumeau (Grand Marketing)
+        widget: relation
+        collection: articles_gm
+        value_field: "{{slug}}"
+        display_fields: ["{{title}}"]
+        search_fields: ["{{title}}"]
+        required: false
+        hint: "Le décryptage Grand Marketing dont cet article est l'adaptation."
+      - { name: seo_title, label: Titre pour Google, widget: string, required: false, maxlength: 60, hint: "60 caractères maximum. Sinon, le titre de l'article est utilisé." }
+      - { name: seo_description, label: Description pour Google, widget: text, required: false, maxlength: 155, hint: "155 caractères maximum. Sinon, le chapô est utilisé." }
+      - { name: linkedin_post, label: Post LinkedIn associé, widget: text, required: false, hint: "Ton brouillon de post, pour le copier sur LinkedIn." }
+      - { name: featured, label: Mettre à la une sur l'accueil, widget: boolean, default: false, required: false }
+      - { name: draft, label: "Brouillon (pas visible sur le site)", widget: boolean, default: true, required: false }
+
+  # -------------------------------------------------------
+  # RÉGLAGES ET CONTENUS DU SITE
+  # -------------------------------------------------------
+  - name: settings
+    label: Réglages du site
+    description: Fonctionnalités, catégories et textes des pages.
+    editor: { preview: false }
+    files:
+      - name: site
+        label: Réglages généraux
+        file: src/_data/site.json
+        fields:
+          - { name: newsletter, label: "Newsletter (encarts et bouton du menu)", widget: boolean, default: false }
+          - { name: newsletterFormUrl, label: Adresse du formulaire newsletter (Brevo ou MailerLite), widget: string, required: false, hint: "À remplir le jour où tu actives la newsletter." }
+          - { name: devis, label: "Demandes de devis (formulaire et boutons)", widget: boolean, default: false }
+          - { name: web3formsKey, label: Clé Web3Forms du formulaire de contact, widget: string, required: false, hint: "Clé gratuite sur web3forms.com : les messages arrivent sur l'e-mail associé." }
+          - { name: contactDelay, label: Délai de réponse affiché, widget: string, required: false }
+          - { name: description, label: Description du site (Google), widget: text }
+          - { name: linkedin, label: Lien LinkedIn, widget: string, required: false }
+          - { name: instagram, label: Lien Instagram, widget: string, required: false }
+          - { name: url, label: Adresse du site, widget: string, hint: "À changer quand tu brancheras ton nom de domaine (ex. https://monsite.fr)." }
+          - { name: title, label: Nom du site, widget: string }
+          - { name: shortTitle, label: Nom court, widget: string }
+          - { name: author, label: Autrice, widget: string }
+
+      - name: categories
+        label: Catégories
+        file: src/_data/categories.json
+        fields:
+          - name: categories
+            label: Catégories
+            label_singular: catégorie
+            widget: list
+            summary: "{{fields.name}}"
+            fields:
+              - { name: name, label: Nom, widget: string }
+              - { name: slug, label: Adresse (sans accents ni espaces), widget: string, pattern: ['^[a-z0-9-]+$', "Seulement des minuscules, des chiffres et des tirets."], hint: "Ex. promotions-offres. Évite de la changer une fois des articles publiés." }
+              - name: color
+                label: Couleur
+                widget: select
+                options:
+                  - { label: Jaune, value: "#FFD93D" }
+                  - { label: Turquoise, value: "#3ED6C4" }
+                  - { label: Lavande, value: "#AE8AEA" }
+              - { name: description, label: Description, widget: text }
+
+      - name: home
+        label: Page d'accueil
+        file: src/_data/home.json
+        fields:
+          - { name: hero_text, label: Texte d'accroche, widget: text }
+          - { name: intro_text, label: Texte de présentation, widget: text }
+
+      - name: about
+        label: Page À propos
+        file: src/_data/about.json
+        fields:
+          - { name: photo, label: Ta photo, widget: image, required: false }
+          - { name: sticker, label: Étiquette sur la photo, widget: string, required: false }
+          - { name: intro, label: Premier paragraphe, widget: text }
+          - { name: text, label: Deuxième paragraphe, widget: text }
+          - name: timeline
+            label: Parcours
+            label_singular: étape
+            widget: list
+            fields:
+              - { name: when, label: Quand, widget: string }
+              - { name: title, label: Titre, widget: string }
+              - { name: text, label: Détail, widget: string, required: false }
+          - { name: show_offers, label: Afficher le bloc « Travailler ensemble », widget: boolean, default: true }
+          - name: offers
+            label: Offres
+            label_singular: offre
+            widget: list
+            fields:
+              - { name: tag, label: Étiquette, widget: string }
+              - { name: title, label: Titre, widget: string }
+              - { name: text, label: Description, widget: text }
+              - { name: price, label: Prix, widget: string, required: false }
+
+  - name: legal
+    label: Pages légales
+    editor: { preview: false }
+    files:
+      - name: mentions
+        label: Mentions légales
+        file: src/pages/mentions-legales.md
+        fields:
+          - { name: title, label: Titre, widget: string }
+          - { name: permalink, label: Adresse, widget: hidden }
+          - { name: updated, label: Dernière mise à jour, widget: datetime, time_format: false, date_format: "DD/MM/YYYY", format: "YYYY-MM-DD" }
+          - { name: body, label: Texte, widget: markdown }
+      - name: confidentialite
+        label: Politique de confidentialité
+        file: src/pages/confidentialite.md
+        fields:
+          - { name: title, label: Titre, widget: string }
+          - { name: permalink, label: Adresse, widget: hidden }
+          - { name: updated, label: Dernière mise à jour, widget: datetime, time_format: false, date_format: "DD/MM/YYYY", format: "YYYY-MM-DD" }
+          - { name: body, label: Texte, widget: markdown }

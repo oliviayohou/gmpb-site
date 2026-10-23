@@ -1,0 +1,30 @@
+---
+layout: layouts/base.njk
+title: Grand Marketing
+description: "Les campagnes des grandes marques, démontées pièce par pièce : la cible, le timing, la mécanique. Pour comprendre ce qui marche vraiment."
+activeNav: gm
+permalink: /grand-marketing/
+---
+{%- import "partials/macros.njk" as m -%}
+{%- set arts = collections.articles | byTrack("gm") -%}
+<section class="page-hero" style="background:#50C878;color:#0B3D20">
+  <div class="wrap">
+    <div class="breadcrumb"><a href="/">Accueil</a> / Grand Marketing</div>
+    <h1 class="display h-1">Grand Marketing</h1>
+    <p class="lead" style="margin-top:20px">Les campagnes des grandes marques, démontées pièce par pièce : la cible, le timing, la mécanique. Pour comprendre ce qui marche vraiment.</p>
+    <div class="btn-row"><a class="btn" href="/petit-budget/">Voir aussi : Petit Budget →</a></div>
+  </div>
+</section>
+<section class="wrap" style="padding-top:40px;padding-bottom:88px" aria-label="Articles">
+  <div class="section-head" style="flex-direction:column;align-items:flex-start">
+    {{ m.catFilters("track-grid", "track-count", "track-empty", categories.categories) }}
+    <span class="result-count" id="track-count" aria-live="polite"></span>
+  </div>
+  <div class="grid" id="track-grid">
+    {%- for a in arts %}
+    {{ m.card(a, categories.categories, true) }}
+    {%- endfor %}
+  </div>
+  <p class="empty" id="track-empty" {% if arts.length %}hidden{% endif %}>Pas encore d'article ici. Ça arrive bientôt !</p>
+</section>
+{{ m.contactBand(site) }}

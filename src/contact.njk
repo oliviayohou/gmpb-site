@@ -1,0 +1,68 @@
+---
+layout: layouts/base.njk
+title: Contact
+description: Une question ou un projet ? Écris-moi.
+activeNav: contact
+permalink: /contact/
+---
+<div class="wrap contact-layout">
+  <div class="contact-side">
+    <p class="eyebrow">{{ "Contact & devis" if site.devis else "Contact" }}</p>
+    <h1 class="display h-1" style="margin-bottom:24px">On en<br><span class="highlight">parle ?</span></h1>
+    <p class="lead" style="margin-bottom:28px">Une question sur un article, une idée de campagne à décrypter, ou un projet à monter ensemble : écris-moi.</p>
+    {%- if site.contactDelay %}
+    <div class="info" style="display:block"><span>Délai de réponse</span><br><span class="muted" style="font-weight:500">{{ site.contactDelay }}</span></div>
+    {%- endif %}
+    {%- if site.linkedin %}<a class="info" href="{{ site.linkedin }}" target="_blank" rel="noopener">Me suivre sur LinkedIn <span aria-hidden="true">→</span></a>{% endif %}
+    <a class="info" href="/a-propos/">En savoir plus sur moi <span aria-hidden="true">→</span></a>
+  </div>
+  <div class="contact-card">
+    <form class="form" id="contact-form" action="https://api.web3forms.com/submit" method="post" novalidate data-key="{{ site.web3formsKey }}">
+      <input type="hidden" name="access_key" value="{{ site.web3formsKey }}">
+      <input type="hidden" name="subject" value="Nouveau message depuis GM.PB">
+      <input type="hidden" name="from_name" value="Site GM.PB">
+      <input type="checkbox" name="botcheck" class="sr-only" tabindex="-1" autocomplete="off" aria-hidden="true">
+      {%- if site.devis %}
+      <fieldset>
+        <legend>Tu m'écris pour…</legend>
+        <div class="mode-switch">
+          <button type="button" data-mode="question" aria-pressed="true">Une question</button>
+          <button type="button" data-mode="devis" aria-pressed="false">Un devis</button>
+        </div>
+        <input type="hidden" name="type" id="c-type" value="Question">
+      </fieldset>
+      {%- endif %}
+      <div class="fields-2">
+        <div class="field"><label for="c-name">Prénom *</label><input id="c-name" name="name" type="text" autocomplete="given-name" required></div>
+        <div class="field"><label for="c-email">E-mail *</label><input id="c-email" name="email" type="email" autocomplete="email" required></div>
+      </div>
+      {%- if site.devis %}
+      <div class="devis-fields" id="devis-fields" hidden>
+        <fieldset>
+          <legend style="font-size:14px;font-weight:600">Ce dont tu as besoin</legend>
+          <label class="radio"><input type="radio" name="besoin" value="Formation & accompagnement" checked> Formation &amp; accompagnement</label>
+          <label class="radio"><input type="radio" name="besoin" value="Que tu le fasses pour moi"> Que tu le fasses pour moi</label>
+          <label class="radio"><input type="radio" name="besoin" value="Je ne sais pas encore"> Je ne sais pas encore</label>
+        </fieldset>
+        <div class="field"><label for="c-biz">Ton activité *</label><input id="c-biz" name="activite" type="text" placeholder="Ex. boutique de vêtements, e-shop de bougies…" required></div>
+        <div class="fields-2">
+          <div class="field"><label for="c-when">Pour quand ?</label>
+            <select id="c-when" name="delai"><option>Dès que possible</option><option>Dans le mois</option><option>Dans les 3 mois</option><option>Pas de date précise</option></select></div>
+          <div class="field"><label for="c-budget">Budget envisagé</label>
+            <select id="c-budget" name="budget"><option>Moins de 300 €</option><option>300 à 1 000 €</option><option>Plus de 1 000 €</option><option>Je ne sais pas</option></select></div>
+        </div>
+      </div>
+      {%- endif %}
+      <div class="field"><label for="c-msg" id="msg-label">Ton message *</label><textarea id="c-msg" name="message" rows="5" required></textarea></div>
+      <label class="check"><input type="checkbox" name="consentement" value="oui" required> J'accepte que mes informations soient utilisées pour répondre à ma demande (voir la <a href="/confidentialite/" style="text-decoration:underline">politique de confidentialité</a>). *</label>
+      <p class="error" id="contact-error" role="alert" hidden></p>
+      <div><button type="submit" class="btn btn-violet" id="contact-submit">Envoyer mon message</button></div>
+    </form>
+    <div class="sent" id="contact-sent" hidden>
+      <span class="badge badge-gm">ENVOYÉ</span>
+      <h2 class="display h-2" tabindex="-1">Message bien reçu !</h2>
+      <p class="lead" id="sent-text">Je te réponds au plus vite.</p>
+      <button type="button" class="btn" id="contact-again">Envoyer un autre message</button>
+    </div>
+  </div>
+</div>
