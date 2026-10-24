@@ -3,10 +3,8 @@ title: Comment les grandes marques transforment un ticket de caisse en média
 chapo: Ce bout de papier que tout le monde froisse en sortant du magasin est l'un des supports publicitaires les plus ciblés qui existent. Voici comment les grandes enseignes s'en servent, et comment tu peux faire pareil dès lundi, sans budget.
 date: 2026-10-23
 category: promotions-offres
-cover: ""
-cover_alt: ""
-featured: true
-draft: false
+cover: ''
+cover_alt: ''
 pb_title: La version Petit Budget
 pb_intro: Pas besoin d'une caisse connectée ni d'un logiciel de ciblage. Ce qui compte, c'est l'offre, le moment et le suivi. Exemple avec une fleuriste.
 steps:
@@ -22,13 +20,15 @@ takeaways:
   - Le ticket de caisse est un média, il touche tous tes clients au meilleur moment.
   - Une bonne offre est simple, liée à l'achat et limitée dans le temps.
   - Ce qui ne se mesure pas ne s'améliore pas, un code par offre suffit.
-twin: bon-de-reduction-ticket-artisan
-seo_title: "Ticket de caisse : le média caché des grandes marques"
+twin: ''
+seo_title: 'Ticket de caisse : le média caché des grandes marques'
 seo_description: Décryptage du bon de réduction en caisse, puis la version Petit Budget pour ton commerce, en 3 étapes et sans budget.
 linkedin_post: |-
   Ce bout de papier que tu jettes vaut de l'or pour les grandes marques.
 
   Voici comment l'utiliser dans ton commerce, gratuitement ↓
+featured: true
+draft: false
 ---
 
 ## Le ticket que personne ne regarde
