@@ -11,9 +11,6 @@ eleventyComputed:
     <p class="eyebrow">{{ contact.eyebrow_devis if site.devis else contact.eyebrow }}</p>
     <h1 class="display h-1" style="margin-bottom:24px">{{ contact.title }}<br><span class="highlight">{{ contact.title_highlight }}</span></h1>
     <p class="lead" style="margin-bottom:28px">{{ contact.intro }}</p>
-    {%- if site.contactDelay %}
-    <div class="info" style="display:block"><span>{{ contact.delay_label }}</span><br><span class="muted" style="font-weight:500">{{ site.contactDelay }}</span></div>
-    {%- endif %}
     {%- if site.linkedin %}<a class="info" href="{{ site.linkedin }}" target="_blank" rel="noopener">{{ contact.linkedin_link }} <span aria-hidden="true">→</span></a>{% endif %}
     <a class="info" href="/a-propos/">{{ contact.about_link }} <span aria-hidden="true">→</span></a>
   </div>
