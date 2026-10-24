@@ -902,7 +902,7 @@ collections:
     - name: url
       label: Adresse du site
       widget: string
-      hint: À changer quand tu brancheras ton nom de domaine (ex. https://monsite.fr).
+      hint: "Ton adresse, ex. https://grandmarketing-petitbudget.fr (le https:// est ajouté automatiquement si tu l'oublies)."
     - name: title
       label: Nom du site
       widget: string

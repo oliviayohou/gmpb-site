@@ -85,7 +85,10 @@ export default function (eleventyConfig) {
   });
 
   eleventyConfig.addFilter("absoluteUrl", (path, base) => {
-    try { return new URL(path || "/", base).href; } catch { return path; }
+    // Tolère une adresse saisie sans « https:// » ou avec un « / » final
+    let b = String(base || "").trim().replace(/\/+$/, "");
+    if (b && !/^https?:\/\//i.test(b)) b = "https://" + b;
+    try { return new URL(path || "/", b + "/").href; } catch { return path; }
   });
   eleventyConfig.addFilter("truncate", (str, n = 155) => {
     const s = String(str || "").replace(/\s+/g, " ").trim();
