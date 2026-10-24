@@ -8,8 +8,8 @@ backend:
   name: github
   repo: oliviayohou/gmpb-site
   branch: main
-site_url: https://gmpb-site.oliviayohou7.workers.dev
-display_url: https://gmpb-site.oliviayohou7.workers.dev
+site_url: https://grandmarketing-petitbudget.fr
+display_url: https://grandmarketing-petitbudget.fr
 media_folder: src/images/uploads
 public_folder: /images/uploads
 slug:
