@@ -69,7 +69,7 @@
       ]
     }
   ],
-  "show_offers": true,
+  "show_offers": false,
   "offers_title": "Travailler ensemble",
   "offers_intro": "Tu veux aller plus loin que les articles ? Deux façons de bosser avec moi.",
   "offers": [
