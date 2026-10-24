@@ -59,8 +59,12 @@
       "when": "Formation",
       "items": [
         {
-          "title": "Master Marketing & Communication, certification IA",
-          "text": "Toulouse School of Management."
+          "title": "Certification IA",
+          "text": "Live Mentor"
+        },
+        {
+          "title": "Master Marketing & Communication",
+          "text": "Toulouse School of Management"
         }
       ]
     }
