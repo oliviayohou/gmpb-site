@@ -1,5 +1,5 @@
-{%- set pageTitle = (seo_title or title) ~ (" — " ~ site.shortTitle if title else "") if not isHome else site.title ~ " — " ~ home.seo_title_suffix -%}
-{%- set pageDesc = seo_description or description or chapo or site.description -%}
+{%- set pageTitle = (seo_title or title) ~ (" — " ~ site.shortTitle if title else "") if not isHome else (home.seo_title or site.title) -%}
+{%- set pageDesc = (home.seo_description if isHome else "") or seo_description or description or chapo or site.description -%}
 {%- set canonical = page.url | absoluteUrl(site.url) -%}
 {%- set ogImage = (cover if cover else "/assets/og-default.png") | absoluteUrl(site.url) -%}
 <!doctype html>
@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="{{ site.title }}">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:type" content="{{ 'article' if layout == 'layouts/article.njk' else 'website' }}">
-<meta property="og:title" content="{{ seo_title or title or site.title }}">
+<meta property="og:title" content="{{ (home.seo_title if isHome else "") or seo_title or title or site.title }}">
 <meta property="og:description" content="{{ pageDesc | truncate(200) }}">
 <meta property="og:url" content="{{ canonical }}">
 <meta property="og:image" content="{{ ogImage }}">

@@ -305,9 +305,14 @@ collections:
     label: Page d'accueil
     file: src/_data/home.json
     fields:
-    - name: seo_title_suffix
-      label: Onglet & Google — Phrase après le nom du site dans l'onglet et sur Google
+    - name: seo_title
+      label: Google — Titre de la page d'accueil
       widget: string
+      hint: Le titre bleu affiché dans Google et dans l'onglet du navigateur. Idéalement 60 caractères maximum.
+    - name: seo_description
+      label: Google — Description de la page d'accueil
+      widget: text
+      hint: Le petit texte gris sous le titre dans Google. Idéalement 155 caractères maximum.
     - name: hero_title
       label: Haut de page — Grand titre (1re ligne)
       widget: string
