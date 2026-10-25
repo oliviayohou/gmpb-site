@@ -299,7 +299,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 /* ---------- Contact ---------- */
 .contact-layout { display: flex; flex-wrap: wrap; gap: 56px; align-items: flex-start; padding-top: 64px; padding-bottom: 96px; }
 .contact-side { flex: 1 1 340px; min-width: 0; }
-.contact-side .info { border: var(--border); border-radius: var(--radius); padding: 20px 22px; margin-top: 12px; display: flex; justify-content: space-between; align-items: center; gap: 12px; font-weight: 700; }
+.contact-side .info, .career-cta .info { border: var(--border); border-radius: var(--radius); padding: 20px 22px; margin-top: 12px; display: flex; justify-content: space-between; align-items: center; gap: 12px; font-weight: 700; }
 .contact-card { flex: 999 1 560px; min-width: 0; border: var(--border); border-radius: 28px; padding: 36px; box-shadow: 8px 8px 0 var(--violet); }
 .form { display: flex; flex-direction: column; gap: 20px; }
 .form fieldset { border: 0; padding: 0; margin: 0; }
@@ -445,3 +445,6 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .rich-li::before { content: "•"; position: absolute; left: .1em; color: var(--violet); font-weight: 700; }
 .section-dark .rich-li::before, .site-footer .rich-li::before { color: var(--yellow); }
 .rich-gap { display: block; height: .75em; }
+
+/* À propos : bouton LinkedIn sous « Mon parcours » */
+.career-cta { margin-top: 28px; max-width: 420px; }

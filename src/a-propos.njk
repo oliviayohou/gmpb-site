@@ -45,6 +45,9 @@ eleventyComputed:
     </div></div>
     {%- endfor %}
   </div>
+  {%- if site.linkedin %}
+  <div class="career-cta"><a class="info" href="{{ site.linkedin }}" target="_blank" rel="noopener">{{ contact.linkedin_link }} <span aria-hidden="true">→</span></a></div>
+  {%- endif %}
 </section>
 {%- endif %}
 
