@@ -1,29 +1,29 @@
 {
   "page_title": "À propos",
-  "page_description": "Qui se cache derrière Grand Marketing & Petit Budget, et comment travailler ensemble.",
+  "page_description": "Moi c'est Olivia Yohou, consultante marketing, avec une affinité particulière pour le retail media. J'adore le marketing et j'adore écrire. J'ai créé le blog GM.PB pour décrypter les stratégies des grandes marques et aider les petits commerces aux budgets restreints.",
   "eyebrow": "À propos",
   "title": "Moi c'est",
   "title_highlight": "Olivia.",
   "photo": "",
   "sticker": "Consultante Marketing",
-  "intro": "Je travaille dans le marketing des grandes marques. Mon quotidien : des dizaines de campagnes par cycle, pour des marques que tu as dans ton placard.",
-  "text": "Et à chaque campagne, je me pose la même question : comment un commerçant, une créatrice e-commerce ou un artisan pourrait faire pareil, avec zéro budget ? GM.PB, c'est la réponse, article après article.",
+  "intro": "Le marketing, c’est mon quotidien depuis plusieurs années. J’y ai appris l’essentiel : faire connaître, faire acheter et faire revenir.",
+  "text": "Avec GM.PB, je partage des outils avec ceux qui n’ont pas de budgets à rallonge : commerçants, entrepreneurs e-commerce, artisans. Je décrypte ce que font les grandes marques et je te montre comment l’adapter chez toi, à petit prix.",
   "pillars_title": "Ici, je fais 3 choses",
   "pillars": [
     {
       "number": "01",
       "title": "Je décrypte",
-      "text": "Une campagne de grande marque, démontée pièce par pièce : la cible, le timing, la mécanique."
+      "text": "Une campagne de grande marque, démontée pièce par pièce : la cible, l'objectif, la mécanique."
     },
     {
       "number": "02",
       "title": "J'adapte",
-      "text": "La même idée, version Petit Budget : des étapes concrètes, des outils gratuits ou à prix mini."
+      "text": "Petite ou grosse structure ? Le marketing a des solutions à toutes les échelles et je t’aide à trouver celles qui collent à ton budget."
     },
     {
       "number": "03",
-      "title": "J'automatise",
-      "text": "Je parle d'IA et je te présente des outils et workflow pour automatiser, sans code."
+      "title": "Je décode l'IA",
+      "text": "Pubs, personnalisation, CRM, assistants shopping : je décrypte comment les grandes marques utilisent l’IA. Puis je te montre comment l’utiliser à ton échelle : gagner en productivité,  mieux connaître tes clients, surveiller tes concurrents et créer mieux et plus vite,"
     }
   ],
   "timeline_title": "Mon parcours",
@@ -32,8 +32,8 @@
       "when": "Aujourd'hui",
       "items": [
         {
-          "title": "Activations promotionnelles pour de grandes marques de la grande conso",
-          "text": "Couponing, bannières web et mobile, affichage digital, planning média."
+          "title": "Activations shopper pour les marques que tu as dans ton placard",
+          "text": "Coupons en caisse, bannières web et mobile, écrans 3D en magasin et gamification : je rends visibles les offres des géants de la grande conso, du téléphone jusqu’au caddie."
         }
       ]
     },
@@ -41,8 +41,8 @@
       "when": "Avant",
       "items": [
         {
-          "title": "Marketing local pour une enseigne de sport",
-          "text": "Animation de magasins sur toute une région, gamification, événements."
+          "title": "Marketing local pour l'enseigne préférée de ton enseigne préférée",
+          "text": "Stratégie de communication locale, benchmark, étude de la clientèle et du marché, PLV, investissements digitaux : j’accompagnais les directeurs de magasins sur le marketing pour attirer les clients de la zone de chalandise."
         }
       ]
     },
@@ -50,14 +50,18 @@
       "when": "Encore avant",
       "items": [
         {
-          "title": "Contenu global pour une marque de cosmétiques",
-          "text": "Et du marketing digital et e-commerce."
+          "title": "Contenu global pour la crème de la crème des cosmétiques",
+          "text": "Shootings, tournages, briefs agences et coordination des lancements produit : je donnais une seule et même image à une marque de beauté premium, du studio jusqu’aux écrans d’Europe et d’Asie."
         }
       ]
     },
     {
       "when": "Formation",
       "items": [
+        {
+          "title": "Formation IA",
+          "text": "Noésia (ex IA Preneur Académie)"
+        },
         {
           "title": "Certification IA",
           "text": "Live Mentor"
