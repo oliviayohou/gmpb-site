@@ -11,7 +11,7 @@ eleventyComputed:
   <div class="wrap">
     <div class="breadcrumb"><a href="/">{{ common.breadcrumb_home }}</a> / {{ blog.breadcrumb_blog }}</div>
     <h1 class="display h-1">{{ blog.title }}</h1>
-    <p class="lead" style="margin-top:20px">{{ blog.intro }}</p>
+    <p class="lead" style="margin-top:20px">{{ blog.intro | rich | safe }}</p>
   </div>
 </section>
 <section class="wrap" style="padding-top:40px;padding-bottom:88px" aria-label="{{ blog.title }}">

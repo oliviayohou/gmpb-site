@@ -90,6 +90,29 @@ export default function (eleventyConfig) {
     if (b && !/^https?:\/\//i.test(b)) b = "https://" + b;
     try { return new URL(path || "/", b + "/").href; } catch { return path; }
   });
+  // Textes du back office : retours à la ligne, paragraphes et listes « - » conservés
+  eleventyConfig.addFilter("rich", (str) => {
+    const esc = (t) => t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    const lines = String(str || "").replace(/\r\n?/g, "\n").trim().split("\n").map((l) => l.trim());
+    let out = "";
+    let prev = null; // "text" | "li" | "gap"
+    for (const line of lines) {
+      if (!line) {
+        if (prev && prev !== "gap") { out += '<span class="rich-gap"></span>'; prev = "gap"; }
+        continue;
+      }
+      const m = line.match(/^[-–•*]\s+(.*)$/);
+      if (m) {
+        out += '<span class="rich-li">' + esc(m[1]) + "</span>";
+        prev = "li";
+      } else {
+        if (prev === "text") out += "<br>";
+        out += esc(line);
+        prev = "text";
+      }
+    }
+    return out;
+  });
   eleventyConfig.addFilter("truncate", (str, n = 155) => {
     const s = String(str || "").replace(/\s+/g, " ").trim();
     return s.length > n ? s.slice(0, n - 1).replace(/\s+\S*$/, "") + "…" : s;

@@ -93,7 +93,7 @@ layout: layouts/base.njk
       <div class="avatar" aria-hidden="true">OY</div>
       <div>
         <h2 id="about-author">{{ site.author }}</h2>
-        <p>{{ article.author_bio }}</p>
+        <p>{{ article.author_bio | rich | safe }}</p>
         <a href="/a-propos/">{{ article.author_link }}</a>
       </div>
     </section>

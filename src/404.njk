@@ -9,6 +9,6 @@ eleventyComputed:
 <section class="wrap section" style="text-align:center">
   <p class="eyebrow">{{ common.page_404_eyebrow }}</p>
   <h1 class="display h-1">{{ common.page_404_heading }}<br><span class="highlight">{{ common.page_404_highlight }}</span></h1>
-  <p class="lead" style="margin:24px auto 0;max-width:560px">{{ common.page_404_text }}</p>
+  <p class="lead" style="margin:24px auto 0;max-width:560px">{{ common.page_404_text | rich | safe }}</p>
   <div class="btn-row" style="justify-content:center"><a class="btn btn-violet" href="/">{{ common.page_404_home }}</a><button type="button" class="btn js-search-open">{{ common.page_404_search }}</button></div>
 </section>

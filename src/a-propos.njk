@@ -14,8 +14,8 @@ eleventyComputed:
   <div class="about-text">
     <p class="eyebrow">{{ about.eyebrow }}</p>
     <h1 class="display h-hero" style="font-size:clamp(56px,8vw,112px);margin-bottom:28px">{{ about.title }}<br><span class="highlight">{{ about.title_highlight }}</span></h1>
-    <p style="font-size:21px">{{ about.intro }}</p>
-    <p style="color:#333">{{ about.text }}</p>
+    <p style="font-size:21px">{{ about.intro | rich | safe }}</p>
+    <p style="color:#333">{{ about.text | rich | safe }}</p>
   </div>
 </section>
 
@@ -26,7 +26,7 @@ eleventyComputed:
     <div class="pillars">
       {%- set pillarColors = ["#50C878", "#7D9CF2", "#FFD93D"] %}
       {%- for p in about.pillars %}
-      <div class="pillar"><div class="n" style="color:{{ pillarColors[loop.index0 % 3] }}">{{ p.number }}</div><h3>{{ p.title }}</h3><p>{{ p.text }}</p></div>
+      <div class="pillar"><div class="n" style="color:{{ pillarColors[loop.index0 % 3] }}">{{ p.number }}</div><h3>{{ p.title }}</h3><p>{{ p.text | rich | safe }}</p></div>
       {%- endfor %}
     </div>
   </div>
@@ -40,7 +40,7 @@ eleventyComputed:
     {%- for t in about.timeline %}
     <div class="timeline-row"><span class="when">{{ t.when }}</span><div class="what">
       {%- for i in (t.items if t.items else [t]) %}
-      <div class="what-item"><strong>{{ i.title }}</strong>{% if i.text %}<br><span class="muted">{{ i.text }}</span>{% endif %}</div>
+      <div class="what-item"><strong>{{ i.title }}</strong>{% if i.text %}<br><span class="muted">{{ i.text | rich | safe }}</span>{% endif %}</div>
       {%- endfor %}
     </div></div>
     {%- endfor %}
@@ -52,10 +52,10 @@ eleventyComputed:
 <section style="background:var(--teal);border-top:var(--border);border-bottom:var(--border)" aria-labelledby="work-title">
   <div class="wrap section">
     <h2 class="display h-2" id="work-title" style="margin-bottom:12px">{{ about.offers_title }}</h2>
-    <p class="lead" style="margin-bottom:36px;max-width:640px">{{ about.offers_intro }}</p>
+    <p class="lead" style="margin-bottom:36px;max-width:640px">{{ about.offers_intro | rich | safe }}</p>
     <div class="offers">
       {%- for o in about.offers %}
-      <div class="offer"><span class="tag" style="background:{{ 'var(--yellow)' if loop.index0 % 2 == 0 else 'var(--lavender)' }}">{{ o.tag }}</span><h3>{{ o.title }}</h3><p>{{ o.text }}</p>{% if o.price %}<strong>{{ o.price }}</strong>{% endif %}</div>
+      <div class="offer"><span class="tag" style="background:{{ 'var(--yellow)' if loop.index0 % 2 == 0 else 'var(--lavender)' }}">{{ o.tag }}</span><h3>{{ o.title }}</h3><p>{{ o.text | rich | safe }}</p>{% if o.price %}<strong>{{ o.price }}</strong>{% endif %}</div>
       {%- endfor %}
     </div>
     <div class="btn-row" style="margin-top:32px"><a class="btn btn-dark" href="/contact/{{ '?type=devis' if site.devis }}">{{ common.menu_devis_button if site.devis else common.menu_contact_button }} →</a></div>

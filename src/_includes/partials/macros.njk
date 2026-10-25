@@ -52,7 +52,7 @@
   <div class="wrap">
     <div>
       <h2 class="display h-2" id="cb-title">{{ common.contact_band_title }}<br><span>{{ common.contact_band_highlight }}</span></h2>
-      <p class="lead" style="margin-top:14px">{{ common.contact_band_text }}</p>
+      <p class="lead" style="margin-top:14px">{{ common.contact_band_text | rich | safe }}</p>
     </div>
     <a class="btn btn-yellow" href="/contact/{{ '?type=devis' if site.devis }}">{{ common.menu_devis_button if site.devis else common.menu_contact_button }} →</a>
   </div>

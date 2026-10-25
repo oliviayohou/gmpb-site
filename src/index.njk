@@ -11,7 +11,7 @@ permalink: /
     <h1 class="display h-hero">{{ home.hero_title | nowrapLast | safe }}<br><span class="highlight">{{ home.hero_title_highlight }}</span></h1>
   </div>
   <div class="hero-side">
-    <p class="lead">{{ home.hero_text }}</p>
+    <p class="lead">{{ home.hero_text | rich | safe }}</p>
     <div class="btn-row">
       {%- if f %}<a class="btn btn-violet" href="{{ f.url }}">{{ home.hero_button_featured }}</a>{% endif %}
       <a class="btn" href="/blog/">{{ home.hero_button_blog }}</a>
@@ -61,10 +61,10 @@ permalink: /
     <div class="intro-text">
       <p class="eyebrow">{{ home.intro_eyebrow }}</p>
       <h2 class="display h-2" id="intro-title" style="line-height:1.18">{{ home.intro_title }} <span class="highlight nowrap">{{ home.intro_title_highlight }}</span></h2>
-      <p class="lead">{{ home.intro_text }}</p>
+      <p class="lead">{{ home.intro_text | rich | safe }}</p>
       <div class="intro-tracks">
-        <div>{{ m.badge("gm", blog) }}<p>{{ home.intro_gm_text }}</p></div>
-        <div>{{ m.badge("pb", blog) }}<p>{{ home.intro_pb_text }}</p></div>
+        <div>{{ m.badge("gm", blog) }}<p>{{ home.intro_gm_text | rich | safe }}</p></div>
+        <div>{{ m.badge("pb", blog) }}<p>{{ home.intro_pb_text | rich | safe }}</p></div>
       </div>
       <div class="btn-row"><a class="btn btn-dark" href="/a-propos/">{{ home.intro_button_about }}</a><a class="btn" href="/contact/{{ '?type=devis' if site.devis }}">{{ common.menu_devis_button if site.devis else common.menu_contact_button }}</a></div>
     </div>

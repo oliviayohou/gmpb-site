@@ -439,3 +439,9 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .search-head input::-webkit-search-cancel-button { display: none; }
 
 .what-item + .what-item { margin-top: 14px; }
+
+/* Textes du back office : listes à puces et paragraphes */
+.rich-li { display: block; position: relative; padding-left: 1.1em; margin-top: .25em; }
+.rich-li::before { content: "•"; position: absolute; left: .1em; color: var(--violet); font-weight: 700; }
+.section-dark .rich-li::before, .site-footer .rich-li::before { color: var(--yellow); }
+.rich-gap { display: block; height: .75em; }

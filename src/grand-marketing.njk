@@ -12,7 +12,7 @@ eleventyComputed:
   <div class="wrap">
     <div class="breadcrumb"><a href="/">{{ common.breadcrumb_home }}</a> / {{ blog.gm_name }}</div>
     <h1 class="display h-1">{{ blog.gm_name }}</h1>
-    <p class="lead" style="margin-top:20px">{{ blog.gm_description }}</p>
+    <p class="lead" style="margin-top:20px">{{ blog.gm_description | rich | safe }}</p>
     <div class="btn-row"><a class="btn" href="/petit-budget/">{{ blog.see_also }} {{ blog.pb_name }} →</a></div>
   </div>
 </section>
