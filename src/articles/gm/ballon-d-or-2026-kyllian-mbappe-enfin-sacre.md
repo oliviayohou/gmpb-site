@@ -1,5 +1,5 @@
 ---
-title: Harry Kane Ballon d'Or 2026, il échappe encore à Mbappé !
+title: a delete
 chapo: Un doublé au Camp Nou, une nouvelle marque aux pieds, une place dans le top 10 du Ballon d’Or… Kylian Mbappé vient de vivre une semaine folle. Même si le trophée lui échappe encore, au profit du grand Harry Kane et Sketchers Football !
 date: 2026-10-26
 category: branding
