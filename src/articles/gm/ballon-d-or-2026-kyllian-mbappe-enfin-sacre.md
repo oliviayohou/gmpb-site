@@ -1,6 +1,6 @@
 ---
-title: "Ballon d'Or 2026 : Kylian Mbappé enfin sacré !"
-chapo: mbappe-ballon-dor-2026-on-nike
+title: Harry Kane Ballon d'Or 2026, il échappe encore à Mbappé !
+chapo: Un doublé au Camp Nou, une nouvelle marque aux pieds, une place dans le top 10 du Ballon d’Or… Kylian Mbappé vient de vivre une semaine folle. Même si le trophée lui échappe encore, au profit du grand Harry Kane et Sketchers Football !
 date: 2026-10-26
 category: branding
 cover: /images/uploads/Mbappé, Ballon d’Or sous les projecteurs.png
@@ -16,43 +16,42 @@ seo_title: "Ballon d'Or 2026 : Kyllian Mbappé enfin sacré !"
 seo_description: "Ballon d'Or, doublé au Clasico, nouveaux crampons On et départ de Nike : le week-end de rêve de Kylian Mbappé, résumé en version légère."
 linkedin_post: ''
 featured: true
-draft: true
+draft: false
 ---
 
-Il y a des semaines normales. Et il y a celle de Kylian Mbappé. 
+**La veille, le Real s’imposait au Camp Nou !**
 
-#### Kylian Mbappé a remporte le Ballon d'Or 2026
 
-Mbappé vient de remporter le Ballon d'Or 2026, ce lundi 26 octobre au London Palladium. Pour la première fois, la cérémonie a quitté Paris, lors des 70 ans du trophée. Son meilleur classement jusqu'ici ? Troisième en 2023. Il vient enfin de décrocher son saint graal.
+Le Real Madrid battait le FC Barcelone 2-1, au Camp Nou. Mbappé marquait les deux buts : un à la 41e, puis celui de la victoire à la 87e sur un caviar de Camavinga. Au passage, c’est son 100e but avec le Real, et le Barça, qui restait sur neuf victoires d’affilée en Liga, se fait stopper dans sa lancée.
+Et tout ça avec, aux pieds, le prototype « ON-DCPT-KM410 » signé On : une tige pulvérisée par un bras robotisé, sans aucune couture semelle chromée. 
 
-#### La veille, le Real s'imposait au Camp Nou !
+Tu les veux ? Patience, pas de mise en vente avant 2027.
 
-Le Real Madrid bat le FC Barcelone 2-1, au Camp Nou. Mbappé marque les deux buts : un à la 41e, puis celui de la victoire à la 87e sur un caviar de Camavinga. Au passage, c'est son 100e but avec le Real, et le Barça, qui restait sur neuf victoires d'affilée en Liga, se fait stopper dans sa lancée. 
 
-Main character energy, la veille du Ballon d'Or. 
+#### **Kylian Mbappé : le Ballon d’Or lui échappe encore**
 
-###### Mbappé sous ON, sur le toit du monde ? 
 
-Pour l'occasion, il étrenne le prototype « ON-DCPT-KM410 », signé On. La tige est pulvérisée par un bras robotisé, sans aucune couture et semelle chromée. 
+Harry Kane vient de remporter le Ballon d’Or 2026, ce lundi 26 octobre au London Palladium. Pour la première fois, la cérémonie a quitté Paris, pour les 70 ans du trophée, animée notamment par Thierry Henry. Mbappé termine dans le top 3. Il égal son meilleur classement, le même qu'en 2023. Le Saint Graal attendra encore un peu.
 
-Tu les veux ? Patience : pas de mise en vente avant 2027.
+#### **Harry Kane x Skechers : le pari qui paie**
 
-![ON-DCPT-KM410 - On Kylian Mbappé Clasico Real Madrid](/images/uploads/Capture%20d%27%C3%A9cran%202026-10-26%20232654.png "Source : @on.football")
 
-#### Pourquoi Mbappé a quitté Nike pour On ?
+Skechers. Oui, la marque des baskets confort qu’on associe plus aux balades du dimanche qu’aux pelouses de Ligue des champions. Et pourtant.
+Début 2024, la marque américaine se lance dans le football et frappe fort d’entrée : Harry Kane devient son premier grand ambassadeur. À l’époque, beaucoup sourient. Une marque sans aucun héritage foot, face à Nike, Adidas et Puma ? Ça ressemblait à un coup de com’ sans lendemain.
+Deux ans plus tard, ce sont les crampons Skechers qui montent sur la plus haute marche du football mondial. Le Ballon d’Or est soulevé par un joueur qui a fait confiance à un outsider, et la marque des chaussures « confort » peut désormais se présenter comme celle du meilleur joueur du monde. Difficile de rêver meilleure crédibilité.
 
-Eh oui si j'avais vous aviez loupé l'info, après 19 ans chez Nike, Mbappé a officialisé son arrivée chez On le 18 septembre. Et pas juste en tant qu'égérie : il devient actionnaire de la marque, au même titre que Roger Federer et bosse directement sur les produits. Lors du derby contre l'Atlético, juste après l'annonce, il avait même masqué le logo Nike sur ses crampons. Le message était clair.
+#### **Soirée difficile pour Mbappé, Lamal... et Nike**
 
-La marque suisse, connue jusqu'ici pour les chaussures de running que tout le monde porte pour aller chercher son pain, se lance dans le football avec lui. Et pour piloter tout ça, elle a recruté… Thierry Henry. Rien que ça.
 
-#### Toujours une petite pensée pour Nike
+Merci pour les AF1, les Jordan et les Air Max. À jamais les premiers.
 
-Merci pour les AF1, les Jordan et les Airmax. A jamais les premiers.
 
-L'action du géant américain a perdu plus de 30 % au premier semestre, les ventes reculent en Chine, et c'est Adidas qui semble avoir le plus profité de la Coupe du monde 2026. Et maintenant, le Ballon d'Or brille avec des chaussures d'une autre marque. Aïe.
+Mais ce soir, ça pique. Sur la scène du Ballon d’Or, les deux attaquants les plus en vue de la saison ne portent pas la virgule. Kane, sacré en Skechers. Mbappé, qui a quitté Nike après 19 ans pour signer chez On en septembre, en devient même actionnaire, comme Roger Federer. Deux des plus grands joueurs du monde, deux marques qu’on n’attendait pas dans le foot, et zéro Swoosh à leurs pieds.
 
-#### Mbappé et Ester Expósito : le parfait amour
 
-Tout va bien aussi, merci pour lui. Depuis début 2026, Kylian file le parfait amour avec Ester Expósito, l'actrice espagnole révélée par _Élite_ sur Netflix. Officiellement, rien n'a jamais été confirmé. Officieusement, quand on la voit danser en tribune au Bernabéu à chacun de ses buts, on a compris. Finalement, apprendre l'espagnol en arrivant à Madrid, c'était peut-être son meilleur transfert.
+Et pour Nike, ça tombe vraiment mal. L’action du géant américain a perdu plus de 30 % au premier semestre, les ventes reculent en Chine, et c’est Adidas qui semble avoir le plus profité de la Coupe du monde 2026. Pendant des années, la marque a construit sa légende en signant les stars avant tout le monde. Aujourd’hui, ce sont des challengers qui récupèrent les plus belles vitrines du foot.
+Perdre un joueur, ça arrive. Voir le Ballon d’Or et son dauphin… pardon, son top 3, célébrés avec d’autres marques le même soir, c’est un symbole. Aïe.
 
-Un Clasico, un Ballon d'Or, une nouvelle marque et la chérie en tribune. Est-ce qu'on peut dire que Kylian Mbappé a déjà réussi sa saison ?
+Un Clasico, un top 3 au Ballon d’Or et une nouvelle marque aux pieds. Est-ce qu’on peut quand même dire que Kylian Mbappé a déjà réussi sa saison ?
+
+Un Clasico, une nouvelle marque, la chérie en tribune… et un Ballon d’Or qui file à Harry Kane. La saison est encore longue pour le Kiks !
