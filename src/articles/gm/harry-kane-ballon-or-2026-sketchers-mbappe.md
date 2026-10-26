@@ -12,8 +12,8 @@ budget: ''
 time: ''
 takeaways: []
 twin: ''
-seo_title: ''
-seo_description: ''
+seo_title: Harry Kane Ballon d'Or 2026, il échappe encore à Mbappé !
+seo_description: "Doublé au Camp Nou, ON aux pieds, 2e au Ballon d’Or : Mbappé vit une semaine folle, mais Harry Kane et Skechers Football remporte le ballon d'or !"
 linkedin_post: ''
 featured: true
 draft: false
