@@ -25,7 +25,9 @@ collections:
   extension: md
   format: frontmatter
   create: true
-  slug: '{{title}}'
+  slug:
+    template: '{{title}}'
+    editable: [create]
   preview_path: blog/{{slug}}/
   summary: '{{title}}'
   sortable_fields:
@@ -166,7 +168,9 @@ collections:
   extension: md
   format: frontmatter
   create: true
-  slug: '{{title}}'
+  slug:
+    template: '{{title}}'
+    editable: [create]
   preview_path: blog/{{slug}}/
   summary: '{{title}}'
   sortable_fields:
