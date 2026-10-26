@@ -12,31 +12,31 @@ budget: ''
 time: ''
 takeaways: []
 twin: ''
-seo_title: Harry Kane Ballon d'Or 2026, il échappe encore à Mbappé !
-seo_description: "Doublé au Camp Nou, ON aux pieds, 2e au Ballon d’Or : Mbappé vit une semaine folle, mais Harry Kane et Skechers Football remporte le ballon d'or !"
+seo_title: ''
+seo_description: ''
 linkedin_post: ''
 featured: true
 draft: false
 ---
 
-**La veille, le Real s’imposait au Camp Nou !**
+## **La veille, le Real s’imposait au Camp Nou !**
 
 Le Real Madrid battait le FC Barcelone 2-1, au Camp Nou. Mbappé marquait les deux buts : un à la 41e, puis celui de la victoire à la 87e sur un caviar de Camavinga. Au passage, c’est son 100e but avec le Real, et le Barça, qui restait sur neuf victoires d’affilée en Liga, se fait stopper dans sa lancée.
 Et tout ça avec, aux pieds, le prototype « ON-DCPT-KM410 » signé On : une tige pulvérisée par un bras robotisé, sans aucune couture semelle chromée. 
 
 Tu les veux ? Patience, pas de mise en vente avant 2027.
 
-#### **Kylian Mbappé : le Ballon d’Or lui échappe encore**
+## **Kylian Mbappé : le Ballon d’Or lui échappe encore**
 
 Harry Kane vient de remporter le Ballon d’Or 2026, ce lundi 26 octobre au London Palladium. Pour la première fois, la cérémonie a quitté Paris, pour les 70 ans du trophée, animée notamment par Thierry Henry. Mbappé termine deuxième. Il égal son meilleur classement, le même qu'en 2023. Le Saint Graal attendra encore un peu.
 
-#### **Harry Kane x Skechers : le pari qui paie**
+## **Harry Kane x Skechers : le pari qui paie**
 
 Skechers. Oui, la marque des baskets confort qu’on associe plus aux balades du dimanche qu’aux pelouses de Ligue des champions. Et pourtant.
 Début 2024, la marque américaine se lance dans le football et frappe fort d’entrée : Harry Kane devient son premier grand ambassadeur. À l’époque, beaucoup sourient. Une marque sans aucun héritage foot, face à Nike, Adidas et Puma ? Ça ressemblait à un coup de com’ sans lendemain.
 Deux ans plus tard, ce sont les crampons Skechers qui montent sur la plus haute marche du football mondial. Le Ballon d’Or est soulevé par un joueur qui a fait confiance à un outsider, et la marque des chaussures « confort » peut désormais se présenter comme celle du meilleur joueur du monde. Difficile de rêver meilleure crédibilité.
 
-#### **Soirée difficile pour Mbappé, Lamal... et Nike**
+## **Soirée difficile pour Mbappé, Lamal... et Nike**
 
 Merci pour les AF1, les Jordan et les Air Max. À jamais les premiers.
 
