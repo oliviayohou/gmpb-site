@@ -328,6 +328,15 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .legal p { margin: 0 0 14px; }
 
 /* ---------- Responsive ---------- */
+/* ---------- Bandeau cookies ---------- */
+.cookie-banner { position: fixed; z-index: 1000; left: 16px; right: 16px; bottom: 16px; max-width: 620px; margin: 0 auto; background: var(--paper); border: var(--border); border-radius: var(--radius); box-shadow: 6px 6px 0 var(--ink); padding: 20px; display: flex; flex-direction: column; gap: 14px; font-size: 15px; }
+.cookie-banner[hidden] { display: none; }
+.cookie-banner p { margin: 0; }
+.cookie-banner a { text-decoration: underline; }
+.cookie-actions { display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-end; }
+.cookie-actions .btn { padding: 11px 22px; font-size: 15px; }
+@media (max-width: 640px) { .cookie-actions .btn { flex: 1; } }
+
 @media (max-width: 1180px) {
   .search-pill { min-width: 0; width: 46px; padding: 0; justify-content: center; }
   .search-pill .sp-text { display: none; }

@@ -14,7 +14,7 @@ Ces informations servent uniquement à répondre à ta demande. Elles ne sont ni
 
 ## Prestataires
 
-Les messages du formulaire sont transmis par e-mail grâce au service Web3Forms. Le site est hébergé par Cloudflare.
+Les messages du formulaire sont transmis par e-mail grâce au service Web3Forms. Le site est hébergé par Cloudflare. La mesure d'audience est assurée par Google Analytics (Google Ireland Limited), uniquement si tu l'acceptes.
 
 ## Durée de conservation
 
@@ -27,3 +27,7 @@ Tu peux demander à consulter, corriger ou supprimer tes données à tout moment
 ## Cookies
 
 Ce site n'utilise pas de cookies publicitaires.
+
+Avec ton accord, il utilise Google Analytics pour mesurer l'audience : pages consultées, durée de visite, provenance (moteur de recherche, LinkedIn…). Ces informations sont statistiques et m'aident à savoir quels articles te sont utiles. Les cookies Google Analytics sont conservés 13 mois au maximum.
+
+Si tu refuses, aucun cookie de mesure n'est déposé et le site fonctionne normalement. Ton choix est mémorisé dans ton navigateur ; tu peux le modifier à tout moment via le lien « Gérer les cookies » en bas de page.

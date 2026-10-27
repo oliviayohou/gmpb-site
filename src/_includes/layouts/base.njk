@@ -32,6 +32,40 @@
 {{ content | safe }}
 </main>
 {% include "partials/footer.njk" %}
+{%- if site.gaId %}
+<div class="cookie-banner" id="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookies" hidden>
+  <p>J'utilise Google Analytics pour savoir quels articles te sont utiles. Ces cookies de mesure ne sont déposés que si tu acceptes. <a href="/confidentialite/#cookies">En savoir plus</a></p>
+  <div class="cookie-actions">
+    <button type="button" class="btn" data-consent="denied">Refuser</button>
+    <button type="button" class="btn btn-yellow" data-consent="granted">Accepter</button>
+  </div>
+</div>
+<script>
+(function(){
+  var ID = {{ site.gaId | dump | safe }}, KEY = "gmpb-consent", banner = document.getElementById("cookie-banner");
+  function get(){ try { return localStorage.getItem(KEY); } catch(e) { return null; } }
+  function set(v){ try { localStorage.setItem(KEY, v); } catch(e) {} }
+  function loadGA(){
+    if (window.gtag) return;
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function(){ dataLayer.push(arguments); };
+    gtag("js", new Date()); gtag("config", ID, { anonymize_ip: true });
+    var s = document.createElement("script"); s.async = true;
+    s.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(ID);
+    document.head.appendChild(s);
+  }
+  function choose(v){
+    set(v); banner.hidden = true;
+    if (v === "granted") { loadGA(); }
+    else if (window.gtag) { location.reload(); }
+  }
+  banner.addEventListener("click", function(e){ var b = e.target.closest("[data-consent]"); if (b) choose(b.getAttribute("data-consent")); });
+  document.addEventListener("click", function(e){ if (e.target.closest(".js-cookie-settings")) { e.preventDefault(); banner.hidden = false; } });
+  var c = get();
+  if (c === "granted") loadGA(); else if (c !== "denied") banner.hidden = false;
+})();
+</script>
+{%- endif %}
 <script>window.GMPB_TEXTS = {{ { common: common, contact: contact, article: article, blog: blog } | jsonScript | safe }};</script>
 <script src="/assets/js/main.js" defer></script>
 </body>

@@ -52,6 +52,7 @@
           {%- if site.devis %}<li><a href="/contact/?type=devis">{{ common.menu_devis_button }}</a></li>{% endif %}
           <li><a href="/mentions-legales/">{{ common.footer_legal }}</a></li>
           <li><a href="/confidentialite/">{{ common.footer_privacy }}</a></li>
+          {%- if site.gaId %}<li><a href="/confidentialite/#cookies" class="js-cookie-settings">Gérer les cookies</a></li>{% endif %}
         </ul>
       </div>
     </div>

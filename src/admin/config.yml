@@ -903,6 +903,11 @@ collections:
       widget: string
       required: false
       hint: 'Clé gratuite sur web3forms.com : les messages arrivent sur l''e-mail associé.'
+    - name: gaId
+      label: ID Google Analytics (G-…)
+      widget: string
+      required: false
+      hint: 'Laisse vide pour couper Google Analytics. Le suivi ne démarre qu''après accord du visiteur dans le bandeau cookies.'
     - name: contactDelay
       label: Délai de réponse affiché
       widget: string
