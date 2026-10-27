@@ -75,6 +75,11 @@ collections:
     widget: string
     required: false
     hint: Ce qu'on voit sur l'image, en une phrase. Lu par Google et les lecteurs d'écran.
+  - name: cover_credit
+    label: Crédit photo
+    widget: string
+    required: false
+    hint: Affiché en petit sous la bannière, par ex. « © Getty Images » ou « Image générée par IA ». Laisse vide pour ne rien afficher.
   - name: body
     label: Texte de l'article
     widget: markdown
@@ -218,6 +223,11 @@ collections:
     widget: string
     required: false
     hint: Ce qu'on voit sur l'image, en une phrase. Lu par Google et les lecteurs d'écran.
+  - name: cover_credit
+    label: Crédit photo
+    widget: string
+    required: false
+    hint: Affiché en petit sous la bannière, par ex. « © Getty Images » ou « Image générée par IA ». Laisse vide pour ne rien afficher.
   - name: body
     label: Texte de l'article
     widget: markdown

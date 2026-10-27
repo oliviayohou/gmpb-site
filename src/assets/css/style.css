@@ -421,6 +421,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 
 @media (min-width: 1100px) {
   .article-layout { grid-template-columns: 220px minmax(0, 720px); justify-content: center; }
+  .article-layout.no-toc { grid-template-columns: minmax(0, 720px); }
   .toc-side { display: block; }
   .toc-side nav { position: sticky; top: 110px; }
   .toc-side .label { font-weight: 700; font-size: 13px; letter-spacing: 1.2px; margin: 0; }
@@ -448,3 +449,6 @@ button { font: inherit; color: inherit; cursor: pointer; }
 
 /* À propos : bouton LinkedIn sous « Mon parcours » */
 .career-cta { margin-top: 28px; max-width: 420px; }
+
+/* Crédit photo sous la bannière d'article */
+.cover-credit { margin-top: 8px; font-size: 13px; color: #666; text-align: right; }

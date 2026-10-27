@@ -21,9 +21,10 @@ layout: layouts/base.njk
     <div class="frame{% if not cover %} pattern{% endif %}" style="background-color:{{ cat.color }}">
       {%- if cover %}<img src="{{ cover }}" alt="{{ cover_alt }}">{% else %}<span class="cover-label" aria-hidden="true">{{ cat.name }}</span>{% endif %}
     </div>
+    {%- if cover_credit %}<figcaption class="cover-credit">{{ cover_credit }}</figcaption>{% endif %}
   </figure>
 
-  <div class="article-layout">
+  <div class="article-layout{% if tocItems.length <= 1 %} no-toc{% endif %}">
     {%- if tocItems.length > 1 %}
     <aside class="toc-side" data-pagefind-ignore>
       <nav aria-label="{{ article.toc_title }}">
