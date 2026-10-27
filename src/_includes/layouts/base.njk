@@ -49,6 +49,7 @@
     if (window.gtag) return;
     window.dataLayer = window.dataLayer || [];
     window.gtag = function(){ dataLayer.push(arguments); };
+    gtag("consent", "default", { analytics_storage: "granted", ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied" });
     gtag("js", new Date()); gtag("config", ID, { anonymize_ip: true });
     var s = document.createElement("script"); s.async = true;
     s.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(ID);
