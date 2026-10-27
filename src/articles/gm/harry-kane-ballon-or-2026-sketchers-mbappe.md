@@ -5,6 +5,7 @@ date: 2026-10-27
 category: branding
 cover: /images/uploads/photo_harry_kane_1600x700.png
 cover_alt: Image générée par l'IA
+cover_credit: ''
 pb_title: La version Petit Budget
 pb_intro: ''
 steps: []
@@ -15,7 +16,7 @@ twin: ''
 seo_title: Harry Kane Ballon d'Or 2026, il échappe encore à Mbappé !
 seo_description: "Doublé au Camp Nou, ON aux pieds, 2e au Ballon d’Or : Mbappé vit une semaine folle, mais Harry Kane et Skechers Football remporte le ballon d'or !"
 linkedin_post: ''
-featured: true
+featured: false
 draft: false
 ---
 
