@@ -42,7 +42,7 @@ Des danseurs mis en lumière comme des athlètes
 
 Portraits, parcours, replay sur Red Bull TV : les danseurs sont traités comme des sportifs de haut niveau. La marque valorise les talents plutôt que son produit.
 
-### En retail, qui offre vraiment une scène à sa communauté ?
+## En retail, qui offre vraiment une scène à sa communauté ?
 
 On parle beaucoup d’expérience client. Mais combien de marques offrent vraiment une scène à leurs clients ?
 
