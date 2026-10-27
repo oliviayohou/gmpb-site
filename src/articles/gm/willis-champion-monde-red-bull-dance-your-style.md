@@ -20,21 +20,21 @@ featured: true
 draft: false
 ---
 
-#### Willis remporte le Red Bull Dance Your Style 2026 à Zurich
+## Willis remporte le Red Bull Dance Your Style 2026 à Zurich
 
 À seulement 16 ans, le danseur hip-hop Willis a remporté la finale mondiale du Red Bull Dance Your Style, devant près de 6 000 personnes dans un Hallenstadion de Zurich complet. Il a enchaîné quatre battles jusqu’à la finale, face à la Sud-Coréenne Yoon Ji, spécialiste du waacking. Et c’est le vote du public qui a tranché.
 
 Cette 6e édition a réuni des danseurs de plus de 50 pays. Pour la grande finale, 16 d’entre eux se sont affrontés : 8 wildcards invités et 8 qualifiés lors des pré-finales. Le tout diffusé en direct sur YouTube.
 
-#### Red Bull donne une scène à la culture urbaine
+## Red Bull donne une scène à la culture urbaine
 
 Red Bull ne s’approprie pas la street dance : la marque construit la scène, puis laisse la communauté faire le reste.
 
-###### Un événement mondial, relayé sur les réseaux
+### Un événement mondial, relayé sur les réseaux
 
 Des qualifications dans des dizaines de pays, une finale mondiale, un live YouTube : l’événement est conçu pour vivre bien au-delà de la salle. Chaque pays a son candidat, donc chaque communauté locale a une raison de suivre et de partager.
 
-###### Le public au cœur du dispositif
+### Le public au cœur du dispositif
 
 Pas de jury d’experts : 80 % des votes viennent de la salle, 20 % du chat YouTube. Le spectateur n’assiste pas à la compétition, il la décide.
 
@@ -42,7 +42,7 @@ Des danseurs mis en lumière comme des athlètes
 
 Portraits, parcours, replay sur Red Bull TV : les danseurs sont traités comme des sportifs de haut niveau. La marque valorise les talents plutôt que son produit.
 
-#### En retail, qui offre vraiment une scène à sa communauté ?
+### En retail, qui offre vraiment une scène à sa communauté ?
 
 On parle beaucoup d’expérience client. Mais combien de marques offrent vraiment une scène à leurs clients ?
 
