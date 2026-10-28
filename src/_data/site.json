@@ -3,13 +3,13 @@
   "newsletterFormUrl": "",
   "devis": false,
   "web3formsKey": "49e1b5dc-0cce-494f-b50c-2e4c205e3a77",
-  "gaId": "G-WYZP7H259N",
   "contactDelay": "Sous 48 h, en semaine",
   "description": "On décrypte les campagnes des grandes marques et on te montre comment les adapter à ton commerce, sans budget.",
   "linkedin": "https://www.linkedin.com/in/olivia-yohou-/",
   "instagram": "https://www.instagram.com/grandmarketingpetitbudget/?hl=fr",
   "url": "https://grandmarketing-petitbudget.fr",
   "title": "Grand Marketing & Petit Budget",
-  "shortTitle": "GM.PB",
-  "author": "Olivia Yohou"
+  "shortTitle": "GM&PB",
+  "author": "Olivia Yohou",
+  "gaId": "G-WYZP7H259N"
 }
