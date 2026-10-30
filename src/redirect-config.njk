@@ -1,0 +1,6 @@
+---
+permalink: /redirect-config.json
+eleventyExcludeFromCollections: true
+---
+{%- set u = "/" | absoluteUrl(site.url) -%}
+{{ { enabled: (site.redirectOldDomain == true), target: u } | json | safe }}

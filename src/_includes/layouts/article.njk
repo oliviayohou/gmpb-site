@@ -10,7 +10,7 @@ layout: layouts/base.njk
 <div class="progress" aria-hidden="true"></div>
 <article data-pagefind-body data-pagefind-meta="track:{{ track }}">
   <header class="wrap-narrow article-head" style="max-width:860px" data-pagefind-meta="category:{{ cat.name }}">
-    <div class="breadcrumb" data-pagefind-ignore><a href="/">{{ common.breadcrumb_home }}</a> / <a href="/{{ 'grand-marketing' if track == 'gm' else 'petit-budget' }}/">{{ blog.gm_name if track == "gm" else blog.pb_name }}</a> / {{ cat.name }}</div>
+    <div class="breadcrumb" data-pagefind-ignore><a href="/">{{ common.breadcrumb_home }}</a> / <a href="/{{ 'gros-budget' if track == 'gm' else 'petit-budget' }}/">{{ blog.gm_name if track == "gm" else blog.pb_name }}</a> / {{ cat.name }}</div>
     <div class="card-meta" style="margin-bottom:22px" data-pagefind-ignore>{{ m.badge(track, blog) }}<a href="/categorie/{{ cat.slug }}/" style="text-decoration:underline;text-underline-offset:3px">{{ cat.name }}</a></div>
     <h1 class="display" style="font-size:clamp(40px,6vw,80px);line-height:1.02">{{ title }}</h1>
     {%- if chapo %}<p class="lead">{{ chapo }}</p>{% endif %}

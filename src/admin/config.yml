@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=https://unpkg.com/@sveltia/cms/schema/sveltia-cms.json
 # =========================================================
-# Back office GM.PB (Sveltia CMS)
+# Back office Le Rayon Marketing (Sveltia CMS)
 # Chaque « collection » est une rubrique du back office.
 # =========================================================
 
@@ -8,8 +8,8 @@ backend:
   name: github
   repo: oliviayohou/gmpb-site
   branch: main
-site_url: https://grandmarketing-petitbudget.fr
-display_url: https://grandmarketing-petitbudget.fr
+site_url: https://lerayonmarketing.fr
+display_url: https://lerayonmarketing.fr
 media_folder: src/images/uploads
 public_folder: /images/uploads
 slug:
@@ -18,8 +18,8 @@ slug:
   sanitize_replacement: '-'
 collections:
 - name: articles_gm
-  label: Articles Grand Marketing
-  label_singular: Article Grand Marketing
+  label: Articles Gros Budget
+  label_singular: Article Gros Budget
   description: Les décryptages des campagnes de grandes marques.
   folder: src/articles/gm
   extension: md
@@ -89,7 +89,7 @@ collections:
     widget: string
     required: false
     default: La version Petit Budget
-    hint: Facultatif pour un article Grand Marketing.
+    hint: Facultatif pour un article Gros Budget.
   - name: pb_intro
     label: 'Bloc Petit Budget : introduction'
     widget: text
@@ -272,7 +272,7 @@ collections:
       label: Point à retenir
       widget: string
   - name: twin
-    label: Article jumeau (Grand Marketing)
+    label: Article jumeau (Gros Budget)
     widget: relation
     collection: articles_gm
     value_field: '{{slug}}'
@@ -281,7 +281,7 @@ collections:
     search_fields:
     - '{{title}}'
     required: false
-    hint: Le décryptage Grand Marketing dont cet article est l'adaptation.
+    hint: Le décryptage Gros Budget dont cet article est l'adaptation.
   - name: seo_title
     label: Titre pour Google
     widget: string
@@ -370,7 +370,7 @@ collections:
       label: Présentation — Texte
       widget: text
     - name: intro_gm_text
-      label: Présentation — Encadré Grand Marketing
+      label: Présentation — Encadré Gros Budget
       widget: text
     - name: intro_pb_text
       label: Présentation — Encadré Petit Budget
@@ -621,7 +621,7 @@ collections:
       label: Messages — Bouton « Envoyer un autre message »
       widget: string
   - name: blog
-    label: Blog, catégories, Grand Marketing et Petit Budget
+    label: Blog, catégories, Gros Budget et Petit Budget
     file: src/_data/blog.json
     fields:
     - name: page_title
@@ -640,13 +640,13 @@ collections:
       label: Page « Tous les articles » — Titre « Les thèmes »
       widget: string
     - name: gm_name
-      label: Grand Marketing — Nom
+      label: Gros Budget — Nom
       widget: string
     - name: gm_badge
-      label: Grand Marketing — Étiquette (badge vert)
+      label: Gros Budget — Étiquette (badge vert)
       widget: string
     - name: gm_description
-      label: Grand Marketing — Description (page Grand Marketing)
+      label: Gros Budget — Description (page Gros Budget)
       widget: text
     - name: pb_name
       label: Petit Budget — Nom
@@ -716,7 +716,7 @@ collections:
       label: Libellés des pages article — Lien vers le jumeau PB (« Pour aller plus loin »)
       widget: string
     - name: twin_from_pb
-      label: Libellés des pages article — Lien vers le jumeau GM (« Le décryptage Grand Marketing »)
+      label: Libellés des pages article — Lien vers le jumeau GM (« Le décryptage Gros Budget »)
       widget: string
     - name: twin_link
       label: Libellés des pages article — « Lire → »
@@ -926,7 +926,13 @@ collections:
     - name: url
       label: Adresse du site
       widget: string
-      hint: "Ton adresse, ex. https://grandmarketing-petitbudget.fr (le https:// est ajouté automatiquement si tu l'oublies)."
+      hint: "Ton adresse, ex. https://lerayonmarketing.fr (le https:// est ajouté automatiquement si tu l'oublies)."
+    - name: redirectOldDomain
+      label: Rediriger les autres adresses vers l'adresse du site
+      widget: boolean
+      required: false
+      default: false
+      hint: "À activer une fois que l'adresse du site fonctionne. Les visites sur l'ancienne adresse (et sur www.) sont alors renvoyées vers l'adresse du site, sur la même page."
     - name: title
       label: Nom du site
       widget: string
