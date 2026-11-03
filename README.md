@@ -51,6 +51,10 @@ Achète-le (chez Cloudflare directement, ou un autre registraire), puis dans Clo
 | Mettre un article à la une | Case **Mettre à la une sur l'accueil** |
 | Activer la newsletter ou le devis | **Réglages du site → Réglages généraux** |
 | Ajouter ou renommer une catégorie | **Réglages du site → Catégories** |
+| Mettre un tag #IA ou #Gratuit sur un article | Champ **Sujets (facultatif)** de l'article |
+| Écrire une question de la FAQ | **FAQ — Questions** → New |
+| Mettre la FAQ en ligne | **Textes du site → Page FAQ** → coche **FAQ en ligne** |
+| Ajouter des questions en fin d'article | Champ **Questions FAQ liées (facultatif)** de l'article (visible une fois la FAQ en ligne) |
 | Changer les textes de l'accueil ou de « À propos » | **Réglages du site → Page d'accueil / Page À propos** |
 | Modifier le design | Demande à Claude |
 

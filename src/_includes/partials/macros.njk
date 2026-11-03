@@ -24,7 +24,18 @@
   {%- if showExcerpt and a.data.chapo %}
   <p>{{ a.data.chapo | truncate(140) }}</p>
   {%- endif %}
+  {%- set tps = a.data.sujets | topicsOf(a.data.topics.topics) %}
+  {%- if tps.length %}
+  <span class="sujets-row">{% for t in tps %}<span class="sujet sujet-sm{% if t.highlight %} sujet-hl{% endif %}">#{{ t.name }}</span>{% endfor %}</span>
+  {%- endif %}
 </a>
+{%- endmacro %}
+
+{# Pastilles des sujets, cliquables (page article, accueil) #}
+{% macro topicLinks(list, cls="") -%}
+{%- if list.length %}
+<div class="sujets-row {{ cls }}">{% for t in list %}<a class="sujet{% if t.highlight %} sujet-hl{% endif %}" href="/sujet/{{ t.slug }}/">#{{ t.name }}</a>{% endfor %}</div>
+{%- endif %}
 {%- endmacro %}
 
 {# Filtres Tout / GM / PB #}

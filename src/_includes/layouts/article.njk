@@ -11,7 +11,7 @@ layout: layouts/base.njk
 <article data-pagefind-body data-pagefind-meta="track:{{ track }}">
   <header class="wrap-narrow article-head" style="max-width:860px" data-pagefind-meta="category:{{ cat.name }}">
     <div class="breadcrumb" data-pagefind-ignore><a href="/">{{ common.breadcrumb_home }}</a> / <a href="/{{ 'gros-budget' if track == 'gm' else 'petit-budget' }}/">{{ blog.gm_name if track == "gm" else blog.pb_name }}</a> / {{ cat.name }}</div>
-    <div class="card-meta" style="margin-bottom:22px" data-pagefind-ignore>{{ m.badge(track, blog) }}<a href="/categorie/{{ cat.slug }}/" style="text-decoration:underline;text-underline-offset:3px">{{ cat.name }}</a></div>
+    <div class="card-meta" style="margin-bottom:22px" data-pagefind-ignore>{{ m.badge(track, blog) }}<a href="/categorie/{{ cat.slug }}/" style="text-decoration:underline;text-underline-offset:3px">{{ cat.name }}</a>{{ m.topicLinks(sujets | topicsOf(topics.topics), "sujets-inline") }}</div>
     <h1 class="display" style="font-size:clamp(40px,6vw,80px);line-height:1.02">{{ title }}</h1>
     {%- if chapo %}<p class="lead">{{ chapo }}</p>{% endif %}
     <div class="author" data-pagefind-ignore><div class="avatar" aria-hidden="true">OY</div><div><strong>{{ site.author }}</strong><br><span class="muted"><time datetime="{{ page.date | isoDate }}">{{ page.date | dateFr }}</time> · {{ minutes }} {{ blog.reading_time_long }}</span></div></div>
@@ -77,6 +77,31 @@ layout: layouts/base.njk
       <h2 id="a-retenir">{{ article.takeaways_title }}</h2>
       <ul>{% for t in takeaways %}<li>{{ t }}</li>{% endfor %}</ul>
     </aside>
+    {%- endif %}
+    {#- Bloc FAQ : seulement si la FAQ est en ligne ET que des questions sont choisies dans l'article #}
+    {%- set faqList = (collections.questions | questionsBySlugs(faq_questions)) if faq.online else [] %}
+    {%- if faqList.length %}
+    <section class="faq-block" aria-labelledby="faq-title" data-pagefind-ignore>
+      <h2 id="faq-title">{{ faq.article_title }}</h2>
+      <p class="faq-block-intro">{{ faq.article_intro }}</p>
+      {%- for q in faqList | head(3) %}
+      {%- set qArts = collections.articles | articlesOf(q) %}
+      <details class="qa">
+        <summary>{{ q.data.title }}<span class="plus" aria-hidden="true"></span></summary>
+        <div class="qa-answer">
+          <p>{{ q.data.answer | rich | safe }}</p>
+          {%- for qa in qArts %}
+          {%- if qa.url == page.url %}
+          <p class="qa-here">{{ faq.article_here }}</p>
+          {%- else %}
+          <a class="qa-link" href="{{ qa.url }}">{{ qa.data.title }} →</a>
+          {%- endif %}
+          {%- endfor %}
+        </div>
+      </details>
+      {%- endfor %}
+      <a class="btn btn-dark faq-all" href="/faq/?cat={{ cat.slug }}">{{ faq.article_all }} {{ cat.name }} →</a>
+    </section>
     {%- endif %}
     <div data-pagefind-ignore>
     {%- if twinArticle %}

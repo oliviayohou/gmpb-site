@@ -166,6 +166,44 @@
   });
   Object.keys(gridState).forEach(applyFilters);
 
+  /* ---------- FAQ : filtres par thème, recherche, lien direct vers une question ---------- */
+  var faqRoot = $('.js-faq');
+  if (faqRoot) {
+    var faqChips = $all('[data-faq-cat]', faqRoot);
+    var faqGroups = $all('[data-faq-group]', faqRoot);
+    var faqInput = $('#faq-q');
+    var faqEmpty = $('#faq-empty');
+    var faqCat = new URLSearchParams(location.search).get('cat');
+    if (!faqChips.some(function (c) { return c.getAttribute('data-faq-cat') === faqCat; })) faqCat = 'all';
+    var norm = function (s) { return String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); };
+    var applyFaq = function () {
+      var q = norm(faqInput ? faqInput.value.trim() : '');
+      var shown = 0;
+      faqChips.forEach(function (c) { c.setAttribute('aria-pressed', c.getAttribute('data-faq-cat') === faqCat ? 'true' : 'false'); });
+      faqGroups.forEach(function (g) {
+        var inCat = faqCat === 'all' || g.getAttribute('data-faq-group') === faqCat;
+        var visible = 0;
+        $all('.qa', g).forEach(function (item) {
+          var ok = inCat && (!q || norm(item.textContent).indexOf(q) !== -1);
+          item.hidden = !ok;
+          if (ok) visible++;
+        });
+        g.hidden = visible === 0;
+        shown += visible;
+      });
+      if (faqEmpty) faqEmpty.hidden = shown > 0;
+    };
+    faqChips.forEach(function (c) {
+      c.addEventListener('click', function () { faqCat = c.getAttribute('data-faq-cat'); applyFaq(); });
+    });
+    if (faqInput) faqInput.addEventListener('input', applyFaq);
+    applyFaq();
+    if (location.hash) {
+      var target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+      if (target && target.tagName === 'DETAILS') target.open = true;
+    }
+  }
+
   /* ---------- Formulaire de contact (Web3Forms) ---------- */
   var contact = $('#contact-form');
   if (contact) {

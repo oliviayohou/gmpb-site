@@ -1,0 +1,94 @@
+---
+layout: layouts/base.njk
+activeNav: faq
+eleventyComputed:
+  title: "{{ faq.page_title }}"
+  description: "{{ faq.page_description }}"
+---
+{%- import "partials/macros.njk" as m -%}
+{%- set qs = collections.questions -%}
+<section class="page-hero" style="background:var(--yellow)">
+  <div class="wrap">
+    <div class="breadcrumb"><a href="/">{{ common.breadcrumb_home }}</a> / {{ faq.page_title }}</div>
+    <p class="eyebrow">{{ faq.eyebrow }}</p>
+    <h1 class="display h-1">{{ faq.title }} <span class="highlight-white">{{ faq.title_highlight }}</span></h1>
+    <p class="lead" style="margin-top:20px">{{ faq.intro | rich | safe }}</p>
+    {%- if qs.length %}
+    <div class="faq-search">
+      <label for="faq-q" class="sr-only">{{ faq.search_label }}</label>
+      <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M13 13l4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <input id="faq-q" type="search" placeholder="{{ faq.search_placeholder }}" autocomplete="off">
+    </div>
+    {%- endif %}
+  </div>
+</section>
+
+<section class="wrap faq-wrap js-faq" aria-label="{{ faq.page_title }}">
+  {%- if qs.length %}
+  <div class="filters faq-filters" role="group" aria-label="Filtrer par thème">
+    <button type="button" class="chip" data-faq-cat="all" aria-pressed="true">{{ faq.filter_all }}</button>
+    {%- for c in categories.categories %}
+    {%- if (qs | questionsByCategory(c.slug)).length %}
+    <button type="button" class="chip" data-faq-cat="{{ c.slug }}" aria-pressed="false"><span class="dot" style="background:{{ c.color }}"></span> {{ c.name }}</button>
+    {%- endif %}
+    {%- endfor %}
+  </div>
+
+  {%- for c in categories.categories %}
+  {%- set group = qs | questionsByCategory(c.slug) %}
+  {%- if group.length %}
+  <div class="faq-group" data-faq-group="{{ c.slug }}">
+    <h2 class="faq-group-title"><span class="dot" style="background:{{ c.color }}"></span>{{ c.name }}</h2>
+    {%- for q in group %}
+    {%- set qArts = collections.articles | articlesOf(q) %}
+    <details class="qa" id="{{ q.fileSlug }}">
+      <summary>{{ q.data.title }}<span class="plus" aria-hidden="true"></span></summary>
+      <div class="qa-answer">
+        <p>{{ q.data.answer | rich | safe }}</p>
+        {%- if qArts.length %}
+        <p class="qa-more">{{ faq.more_label }}</p>
+        <div class="qa-links">
+          {%- for a in qArts | head(3) %}
+          {%- set acat = a.data.category | category(categories.categories) %}
+          <a class="qa-card" href="{{ a.url }}">
+            <span class="card-meta">{{ m.badge(a.data.track, blog) }}<span>{{ acat.name }}</span></span>
+            <strong>{{ a.data.title }}</strong>
+            <span class="qa-card-go">{{ faq.read_link }}</span>
+          </a>
+          {%- endfor %}
+        </div>
+        {%- endif %}
+      </div>
+    </details>
+    {%- endfor %}
+  </div>
+  {%- endif %}
+  {%- endfor %}
+  <p class="empty" id="faq-empty" hidden>{{ faq.empty }}</p>
+  {%- else %}
+  <p class="empty">{{ faq.empty_page }}</p>
+  {%- endif %}
+
+  <div class="faq-ask">
+    <div>
+      <h2 class="display h-3">{{ faq.ask_title }}</h2>
+      <p>{{ faq.ask_text }}</p>
+    </div>
+    <a class="btn btn-yellow" href="/contact/">{{ faq.ask_button }}</a>
+  </div>
+</section>
+
+{%- if qs.length %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "inLanguage": "fr-FR",
+  "mainEntity": [
+    {%- for q in qs %}
+    { "@type": "Question", "name": {{ q.data.title | json | safe }}, "acceptedAnswer": { "@type": "Answer", "text": {{ q.data.answer | json | safe }} } }{% if not loop.last %},{% endif %}
+    {%- endfor %}
+  ]
+}
+</script>
+{%- endif %}

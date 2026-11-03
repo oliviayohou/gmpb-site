@@ -65,6 +65,20 @@ collections:
     - '{{categories.*.name}}'
     search_fields:
     - '{{categories.*.name}}'
+  - name: sujets
+    label: Sujets (facultatif)
+    widget: relation
+    collection: settings
+    file: topics
+    value_field: '{{topics.*.slug}}'
+    display_fields:
+    - '{{topics.*.name}}'
+    search_fields:
+    - '{{topics.*.name}}'
+    multiple: true
+    max: 2
+    required: false
+    hint: "#IA seulement si l'IA joue vraiment un rôle dans l'article, #Gratuit seulement si l'idée se met en place sans dépenser un euro. La plupart des articles n'en ont aucun."
   - name: cover
     label: Image de couverture
     widget: image
@@ -138,6 +152,19 @@ collections:
     - '{{title}}'
     required: false
     hint: L'article Petit Budget qui répond à ce décryptage. Le lien s'affiche en fin d'article.
+  - name: faq_questions
+    label: Questions FAQ liées (facultatif)
+    widget: relation
+    collection: questions
+    value_field: '{{slug}}'
+    display_fields:
+    - '{{title}}'
+    search_fields:
+    - '{{title}}'
+    multiple: true
+    max: 3
+    required: false
+    hint: "3 questions maximum, affichées dans le bloc « Questions fréquentes » en fin d'article. Laisse vide pour ne pas avoir de bloc. Le bloc n'apparaît sur le site qu'une fois la FAQ mise en ligne."
   - name: seo_title
     label: Titre pour Google
     widget: string
@@ -213,6 +240,20 @@ collections:
     - '{{categories.*.name}}'
     search_fields:
     - '{{categories.*.name}}'
+  - name: sujets
+    label: Sujets (facultatif)
+    widget: relation
+    collection: settings
+    file: topics
+    value_field: '{{topics.*.slug}}'
+    display_fields:
+    - '{{topics.*.name}}'
+    search_fields:
+    - '{{topics.*.name}}'
+    multiple: true
+    max: 2
+    required: false
+    hint: "#IA seulement si l'IA joue vraiment un rôle dans l'article, #Gratuit seulement si l'idée se met en place sans dépenser un euro. La plupart des articles n'en ont aucun."
   - name: cover
     label: Image de couverture
     widget: image
@@ -282,6 +323,19 @@ collections:
     - '{{title}}'
     required: false
     hint: Le décryptage Gros Budget dont cet article est l'adaptation.
+  - name: faq_questions
+    label: Questions FAQ liées (facultatif)
+    widget: relation
+    collection: questions
+    value_field: '{{slug}}'
+    display_fields:
+    - '{{title}}'
+    search_fields:
+    - '{{title}}'
+    multiple: true
+    max: 3
+    required: false
+    hint: "3 questions maximum, affichées dans le bloc « Questions fréquentes » en fin d'article. Laisse vide pour ne pas avoir de bloc. Le bloc n'apparaît sur le site qu'une fois la FAQ mise en ligne."
   - name: seo_title
     label: Titre pour Google
     widget: string
@@ -308,6 +362,80 @@ collections:
     label: Brouillon (pas visible sur le site)
     widget: boolean
     default: true
+    required: false
+- name: questions
+  label: FAQ — Questions
+  label_singular: Question
+  description: "Les questions de la page FAQ. Une question s'écrit une seule fois : elle peut ensuite être reliée à des articles, et des articles peuvent la reprendre en fin de page."
+  folder: src/questions
+  extension: md
+  format: frontmatter
+  create: true
+  slug:
+    template: '{{title}}'
+    editable: [create]
+  summary: '{{title}}'
+  sortable_fields:
+  - order
+  - title
+  - category
+  view_groups:
+  - label: Catégorie
+    field: category
+  fields:
+  - name: title
+    label: Question
+    widget: string
+    hint: "Telle que les gens la tapent dans Google, ex. « Comment être visible sur Google ? »"
+  - name: category
+    label: Catégorie
+    widget: relation
+    collection: settings
+    file: categories
+    value_field: '{{categories.*.slug}}'
+    display_fields:
+    - '{{categories.*.name}}'
+    search_fields:
+    - '{{categories.*.name}}'
+  - name: answer
+    label: Réponse courte
+    widget: text
+    hint: "2 ou 3 phrases qui répondent vraiment à la question (pas seulement un lien)."
+  - name: articles_gm
+    label: Articles Gros Budget liés (facultatif)
+    widget: relation
+    collection: articles_gm
+    value_field: '{{slug}}'
+    display_fields:
+    - '{{title}}'
+    search_fields:
+    - '{{title}}'
+    multiple: true
+    max: 3
+    required: false
+  - name: articles_pb
+    label: Articles Petit Budget liés (facultatif)
+    widget: relation
+    collection: articles_pb
+    value_field: '{{slug}}'
+    display_fields:
+    - '{{title}}'
+    search_fields:
+    - '{{title}}'
+    multiple: true
+    max: 3
+    required: false
+    hint: "3 articles maximum au total. Seuls les articles publiés s'affichent."
+  - name: order
+    label: Ordre d'affichage
+    widget: number
+    value_type: int
+    required: false
+    hint: "1 = en premier dans sa catégorie. Laisse vide pour l'ordre alphabétique."
+  - name: draft
+    label: Brouillon (pas visible sur le site)
+    widget: boolean
+    default: false
     required: false
 - name: textes
   label: Textes du site
@@ -742,6 +870,78 @@ collections:
     - name: related_title
       label: Libellés des pages article — Titre « À lire aussi »
       widget: string
+  - name: faq
+    label: Page FAQ
+    file: src/_data/faq.json
+    fields:
+    - name: online
+      label: FAQ en ligne
+      widget: boolean
+      default: false
+      hint: "Laisse décoché tant que la FAQ n'est pas prête : la page n'est pas publiée, le lien du menu et les blocs en fin d'article restent masqués. Coche le jour du lancement."
+    - name: menu_label
+      label: Menu — Nom du lien
+      widget: string
+    - name: page_title
+      label: Page — Titre de l'onglet
+      widget: string
+    - name: page_description
+      label: Page — Description pour Google
+      widget: text
+    - name: eyebrow
+      label: Page — Petit titre
+      widget: string
+    - name: title
+      label: Page — Grand titre (1re partie)
+      widget: string
+    - name: title_highlight
+      label: Page — Grand titre (partie surlignée)
+      widget: string
+    - name: intro
+      label: Page — Texte d'introduction
+      widget: text
+    - name: search_label
+      label: Recherche — Libellé (lecteurs d'écran)
+      widget: string
+    - name: search_placeholder
+      label: Recherche — Exemple dans le champ
+      widget: string
+    - name: filter_all
+      label: Filtres — Bouton « Tout »
+      widget: string
+    - name: more_label
+      label: Réponse — Titre « Pour aller plus loin »
+      widget: string
+    - name: read_link
+      label: Réponse — Lien vers l'article
+      widget: string
+    - name: empty
+      label: Messages — Aucune question trouvée
+      widget: string
+    - name: empty_page
+      label: Messages — Pas encore de question
+      widget: string
+    - name: ask_title
+      label: Encart contact — Titre
+      widget: string
+    - name: ask_text
+      label: Encart contact — Texte
+      widget: string
+    - name: ask_button
+      label: Encart contact — Bouton
+      widget: string
+    - name: article_title
+      label: Bloc fin d'article — Titre
+      widget: string
+    - name: article_intro
+      label: Bloc fin d'article — Phrase d'introduction
+      widget: string
+    - name: article_here
+      label: Bloc fin d'article — « Tu es sur l'article lié »
+      widget: string
+    - name: article_all
+      label: Bloc fin d'article — Bouton (suivi du nom de la catégorie)
+      widget: string
   - name: common
     label: Menu, recherche, footer et page 404
     file: src/_data/common.json
@@ -972,6 +1172,47 @@ collections:
           value: '#3ED6C4'
         - label: Lavande
           value: '#AE8AEA'
+      - name: description
+        label: Description
+        widget: text
+  - name: topics
+    label: Sujets (#IA, #Gratuit)
+    file: src/_data/topics.json
+    fields:
+    - name: menu_label
+      label: Menu — Titre de la ligne des sujets
+      widget: string
+    - name: home_label
+      label: Accueil et blog — Libellé devant les sujets
+      widget: string
+    - name: eyebrow
+      label: Page d'un sujet — Petit titre
+      widget: string
+    - name: empty
+      label: Page d'un sujet — Message quand il n'y a pas encore d'article
+      widget: string
+    - name: topics
+      label: Sujets
+      label_singular: sujet
+      widget: list
+      summary: '#{{fields.name}}'
+      hint: "Garde-les peu nombreux : un sujet doit traverser plusieurs catégories."
+      fields:
+      - name: name
+        label: Nom (sans le #)
+        widget: string
+      - name: slug
+        label: Adresse (sans accents ni espaces)
+        widget: string
+        pattern:
+        - ^[a-z0-9-]+$
+        - Seulement des minuscules, des chiffres et des tirets.
+        hint: Ex. ia. Évite de la changer une fois des articles publiés.
+      - name: highlight
+        label: Mettre en avant (pastille noire et jaune)
+        widget: boolean
+        default: false
+        required: false
       - name: description
         label: Description
         widget: text

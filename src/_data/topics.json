@@ -1,0 +1,12 @@
+{
+  "menu_label": "Sujets",
+  "home_label": "Sujets :",
+  "eyebrow": "Sujet",
+  "empty": "Les premiers articles sur ce sujet arrivent bientôt.",
+  "topics": [
+    { "slug": "ia", "name": "IA", "highlight": true,
+      "description": "Tous les articles où l'IA joue un rôle, quelle que soit la catégorie : pub, réseaux sociaux, avis clients, fiches produits…" },
+    { "slug": "gratuit", "name": "Gratuit", "highlight": false,
+      "description": "Les idées à mettre en place sans dépenser un euro : outils gratuits, astuces et méthodes à appliquer dès lundi." }
+  ]
+}

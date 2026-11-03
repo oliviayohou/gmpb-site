@@ -47,6 +47,14 @@ export default function (eleventyConfig) {
     api.getFilteredByGlob("src/articles/**/*.md").sort((a, b) => b.date - a.date)
   );
 
+  // ---------- Questions de la FAQ (ordre choisi, puis alphabétique) ----------
+  eleventyConfig.addCollection("questions", (api) =>
+    api.getFilteredByGlob("src/questions/*.md").sort((a, b) =>
+      (Number(a.data.order) || 999) - (Number(b.data.order) || 999) ||
+      String(a.data.title || "").localeCompare(String(b.data.title || ""), "fr")
+    )
+  );
+
   // ---------- Filtres utilisés dans les modèles ----------
   eleventyConfig.addFilter("dateFr", (d) => {
     const date = new Date(d);
@@ -66,6 +74,24 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("category", (slug, categories) =>
     (categories || []).find((c) => c.slug === slug) || { slug, name: slug, color: "#AE8AEA", description: "" }
   );
+
+  // Sujets (#IA, #Gratuit) : facultatifs, 0, 1 ou 2 par article
+  const asList = (v) => (Array.isArray(v) ? v : v ? [v] : []);
+  eleventyConfig.addFilter("bySujet", (items, slug) => (items || []).filter((a) => asList(a.data.sujets).includes(slug)));
+  eleventyConfig.addFilter("topicsOf", (sujets, topics) =>
+    (topics || []).filter((t) => asList(sujets).includes(t.slug))
+  );
+
+  // FAQ : questions liées à un article, et articles liés à une question
+  eleventyConfig.addFilter("questionsBySlugs", (questions, slugs) =>
+    asList(slugs).map((s) => (questions || []).find((q) => q.fileSlug === s)).filter(Boolean)
+  );
+  eleventyConfig.addFilter("articlesOf", (articles, q) =>
+    [...asList(q.data.articles_gm), ...asList(q.data.articles_pb)]
+      .map((s) => (articles || []).find((a) => a.fileSlug === s))
+      .filter(Boolean)
+  );
+  eleventyConfig.addFilter("questionsByCategory", (questions, cat) => (questions || []).filter((q) => q.data.category === cat));
 
   // Temps de lecture : ~200 mots par minute (texte + chapô + étapes)
   eleventyConfig.addFilter("readingTime", (article) => {

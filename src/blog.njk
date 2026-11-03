@@ -36,5 +36,8 @@ eleventyComputed:
       <a class="cat-tile" href="/categorie/{{ c.slug }}/"><span>{{ c.name }}</span><span class="arrow" style="background:{{ c.color }}" aria-hidden="true">→</span></a>
       {%- endfor %}
     </div>
+    {%- if topics.topics.length %}
+    <div class="topics-line"><strong>{{ topics.home_label }}</strong>{{ m.topicLinks(topics.topics, "on-dark") }}</div>
+    {%- endif %}
   </div>
 </section>

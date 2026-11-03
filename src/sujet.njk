@@ -1,0 +1,45 @@
+---
+layout: layouts/base.njk
+activeNav: categories
+pagination:
+  data: topics.topics
+  size: 1
+  alias: topic
+permalink: "/sujet/{{ topic.slug }}/"
+eleventyComputed:
+  title: "#{{ topic.name }}"
+  description: "{{ topic.description }}"
+  activeTopic: "{{ topic.slug }}"
+---
+{%- import "partials/macros.njk" as m -%}
+{%- set arts = collections.articles | bySujet(topic.slug) -%}
+<section class="page-hero" style="background:{{ 'var(--ink)' if topic.highlight else 'var(--violet-soft)' }};{{ 'color:#fff' if topic.highlight }}">
+  <div class="wrap">
+    <div class="breadcrumb"><a href="/">{{ common.breadcrumb_home }}</a> / <a href="/blog/">{{ blog.breadcrumb_blog }}</a> / #{{ topic.name }}</div>
+    <p class="eyebrow"{% if topic.highlight %} style="color:var(--yellow)"{% endif %}>{{ topics.eyebrow }}</p>
+    <h1 class="display h-1">#{{ topic.name }}</h1>
+    <p class="lead" style="margin-top:20px">{{ topic.description | rich | safe }}</p>
+  </div>
+</section>
+<section class="wrap" style="padding-top:40px;padding-bottom:88px" aria-label="#{{ topic.name }}">
+  <div class="section-head" style="align-items:center">
+    {{ m.trackFilters("topic-grid", "topic-count", "topic-empty", blog) }}
+    <span class="result-count" id="topic-count" aria-live="polite"></span>
+  </div>
+  <div class="grid" id="topic-grid">
+    {%- for a in arts %}
+    {{ m.card(a, categories.categories, blog, true) }}
+    {%- endfor %}
+  </div>
+  <p class="empty" id="topic-empty" {% if arts.length %}hidden{% endif %}>{{ topics.empty }}</p>
+</section>
+<section class="section-dark">
+  <div class="wrap section-tight">
+    <div class="chips-row">
+      <strong style="margin-right:8px">{{ blog.other_themes }}</strong>
+      {%- for o in categories.categories %}
+      <a href="/categorie/{{ o.slug }}/">{{ o.name }}</a>
+      {%- endfor %}
+    </div>
+  </div>
+</section>

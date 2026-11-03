@@ -9,11 +9,22 @@
           {%- for c in categories.categories %}
           <a href="/categorie/{{ c.slug }}/"{% if activeCat == c.slug %} aria-current="page"{% endif %}><span class="dot" style="background:{{ c.color }}"></span>{{ c.name }}</a>
           {%- endfor %}
+          {%- if topics.topics.length %}
+          <p class="dropdown-label">{{ topics.menu_label }}</p>
+          <div class="sujets-row">
+            {%- for t in topics.topics %}
+            <a class="sujet{% if t.highlight %} sujet-hl{% endif %}" href="/sujet/{{ t.slug }}/"{% if activeTopic == t.slug %} aria-current="page"{% endif %}>#{{ t.name }}</a>
+            {%- endfor %}
+          </div>
+          {%- endif %}
           <a class="all" href="/blog/">{{ common.menu_all_articles }}</a>
         </div>
       </div>
       <a class="nav-link" href="/gros-budget/"{% if activeNav == "gm" %} aria-current="page"{% endif %}>{{ blog.gm_name }}</a>
       <a class="nav-link" href="/petit-budget/"{% if activeNav == "pb" %} aria-current="page"{% endif %}>{{ blog.pb_name }}</a>
+      {%- if faq.online %}
+      <a class="nav-link" href="/faq/"{% if activeNav == "faq" %} aria-current="page"{% endif %}>{{ faq.menu_label }}</a>
+      {%- endif %}
       <a class="nav-link" href="/a-propos/"{% if activeNav == "about" %} aria-current="page"{% endif %}>{{ common.menu_about }}</a>
       <a class="nav-link" href="/contact/"{% if activeNav == "contact" %} aria-current="page"{% endif %}>{{ common.menu_contact }}</a>
     </nav>
@@ -32,16 +43,25 @@
         {%- for c in categories.categories %}
         <a href="/categorie/{{ c.slug }}/"><span class="dot" style="background:{{ c.color }}"></span>{{ c.name }}</a>
         {%- endfor %}
+        {%- if topics.topics.length %}
+        <p class="dropdown-label">{{ topics.menu_label }}</p>
+        <div class="sujets-row">
+          {%- for t in topics.topics %}
+          <a class="sujet{% if t.highlight %} sujet-hl{% endif %}" href="/sujet/{{ t.slug }}/">#{{ t.name }}</a>
+          {%- endfor %}
+        </div>
+        {%- endif %}
         <a href="/blog/"><strong>{{ common.menu_all_articles }}</strong></a>
       </div>
       <a class="m-link" href="/gros-budget/">{{ blog.gm_name }}</a>
       <a class="m-link" href="/petit-budget/">{{ blog.pb_name }}</a>
+      {%- if faq.online %}
+      <a class="m-link" href="/faq/">{{ faq.menu_label }}</a>
+      {%- endif %}
       <a class="m-link" href="/a-propos/">{{ common.menu_about }}</a>
       <a class="m-link" href="/contact/">{{ common.menu_contact }}</a>
       {%- if site.newsletter %}
       <a class="btn btn-violet m-cta" href="#newsletter">{{ common.menu_newsletter_mobile }}</a>
-      {%- else %}
-      <a class="btn btn-violet m-cta" href="/contact/">{{ common.menu_devis_button if site.devis else common.menu_contact_button }}</a>
       {%- endif %}
     </nav>
   </div>

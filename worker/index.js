@@ -7,6 +7,9 @@
 const PATHS = {
   "/grand-marketing": "/gros-budget/",
   "/grand-marketing/": "/gros-budget/",
+  // L'ancienne catégorie « Intelligence artificielle » est devenue le sujet #IA
+  "/categorie/intelligence-artificielle": "/sujet/ia/",
+  "/categorie/intelligence-artificielle/": "/sujet/ia/",
 };
 
 async function readConfig(env, request) {
