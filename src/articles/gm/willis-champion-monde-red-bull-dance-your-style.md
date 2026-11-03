@@ -2,7 +2,8 @@
 title: Willis, 16 ans, champion du monde Red Bull Dance Your Style !
 chapo: 'Le 24 octobre 2026, Willis est devenu le premier Français sacré champion du monde du Red Bull Dance Your Style. Pas de jury : c’est le public qui l’a couronné. Retour sur l’exploit de Willis et sur la façon dont Red Bull a construit l’événement.'
 date: 2026-10-27
-category: branding
+category: evenementiel
+sujets: []
 cover: /images/uploads/banner Willis Redbull Dance Your Style Champion.avif
 cover_alt: Willis, champion du monde Red Bull Dance Your Style 2026, sur scène au Hallenstadion de Zurich
 cover_credit: 'Crédit photo : Little Shao / Red Bull Content Pool'
@@ -13,6 +14,7 @@ budget: ''
 time: ''
 takeaways: []
 twin: ''
+faq_questions: []
 seo_title: Willis, 16 ans, champion du monde Red Bull Dance Your Style
 seo_description: À 16 ans, Willis devient le premier Français sacré champion du monde du Red Bull Dance Your Style. Retour sur un format où le public décide.
 linkedin_post: ''
