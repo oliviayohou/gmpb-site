@@ -32,13 +32,3 @@ eleventyComputed:
   </div>
   <p class="empty" id="cat-empty" {% if arts.length %}hidden{% endif %}>{{ blog.empty_category }}</p>
 </section>
-<section class="section-dark">
-  <div class="wrap section-tight">
-    <div class="chips-row">
-      <strong style="margin-right:8px">{{ blog.other_themes }}</strong>
-      {%- for o in categories.categories %}{% if o.slug != cat.slug %}
-      <a href="/categorie/{{ o.slug }}/">{{ o.name }}</a>
-      {%- endif %}{% endfor %}
-    </div>
-  </div>
-</section>
