@@ -1,7 +1,7 @@
 ---
 title: Burger King s'allie avec Free pour contrer Reef... avec une box !
-chapo: Burger King s’invite chez Reef, le faux concurrent de Free, avec une Box Mystère à 10 €. Je décrypte ce crossover pub
-date: 2026-11-03
+chapo: Burger King s’invite chez Reef, le faux concurrent de Free, avec une Box Mystère à 10 €. Je décrypte ce crossover pub.
+date: 2026-11-04
 category: partenariats-collabs
 sujets: []
 cover: /images/uploads/Spot Burger King Box Mystère Reef Free.webp
@@ -78,7 +78,7 @@ Rien de nouveau sous le soleil : dès 2019, Burger King gagnait 1,5 million de t
 
 La Box Mystère reprend exactement cette recette, avec deux ingrédients.
 
-Le premier, c’est **l’effet surprise**. Tu ne choisis pas ce qu’il y a dans ta box, tu le découvres en l’ouvrant. Comme un jeu à gratter ou un booster de cartes Pokémon, c’est le suspense qui donne envie d’essayer, puis de recommencer pour voir sur quoi tu vas tomber la prochaine fois. C’est ça, la gamification : transformer un achat banal en petit jeu.
+Le premier, c’est **l’effet de surprise**. Tu ne choisis pas ce qu’il y a dans ta box, tu le découvres en l’ouvrant.
 
 Le second, c’est **un prix réservé à l’app**. La box à 10 € fonctionne comme un coupon : pour en profiter, tu dois passer par l’application. Le bon plan devient la raison de la télécharger.
 
