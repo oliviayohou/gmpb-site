@@ -18,7 +18,7 @@ faq_questions: []
 seo_title: Willis, 16 ans, champion du monde Red Bull Dance Your Style
 seo_description: À 16 ans, Willis devient le premier Français sacré champion du monde du Red Bull Dance Your Style. Retour sur un format où le public décide.
 linkedin_post: ''
-featured: true
+featured: false
 draft: false
 ---
 
