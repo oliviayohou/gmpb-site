@@ -18,8 +18,8 @@ faq_questions: []
 seo_title: Burger King squatte la pub de Free pour sa nouvelle box !
 seo_description: Burger King sème la pagaille chez Reef, le faux concurrent de Free, avec une Box Mystère à 10 €.
 linkedin_post: ''
-featured: false
-draft: true
+featured: true
+draft: false
 ---
 
 ## Burger King vient de sortir une box à 10 €. Sans fibre. Sans wifi. Avec des frites.
