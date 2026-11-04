@@ -10,7 +10,7 @@
 <title>{{ pageTitle }}</title>
 <meta name="description" content="{{ pageDesc | truncate(160) }}">
 <link rel="canonical" href="{{ canonical }}">
-{% if noindex %}<meta name="robots" content="noindex">{% endif %}
+{% if noindex %}<meta name="robots" content="noindex">{% elif isHome %}<meta name="robots" content="max-image-preview:none">{% endif %}
 <meta property="og:site_name" content="{{ site.title }}">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:type" content="{{ 'article' if layout == 'layouts/article.njk' else 'website' }}">
