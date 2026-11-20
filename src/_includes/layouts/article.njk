@@ -75,7 +75,11 @@ layout: layouts/base.njk
     {%- if takeaways and takeaways.length %}
     <aside class="takeaway" aria-labelledby="a-retenir">
       <h2 id="a-retenir">{{ article.takeaways_title }}</h2>
+      {%- if takeaways.length > 1 %}
       <ul>{% for t in takeaways %}<li>{{ t }}</li>{% endfor %}</ul>
+      {%- else %}
+      <p>{{ takeaways[0] }}</p>
+      {%- endif %}
     </aside>
     {%- endif %}
     {#- Bloc FAQ : seulement si la FAQ est en ligne ET que des questions sont choisies dans l'article #}

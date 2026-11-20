@@ -421,6 +421,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .takeaway h2 { font-family: var(--font-display); font-weight: 400; text-transform: uppercase; font-size: 30px; margin: 0 0 12px; }
 .takeaway ul { margin: 0; padding-left: 22px; font-size: 17px; line-height: 1.65; }
 .takeaway li { margin-bottom: 6px; }
+.takeaway p { margin: 0; font-size: 17px; line-height: 1.65; }
 .after { max-width: 720px; margin: 0 auto; padding: 48px 24px 0; }
 .author-box { display: flex; gap: 20px; align-items: flex-start; border-top: var(--border); border-bottom: var(--border); padding: 28px 0; }
 .author-box .avatar { width: 72px; height: 72px; font-size: 22px; }
