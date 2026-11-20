@@ -23,7 +23,7 @@ steps:
 budget: ''
 time: ''
 takeaways:
-  - 'Et en France, on ne peut pas payer directement dans WhatsApp : c’est toujours un lien qui finalise la commande. Même chez Burger King ! Ce n’est donc pas une solution au rabais, c’est simplement comme ça que ça fonctionne.'
+  - 'En France, on ne peut pas payer directement dans WhatsApp : c’est toujours un lien qui finalise la commande. Même chez Burger King ! Ce n’est donc pas une solution au rabais, c’est simplement comme ça que ça fonctionne.'
 twin: ''
 faq_questions: []
 seo_title: Burger King sur WhatsApp, on peut passer commande !
