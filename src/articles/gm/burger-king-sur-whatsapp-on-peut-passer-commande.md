@@ -14,11 +14,11 @@ cover_credit: ''
 pb_title: Comment faire pareil dans ton commerce !
 pb_intro: ''
 steps:
-  - title: Sans IA
+  - title: 'Niveau 1 : Sans IA'
     text: 'Télécharge l’appli WhatsApp BusinessCrée ton catalogue avec photos et prix. Tes clients remplissent un panier et te l’envoient directement dans la conversation. Tu réponds avec un lien de paiement (SumUp, Stripe ou PayPal : gratuits à créer, seule une commission est prise par vente). Ajoute un message d’accueil automatique et quelques réponses rapides (« Click & collect dispo à partir de 11h »), et tu as déjà un parcours très proche de celui de BK.'
-  - title: Avec IA, sans rien coder
+  - title: 'Niveau 2 : Avec IA, sans rien coder'
     text: 'Meta propose désormais son propre agent IA dans WhatsApp Business : Meta Business Agent. Il répond aux questions, recommande des produits et peut passer la main à un humain si besoin. Tu l’entraînes avec tes anciennes discussions, ton site ou ton catalogue, et tu le testes avant de l’activer. Il est gratuit pour démarrer, mais Meta prévoit de l’intégrer à des offres payantes.'
-  - title: Sur mesure
+  - title: 'Niveau 3 : Sur mesure'
     text: Pour les commerces qui reçoivent beaucoup de commandes (snack, boulangerie, traiteur…), il est possible de créer son propre agent en reliant WhatsApp à un outil d’automatisation et à une IA. C’est plus technique, et l’API WhatsApp est payante au message.
 budget: ''
 time: ''
