@@ -2,7 +2,7 @@
 title: 'ChatGPT Ads arrive en France : comment ça marche ?'
 chapo: Après Walmart et ses prompts sponsorisés, c’est au tour d’OpenAI d’ouvrir la publicité dans ChatGPT. Le lancement concerne la France et 31 pays européens. Voici comment fonctionne ce nouveau format et ce qu’on peut en attendre à ce stade.
 date: 2026-08-24
-category: branding
+category: referencement-ads
 sujets:
   - ia
 cover: ''
