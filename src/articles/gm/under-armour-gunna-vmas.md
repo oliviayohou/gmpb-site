@@ -2,7 +2,7 @@
 title: 'Under Armour aux MTV VMA : ils misent sur Gunna'
 chapo: 'Face à des ventes en recul et à des concurrents qui dominent le lien entre sport et culture, Under Armour a choisi un format inattendu pour relancer sa marque aux États-Unis : 60 secondes de publicité pendant les MTV VMA 2025, avec un rappeur en tête d’affiche.'
 date: 2025-09-26
-category: partenariats-collabs
+category: branding
 sujets: []
 cover: ''
 cover_alt: ''
